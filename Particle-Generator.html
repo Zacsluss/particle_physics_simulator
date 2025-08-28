@@ -117,6 +117,9 @@
         <button onclick="mode = 'magnetic'; updateMode()">🧲 Magnetic Field</button>
         <button onclick="mode = 'blackhole'; updateMode()">🌌 Black Hole</button>
         <button onclick="mode = 'repel'; updateMode()">💫 Repulsion</button>
+        <button onclick="mode = 'dna'; updateMode()">🧬 DNA Helix</button>
+        <button onclick="mode = 'vortex'; updateMode()">🌀 Vortex Storm</button>
+        <button onclick="mode = 'kaleidoscope'; updateMode()">🌈 Kaleidoscope</button>
         
         <div class="slider-container">
             <label>Force Strength: <span id="forceValue">5</span></label>
@@ -183,9 +186,22 @@
                 this.trail = [];
                 this.maxTrail = 10;
                 this.size = 2;
+                this.baseSize = 2; // Store original size for evolution
                 this.charge = Math.random() > 0.5 ? 1 : -1;
                 this.hue = Math.random() * 360;
                 this.life = 1;
+                this.age = 0; // Track particle age
+                this.pulsePhase = Math.random() * Math.PI * 2; // For pulsing aura
+                this.originalHue = this.hue; // Store original color for mixing
+                // Randomize trail styles for variety
+                const rand = Math.random();
+                if (rand < 0.15) {
+                    this.trailStyle = 'lightning';
+                } else if (rand < 0.35) {
+                    this.trailStyle = 'ribbon';
+                } else {
+                    this.trailStyle = 'normal';
+                }
             }
             
             update(dt) {
@@ -264,6 +280,77 @@
                             this.ay += (dy / dist) * force;
                         }
                     });
+                } else if (mode === 'dna') {
+                    // DNA Double Helix - FIXED VERSION
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    const time = performance.now() * 0.003;
+                    const helixRadius = 120;
+                    
+                    // Determine which helix strand (based on original hue)
+                    const strand = this.originalHue > 180 ? 1 : -1;
+                    
+                    // Create circular motion around center with helix twist
+                    const baseAngle = time + (this.originalHue / 360) * Math.PI * 2;
+                    const helixHeight = Math.sin(baseAngle * 2) * 200; // Vertical oscillation
+                    
+                    const targetX = centerX + Math.cos(baseAngle) * helixRadius * strand;
+                    const targetY = centerY + helixHeight + Math.cos(baseAngle * 2 + strand * Math.PI) * 100;
+                    
+                    // Strong attractive forces toward helix path
+                    const dx = targetX - this.x;
+                    const dy = targetY - this.y;
+                    const distToTarget = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distToTarget > 10) {
+                        const attractionStrength = forceStrength * 0.5;
+                        this.ax += (dx / distToTarget) * attractionStrength;
+                        this.ay += (dy / distToTarget) * attractionStrength;
+                    }
+                    
+                    // Add orbital velocity for smooth rotation
+                    const orbitalSpeed = forceStrength * 0.8;
+                    this.ax += -Math.sin(baseAngle) * orbitalSpeed * strand;
+                    this.ay += Math.cos(baseAngle * 2) * orbitalSpeed * 0.5;
+                    
+                    // Keep particles in bounds - teleport to other side if too far
+                    if (this.x < -100 || this.x > canvas.width + 100 || 
+                        this.y < -100 || this.y > canvas.height + 100) {
+                        this.x = centerX + (Math.random() - 0.5) * 50;
+                        this.y = centerY + (Math.random() - 0.5) * 50;
+                        this.vx *= 0.1;
+                        this.vy *= 0.1;
+                    }
+                } else if (mode === 'vortex') {
+                    // Multiple spinning vortexes
+                    const vortexes = [
+                        {x: canvas.width * 0.25, y: canvas.height * 0.25, strength: 1},
+                        {x: canvas.width * 0.75, y: canvas.height * 0.25, strength: -1},
+                        {x: canvas.width * 0.5, y: canvas.height * 0.75, strength: 1}
+                    ];
+                    
+                    vortexes.forEach(vortex => {
+                        const dx = vortex.x - this.x;
+                        const dy = vortex.y - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist > 5 && dist < 200) {
+                            // Spiral inward force
+                            const attractForce = (30 * forceStrength) / (dist + 10);
+                            this.ax += (dx / dist) * attractForce * 0.02;
+                            this.ay += (dy / dist) * attractForce * 0.02;
+                            
+                            // Rotational/tangential force (creates the spiral)
+                            const rotationForce = forceStrength * vortex.strength * 0.8;
+                            this.ax += (-dy / dist) * rotationForce;
+                            this.ay += (dx / dist) * rotationForce;
+                            
+                            // Add some random turbulence
+                            if (dist < 50) {
+                                this.ax += (Math.random() - 0.5) * 2;
+                                this.ay += (Math.random() - 0.5) * 2;
+                            }
+                        }
+                    });
                 }
                 
                 // Apply attractors
@@ -306,23 +393,163 @@
                     this.trail.shift();
                 }
                 
+                // Check for collisions with other particles for color mixing
+                particles.forEach(other => {
+                    if (other === this) return;
+                    const dx = other.x - this.x;
+                    const dy = other.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < this.size + other.size + 5) {
+                        // Color mixing on collision
+                        const mixRatio = 0.1;
+                        this.hue = (this.hue + other.hue * mixRatio) % 360;
+                        other.hue = (other.hue + this.hue * mixRatio) % 360;
+                    }
+                });
+                
                 // Update visual properties
                 this.hue = (this.hue + 1) % 360;
+                this.pulsePhase += 0.1; // Update pulse animation
+                this.age += dt;
+                
+                // Size evolution based on speed and age - FIXED
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                const speedFactor = 0.63 + Math.min(speed / 15, 1.17); // Base 0.63x (10% smaller), up to 1.8x when fast
+                const ageFactor = Math.sin(this.age * 0.03) * 0.2 + 1; // Gentler pulsing
+                this.size = this.baseSize * speedFactor * ageFactor;
+                this.size = Math.max(1, Math.min(this.size, 10)); // Better size bounds
             }
             
             draw() {
-                // Draw trail
-                ctx.strokeStyle = `hsla(${this.hue}, 100%, 50%, 0.3)`;
-                ctx.lineWidth = this.size / 2;
-                ctx.beginPath();
-                this.trail.forEach((point, i) => {
-                    if (i === 0) {
-                        ctx.moveTo(point.x, point.y);
+                // Enhanced trail with fading and splitting effects
+                if (this.trail.length > 1) {
+                    if (this.trailStyle === 'lightning') {
+                        // LIGHTNING TRAILS - jagged, electric paths
+                        for (let i = 0; i < this.trail.length - 1; i++) {
+                            const current = this.trail[i];
+                            const next = this.trail[i + 1];
+                            const trailAlpha = (i / this.trail.length) * 0.8;
+                            const trailWidth = (i / this.trail.length) * this.size * 0.8;
+                            
+                            // Create jagged lightning path
+                            ctx.strokeStyle = `hsla(${this.hue + 180}, 100%, 80%, ${trailAlpha})`;
+                            ctx.lineWidth = trailWidth + 1;
+                            ctx.lineCap = 'round';
+                            ctx.beginPath();
+                            
+                            // Add random zigzag points between current and next
+                            const segments = 3;
+                            ctx.moveTo(current.x, current.y);
+                            
+                            for (let s = 1; s <= segments; s++) {
+                                const progress = s / segments;
+                                const baseX = current.x + (next.x - current.x) * progress;
+                                const baseY = current.y + (next.y - current.y) * progress;
+                                
+                                // Add random jagged offset
+                                const zigzagX = baseX + (Math.random() - 0.5) * 15;
+                                const zigzagY = baseY + (Math.random() - 0.5) * 15;
+                                ctx.lineTo(zigzagX, zigzagY);
+                            }
+                            ctx.lineTo(next.x, next.y);
+                            ctx.stroke();
+                            
+                            // Add electric glow effect
+                            ctx.strokeStyle = `hsla(${this.hue + 180}, 100%, 90%, ${trailAlpha * 0.3})`;
+                            ctx.lineWidth = trailWidth * 3;
+                            ctx.stroke();
+                        }
+                    } else if (this.trailStyle === 'ribbon') {
+                        // RIBBON TRAILS - thick, flowing silk-like ribbons
+                        for (let i = 0; i < this.trail.length - 1; i++) {
+                            const current = this.trail[i];
+                            const next = this.trail[i + 1];
+                            const trailAlpha = (i / this.trail.length) * 0.7;
+                            const ribbonWidth = (i / this.trail.length) * this.size * 4; // Much thicker
+                            
+                            // Create smooth ribbon with gradient
+                            const gradient = ctx.createLinearGradient(current.x, current.y, next.x, next.y);
+                            gradient.addColorStop(0, `hsla(${this.hue}, 80%, 60%, ${trailAlpha})`);
+                            gradient.addColorStop(0.5, `hsla(${this.hue + 20}, 90%, 70%, ${trailAlpha * 0.8})`);
+                            gradient.addColorStop(1, `hsla(${this.hue + 40}, 100%, 80%, ${trailAlpha * 0.6})`);
+                            
+                            // Draw main ribbon body
+                            ctx.strokeStyle = gradient;
+                            ctx.lineWidth = ribbonWidth + 2;
+                            ctx.lineCap = 'round';
+                            ctx.lineJoin = 'round';
+                            ctx.beginPath();
+                            ctx.moveTo(current.x, current.y);
+                            ctx.lineTo(next.x, next.y);
+                            ctx.stroke();
+                            
+                            // Add silk-like shimmer effect
+                            const shimmerOffset = Math.sin(this.age * 0.1 + i * 0.3) * 3;
+                            ctx.strokeStyle = `hsla(${this.hue + 60}, 100%, 90%, ${trailAlpha * 0.4})`;
+                            ctx.lineWidth = ribbonWidth * 0.3;
+                            ctx.beginPath();
+                            ctx.moveTo(current.x + shimmerOffset, current.y);
+                            ctx.lineTo(next.x + shimmerOffset, next.y);
+                            ctx.stroke();
+                            
+                            // Add ribbon edges for depth
+                            ctx.strokeStyle = `hsla(${this.hue - 20}, 60%, 40%, ${trailAlpha * 0.6})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(current.x - ribbonWidth/2, current.y);
+                            ctx.lineTo(next.x - ribbonWidth/2, next.y);
+                            ctx.stroke();
+                            ctx.beginPath();
+                            ctx.moveTo(current.x + ribbonWidth/2, current.y);
+                            ctx.lineTo(next.x + ribbonWidth/2, next.y);
+                            ctx.stroke();
+                        }
                     } else {
-                        ctx.lineTo(point.x, point.y);
+                        // NORMAL TRAILS with splitting effects
+                        for (let i = 0; i < this.trail.length - 1; i++) {
+                            const current = this.trail[i];
+                            const next = this.trail[i + 1];
+                            const trailAlpha = (i / this.trail.length) * 0.6;
+                            const trailWidth = (i / this.trail.length) * this.size;
+                            
+                            // Main trail
+                            ctx.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${trailAlpha})`;
+                            ctx.lineWidth = trailWidth;
+                            ctx.beginPath();
+                            ctx.moveTo(current.x, current.y);
+                            ctx.lineTo(next.x, next.y);
+                            ctx.stroke();
+                            
+                            // Split trail effect (every few segments)
+                            if (i % 3 === 0 && i > 0) {
+                                const splitAngle = Math.PI / 6;
+                                const splitLength = trailWidth * 2;
+                                const angle = Math.atan2(next.y - current.y, next.x - current.x);
+                                
+                                ctx.strokeStyle = `hsla(${this.hue + 60}, 80%, 60%, ${trailAlpha * 0.5})`;
+                                ctx.lineWidth = trailWidth * 0.5;
+                                
+                                // Left split
+                                ctx.beginPath();
+                                ctx.moveTo(current.x, current.y);
+                                ctx.lineTo(
+                                    current.x + Math.cos(angle + splitAngle) * splitLength,
+                                    current.y + Math.sin(angle + splitAngle) * splitLength
+                                );
+                                ctx.stroke();
+                                
+                                // Right split
+                                ctx.beginPath();
+                                ctx.moveTo(current.x, current.y);
+                                ctx.lineTo(
+                                    current.x + Math.cos(angle - splitAngle) * splitLength,
+                                    current.y + Math.sin(angle - splitAngle) * splitLength
+                                );
+                                ctx.stroke();
+                            }
+                        }
                     }
-                });
-                ctx.stroke();
+                }
                 
                 // Draw particle
                 ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${this.life})`;
@@ -330,13 +557,21 @@
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
                 
-                // Glow effect
-                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
-                gradient.addColorStop(0, `hsla(${this.hue}, 100%, 70%, ${this.life * 0.5})`);
-                gradient.addColorStop(1, `hsla(${this.hue}, 100%, 50%, 0)`);
+                // Pulsing aura effect with sine waves
+                const pulseIntensity = Math.sin(this.pulsePhase) * 0.5 + 0.5; // 0 to 1
+                const auraSizeMultiplier = 2 + pulseIntensity * 2; // 2x to 4x size
+                const auraOpacity = this.life * (0.3 + pulseIntensity * 0.4); // Varies with pulse
+                
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0, 
+                    this.x, this.y, this.size * auraSizeMultiplier
+                );
+                gradient.addColorStop(0, `hsla(${this.hue}, 100%, 70%, ${auraOpacity})`);
+                gradient.addColorStop(0.5, `hsla(${this.hue + 30}, 100%, 60%, ${auraOpacity * 0.5})`);
+                gradient.addColorStop(1, `hsla(${this.hue + 60}, 100%, 50%, 0)`);
                 ctx.fillStyle = gradient;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.size * auraSizeMultiplier, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
@@ -354,6 +589,7 @@
                 Math.sin(angle) * speed
             );
             particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
             particle.maxTrail = parseInt(document.getElementById('trailLength').value);
             particles.push(particle);
         }
@@ -379,6 +615,7 @@
                     Math.sin(angle) * speed
                 );
                 particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
                 particle.maxTrail = parseInt(document.getElementById('trailLength').value);
                 particles.push(particle);
             }
@@ -401,6 +638,7 @@
                 
                 const particle = new Particle(x, y, vx, vy);
                 particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
                 particle.maxTrail = parseInt(document.getElementById('trailLength').value);
                 particles.push(particle);
             }
@@ -419,6 +657,7 @@
                 const x = Math.random() * canvas.width;
                 const particle = new Particle(x, 0, 0, 2);
                 particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
                 particle.maxTrail = parseInt(document.getElementById('trailLength').value);
                 particles.push(particle);
             }, 50);
@@ -480,6 +719,82 @@
             e.preventDefault();
         });
         
+        // Multi-touch gesture support
+        let touches = [];
+        let lastPinchDistance = 0;
+        
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            touches = Array.from(e.touches);
+            
+            if (touches.length === 1) {
+                // Single touch - spawn particles
+                const touch = touches[0];
+                for (let i = 0; i < 3; i++) {
+                    spawnParticle(
+                        touch.clientX + (Math.random() - 0.5) * 15,
+                        touch.clientY + (Math.random() - 0.5) * 15
+                    );
+                }
+            } else if (touches.length === 2) {
+                // Two finger pinch - calculate initial distance
+                const dx = touches[1].clientX - touches[0].clientX;
+                const dy = touches[1].clientY - touches[0].clientY;
+                lastPinchDistance = Math.sqrt(dx * dx + dy * dy);
+            }
+        });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            touches = Array.from(e.touches);
+            
+            if (touches.length === 1) {
+                // Single touch drag - create particle stream
+                const touch = touches[0];
+                spawnParticle(touch.clientX, touch.clientY);
+            } else if (touches.length === 2) {
+                // Two finger gestures
+                const dx = touches[1].clientX - touches[0].clientX;
+                const dy = touches[1].clientY - touches[0].clientY;
+                const currentDistance = Math.sqrt(dx * dx + dy * dy);
+                const centerX = (touches[0].clientX + touches[1].clientX) / 2;
+                const centerY = (touches[0].clientY + touches[1].clientY) / 2;
+                
+                if (lastPinchDistance > 0) {
+                    const pinchRatio = currentDistance / lastPinchDistance;
+                    if (pinchRatio < 0.9) {
+                        // Pinch in - create black hole effect
+                        attractors.push({x: centerX, y: centerY, strength: 10});
+                    } else if (pinchRatio > 1.1) {
+                        // Pinch out - create explosion
+                        for (let i = 0; i < 20; i++) {
+                            const angle = (Math.PI * 2 * i) / 20;
+                            const speed = 5 + Math.random() * 5;
+                            const particle = new Particle(
+                                centerX,
+                                centerY,
+                                Math.cos(angle) * speed,
+                                Math.sin(angle) * speed
+                            );
+                            particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
+                            particle.maxTrail = parseInt(document.getElementById('trailLength').value);
+                            particles.push(particle);
+                        }
+                    }
+                }
+                lastPinchDistance = currentDistance;
+            }
+        });
+        
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            touches = Array.from(e.touches);
+            if (touches.length === 0) {
+                lastPinchDistance = 0;
+            }
+        });
+        
         // Slider events
         document.getElementById('forceStrength').addEventListener('input', (e) => {
             document.getElementById('forceValue').textContent = e.target.value;
@@ -521,14 +836,49 @@
             });
             
             // Update and draw particles
-            for (let i = particles.length - 1; i >= 0; i--) {
-                const particle = particles[i];
-                particle.update(deltaTime);
-                particle.draw();
+            if (mode === 'kaleidoscope') {
+                // Kaleidoscope mode - draw particles with 6-way symmetry
+                ctx.save();
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
                 
-                // Remove dead particles
-                if (particle.life <= 0) {
-                    particles.splice(i, 1);
+                for (let segment = 0; segment < 6; segment++) {
+                    ctx.save();
+                    ctx.translate(centerX, centerY);
+                    ctx.rotate((segment * Math.PI) / 3);
+                    ctx.translate(-centerX, -centerY);
+                    
+                    if (segment % 2 === 1) {
+                        ctx.scale(-1, 1);
+                        ctx.translate(-canvas.width, 0);
+                    }
+                    
+                    for (let i = particles.length - 1; i >= 0; i--) {
+                        const particle = particles[i];
+                        if (segment === 0) {
+                            particle.update(deltaTime);
+                        }
+                        particle.draw();
+                        
+                        // Remove dead particles (only check once)
+                        if (segment === 0 && particle.life <= 0) {
+                            particles.splice(i, 1);
+                        }
+                    }
+                    ctx.restore();
+                }
+                ctx.restore();
+            } else {
+                // Normal mode
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const particle = particles[i];
+                    particle.update(deltaTime);
+                    particle.draw();
+                    
+                    // Remove dead particles
+                    if (particle.life <= 0) {
+                        particles.splice(i, 1);
+                    }
                 }
             }
             
@@ -555,6 +905,7 @@
                 ctx.arc(centerX, centerY, 10, 0, Math.PI * 2);
                 ctx.stroke();
             }
+            
             
             // Update stats
             document.getElementById('particleCount').textContent = particles.length;
