@@ -2,13 +2,20 @@
 
 <div align="center">
   
-  [![Live Demo](https://img.shields.io/badge/🚀_LIVE_DEMO-FF6B6B?style=for-the-badge&logoColor=white&labelColor=1a1a2e)](https://zacsluss.github.io/Particle_Physics_Simulator/Particle_Physics_Simulator.html)
+  ### 🌟 **Transform Your Browser Into A Living Physics Laboratory** 🌟
+  
+  <br>
+  
+  <a href="https://zacsluss.github.io/Particle_Physics_Simulator/Particle_Physics_Simulator.html">
+    <img src="https://img.shields.io/badge/🚀_PLAY_NOW-FF6B6B?style=for-the-badge&logoColor=white&labelColor=1a1a2e&height=60" alt="Play Now" height="60"/>
+  </a>
+  
+  <br><br>
+  
   [![GitHub Stars](https://img.shields.io/github/stars/Zacsluss/Particle_Physics_Simulator?style=for-the-badge&color=FFD700&labelColor=1a1a2e)](https://github.com/Zacsluss/Particle_Physics_Simulator/stargazers)
   [![License](https://img.shields.io/badge/LICENSE-MIT-4ECDC4?style=for-the-badge&labelColor=1a1a2e)](LICENSE)
   [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white&labelColor=1a1a2e)](https://developer.mozilla.org/en-US/docs/Web/HTML)
   [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&labelColor=1a1a2e)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-  
-  ### 🌟 **Transform Your Browser Into A Living Physics Laboratory** 🌟
   
   <img src="https://img.shields.io/badge/2000%2B_Particles-Real--Time-blueviolet?style=flat-square&labelColor=1a1a2e" alt="Particles"/>
   <img src="https://img.shields.io/badge/60_FPS-Guaranteed-green?style=flat-square&labelColor=1a1a2e" alt="FPS"/>
