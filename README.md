@@ -17,7 +17,7 @@
   [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white&labelColor=1a1a2e)](https://developer.mozilla.org/en-US/docs/Web/HTML)
   [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black&labelColor=1a1a2e)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
   
-  <img src="https://img.shields.io/badge/2000%2B_Particles-Real--Time-blueviolet?style=flat-square&labelColor=1a1a2e" alt="Particles"/>
+  <img src="https://img.shields.io/badge/1000_Particles-Real--Time-blueviolet?style=flat-square&labelColor=1a1a2e" alt="Particles"/>
   <img src="https://img.shields.io/badge/60_FPS-Guaranteed-green?style=flat-square&labelColor=1a1a2e" alt="FPS"/>
   <img src="https://img.shields.io/badge/Zero_Dependencies-Pure_JS-orange?style=flat-square&labelColor=1a1a2e" alt="Dependencies"/>
   <img src="https://img.shields.io/badge/Mobile-Optimized-blue?style=flat-square&labelColor=1a1a2e" alt="Mobile"/>
@@ -128,8 +128,8 @@ Watch as thousands of particles dance across your screen, following the laws of 
 ### 🎨 **VISUAL EXCELLENCE**
 
 ```
-🌈 Dynamic HSL Color Cycling    ✨ Pulsing Particle Auras
-💎 Radial Gradient Glows        🌌 Backdrop Blur Effects
+🌈 Dynamic HSL Color Cycling    ✨ Subtle Pulsing Auras
+💎 Optimized Particle Glows     🌌 Backdrop Blur Effects
 📊 Real-time Performance Stats   🎬 Buttery 60 FPS Animation
 ```
 
@@ -139,9 +139,9 @@ Watch as thousands of particles dance across your screen, following the laws of 
 
 | **Performance** | **Architecture** | **Compatibility** |
 |:---:|:---:|:---:|
-| 2000+ particles @ 60 FPS | Pure HTML5/CSS3/JS | All modern browsers |
+| 1000 particles @ 60 FPS | Pure HTML5/CSS3/JS | All modern browsers |
 | Spatial grid optimization | Verlet integration | Mobile responsive |
-| Automatic FPS management | Collision detection | Zero dependencies |
+| Automatic FPS management | Optimized physics engine | Zero dependencies |
 
 </div>
 
@@ -152,6 +152,16 @@ Watch as thousands of particles dance across your screen, following the laws of 
 - **Force Capping**: Prevents numerical instabilities
 - **Automatic Cleanup**: Memory leak prevention
 - **Progressive Enhancement**: Graceful degradation on slower devices
+
+### ⚡ **Performance Optimizations**
+
+- **Smart Rendering**: Batched canvas operations, no expensive gradients
+- **Cached Calculations**: Pre-computed math constants (TWO_PI, etc.)
+- **Dynamic Frame Skipping**: Adjusts physics updates based on particle count
+- **Limited Interactions**: Max 10 particle-to-particle forces per frame
+- **Optimized Loops**: Early exits, squared distance comparisons
+- **Reduced DOM Updates**: Stats refresh only every 10 frames
+- **Simplified Effects**: Lightweight auras without radial gradients
 
 ## 🎮 **CONTROLS MASTERY**
 
@@ -181,7 +191,7 @@ Perfect for:
 graph LR
     A[1 HTML File] --> B[1000+ Lines]
     B --> C[6 Physics Modes]
-    C --> D[2000+ Particles]
+    C --> D[1000 Particles]
     D --> E[60 FPS]
     E --> F[∞ Possibilities]
 ```
