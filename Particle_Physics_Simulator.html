@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particle Physics Sandbox</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            overflow: hidden;
+            font-family: 'Orbitron', monospace;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 217, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 119, 252, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(120, 255, 214, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: floatingGradient 20s ease infinite;
+        }
+        
+        @keyframes floatingGradient {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+        
+        canvas {
+            display: block;
+            cursor: crosshair;
+            position: relative;
+            z-index: 2;
+        }
+        
+        #controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(25, 25, 55, 0.8));
+            backdrop-filter: blur(20px);
+            padding: 25px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            width: 280px;
+            z-index: 100;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5),
+                        inset 0 0 20px rgba(0, 255, 255, 0.1);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.5), inset 0 0 20px rgba(0, 255, 255, 0.1); }
+            50% { box-shadow: 0 0 60px rgba(0, 255, 255, 0.8), inset 0 0 30px rgba(0, 255, 255, 0.2); }
+        }
+        
+        h3 {
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff00, #00ffff);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            font-size: 20px;
+            text-align: center;
+            letter-spacing: 2px;
+            animation: gradientShift 3s ease infinite;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            color: #fff;
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 11px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+            text-transform: uppercase;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        button:hover {
+            transform: translateY(-2px) scale(1.02);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(255, 0, 255, 0.3));
+            border-color: #0ff;
+            box-shadow: 0 5px 25px rgba(0, 255, 255, 0.6),
+                        inset 0 0 15px rgba(0, 255, 255, 0.2);
+            color: #0ff;
+            text-shadow: 0 0 10px currentColor;
+        }
+        
+        button:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        .slider-container {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        
+        label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #0ff;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        label span {
+            color: #fff;
+            background: linear-gradient(135deg, #0ff, #f0f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #0ff 0%, #f0f 50%, #0f0 100%);
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        input[type="range"]:hover {
+            opacity: 1;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #fff, #0ff);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            transition: all 0.3s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 1);
+        }
+        
+        #stats {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(25, 25, 55, 0.8));
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 100;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
+                        inset 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+        
+        .stat {
+            margin: 8px 0;
+            color: #0ff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stat span {
+            color: #fff;
+            font-weight: 900;
+            background: linear-gradient(90deg, #0ff, #f0f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 16px;
+            text-shadow: 0 0 10px currentColor;
+        }
+        
+        #info {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(25, 25, 55, 0.8));
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            font-size: 11px;
+            max-width: 300px;
+            z-index: 100;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        #info strong {
+            color: #0ff;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <div id="stats">
+        <div class="stat">Particles: <span id="particleCount">0</span></div>
+        <div class="stat">FPS: <span id="fps">60</span></div>
+        <div class="stat">Mode: <span id="mode">Gravity</span></div>
+    </div>
+    
+    <div id="controls">
+        <h3>⚛️ Particle Controls</h3>
+        
+        <button onclick="mode = 'gravity'; updateMode()">🌍 Gravity Mode</button>
+        <button onclick="mode = 'electric'; updateMode()">⚡ Electric Field</button>
+        <button onclick="mode = 'magnetic'; updateMode()">🧲 Magnetic Field</button>
+        <button onclick="mode = 'blackhole'; updateMode()">🌌 Black Hole</button>
+        <button onclick="mode = 'repel'; updateMode()">💫 Repulsion</button>
+        <button onclick="mode = 'dna'; updateMode()">🧬 DNA Helix</button>
+        
+        <div class="slider-container">
+            <label>Force Strength: <span id="forceValue">5</span></label>
+            <input type="range" id="forceStrength" min="0" max="20" value="5">
+        </div>
+        
+        <div class="slider-container">
+            <label>Particle Size: <span id="sizeValue">2</span></label>
+            <input type="range" id="particleSize" min="1" max="10" value="2">
+        </div>
+        
+        
+        <button onclick="clearParticles()">🗑️ Clear All</button>
+        <button onclick="spawnExplosion()">💥 Explosion</button>
+        <button onclick="spawnGalaxy()">🌌 Galaxy</button>
+        <button onclick="spawnRain()">🌧️ Particle Rain</button>
+    </div>
+    
+    <div id="info">
+        <strong>Instructions:</strong><br>
+        • Click to spawn particles<br>
+        • Click and drag to spawn streams<br>
+        • Right-click to create attractors<br>
+        • Try different modes for unique effects!
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Setup canvas
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Particle system
+        const particles = [];
+        const attractors = [];
+        let mode = 'gravity';
+        let mouseX = 0;
+        let mouseY = 0;
+        let mouseDown = false;
+        let lastTime = performance.now();
+        let fps = 60;
+        let rainInterval = null;
+        const MAX_PARTICLES = 2000;  // Raised limit since we optimized performance
+        
+        // Performance optimizations - always enabled
+        let spatialGrid = null;
+        const GRID_SIZE = 50; // Size of each grid cell
+        const MAX_FORCE_DISTANCE = 50; // Maximum distance for force calculations
+        
+        // Spatial grid for O(n) particle lookups
+        class SpatialGrid {
+            constructor(width, height, cellSize) {
+                this.cellSize = cellSize;
+                this.cols = Math.ceil(width / cellSize);
+                this.rows = Math.ceil(height / cellSize);
+                this.grid = [];
+                this.clear();
+            }
+            
+            clear() {
+                this.grid = Array(this.cols * this.rows).fill(null).map(() => []);
+            }
+            
+            getIndex(x, y) {
+                const col = Math.floor(x / this.cellSize);
+                const row = Math.floor(y / this.cellSize);
+                if (col < 0 || col >= this.cols || row < 0 || row >= this.rows) return -1;
+                return row * this.cols + col;
+            }
+            
+            add(particle) {
+                const index = this.getIndex(particle.x, particle.y);
+                if (index >= 0) {
+                    this.grid[index].push(particle);
+                }
+            }
+            
+            getNearby(particle, radius) {
+                const nearby = [];
+                const minCol = Math.max(0, Math.floor((particle.x - radius) / this.cellSize));
+                const maxCol = Math.min(this.cols - 1, Math.floor((particle.x + radius) / this.cellSize));
+                const minRow = Math.max(0, Math.floor((particle.y - radius) / this.cellSize));
+                const maxRow = Math.min(this.rows - 1, Math.floor((particle.y + radius) / this.cellSize));
+                
+                for (let row = minRow; row <= maxRow; row++) {
+                    for (let col = minCol; col <= maxCol; col++) {
+                        const index = row * this.cols + col;
+                        if (this.grid[index]) {
+                            nearby.push(...this.grid[index]);
+                        }
+                    }
+                }
+                return nearby;
+            }
+        }
+        
+        // Particle class
+        class Particle {
+            constructor(x, y, vx = 0, vy = 0) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.ax = 0;
+                this.ay = 0;
+                // Trails removed for performance
+                this.trail = [];
+                this.maxTrail = 0;  // Trails disabled
+                this.size = 2;
+                this.baseSize = 2; // Store original size for evolution
+                this.charge = Math.random() > 0.5 ? 1 : -1;
+                this.hue = Math.random() * 360;
+                this.life = 1;
+                this.age = 0; // Track particle age
+                this.pulsePhase = Math.random() * Math.PI * 2; // For pulsing aura
+                this.originalHue = this.hue; // Store original color for mixing
+                // Randomize trail styles for variety
+                const rand = Math.random();
+                if (rand < 0.15) {
+                    this.trailStyle = 'lightning';
+                } else if (rand < 0.35) {
+                    this.trailStyle = 'ribbon';
+                } else {
+                    this.trailStyle = 'normal';
+                }
+            }
+            
+            update(dt) {
+                // Reset acceleration
+                this.ax = 0;
+                this.ay = 0;
+                
+                // Apply mode-specific forces
+                const forceStrength = parseFloat(document.getElementById('forceStrength').value) / 5; // Normalize to original scale
+                if (mode === 'gravity') {
+                    this.ay += 0.2 * forceStrength; // Gravity
+                    
+                    // Attract to mouse when pressed
+                    if (mouseDown) {
+                        const dx = mouseX - this.x;
+                        const dy = mouseY - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist > 1) {
+                            const force = (100 * forceStrength) / (dist * dist);
+                            this.ax += (dx / dist) * force;
+                            this.ay += (dy / dist) * force;
+                        }
+                    }
+                } else if (mode === 'electric') {
+                    // Electric field - always use spatial grid
+                    const nearbyParticles = spatialGrid ? 
+                        spatialGrid.getNearby(this, 50) : particles;
+                    
+                    nearbyParticles.forEach(other => {
+                        if (other === this) return;
+                        const dx = other.x - this.x;
+                        const dy = other.y - this.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist > 5 && dist < 50) {  // Reduced from 200 to 50
+                            // Reduced force multiplier from -5 to -2 to prevent explosions
+                            const force = (this.charge * other.charge * -2 * forceStrength) / (dist * dist);
+                            this.ax += (dx / dist) * force;
+                            this.ay += (dy / dist) * force;
+                        }
+                    });
+                } else if (mode === 'magnetic') {
+                    // Swirling magnetic field
+                    const dx = canvas.width / 2 - this.x;
+                    const dy = canvas.height / 2 - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist > 1) {
+                        // Perpendicular force for swirl
+                        this.ax += (-dy / dist) * 0.5 * forceStrength;
+                        this.ay += (dx / dist) * 0.5 * forceStrength;
+                        // Slight inward force
+                        this.ax += (dx / dist) * 0.1 * forceStrength;
+                        this.ay += (dy / dist) * 0.1 * forceStrength;
+                    }
+                } else if (mode === 'blackhole') {
+                    // Black hole at center
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    const dx = centerX - this.x;
+                    const dy = centerY - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist > 15) {
+                        const force = (500 * forceStrength) / (dist * dist);
+                        this.ax += (dx / dist) * force;
+                        this.ay += (dy / dist) * force;
+                    } else {
+                        // Particle consumed by black hole - larger event horizon
+                        this.life = 0;
+                    }
+                } else if (mode === 'repel') {
+                    // Repel from all other particles - always use spatial grid
+                    const nearbyParticles = spatialGrid ? 
+                        spatialGrid.getNearby(this, 100) : particles;
+                    
+                    nearbyParticles.forEach(other => {
+                        if (other === this) return;
+                        const dx = this.x - other.x;
+                        const dy = this.y - other.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist > 1 && dist < 100) {
+                            const force = (50 * forceStrength) / (dist * dist);
+                            this.ax += (dx / dist) * force;
+                            this.ay += (dy / dist) * force;
+                        }
+                    });
+                } else if (mode === 'dna') {
+                    // DNA Double Helix - FIXED VERSION
+                    const centerX = canvas.width / 2;
+                    const centerY = canvas.height / 2;
+                    const time = performance.now() * 0.003;
+                    const helixRadius = 120;
+                    
+                    // Determine which helix strand (based on original hue)
+                    const strand = this.originalHue > 180 ? 1 : -1;
+                    
+                    // Create circular motion around center with helix twist
+                    const baseAngle = time + (this.originalHue / 360) * Math.PI * 2;
+                    const helixHeight = Math.sin(baseAngle * 2) * 200; // Vertical oscillation
+                    
+                    const targetX = centerX + Math.cos(baseAngle) * helixRadius * strand;
+                    const targetY = centerY + helixHeight + Math.cos(baseAngle * 2 + strand * Math.PI) * 100;
+                    
+                    // Strong attractive forces toward helix path
+                    const dx = targetX - this.x;
+                    const dy = targetY - this.y;
+                    const distToTarget = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distToTarget > 10) {
+                        const attractionStrength = forceStrength * 0.5;
+                        this.ax += (dx / distToTarget) * attractionStrength;
+                        this.ay += (dy / distToTarget) * attractionStrength;
+                    }
+                    
+                    // Add orbital velocity for smooth rotation
+                    const orbitalSpeed = forceStrength * 0.8;
+                    this.ax += -Math.sin(baseAngle) * orbitalSpeed * strand;
+                    this.ay += Math.cos(baseAngle * 2) * orbitalSpeed * 0.5;
+                    
+                    // Keep particles in bounds - teleport to other side if too far
+                    if (this.x < -100 || this.x > canvas.width + 100 || 
+                        this.y < -100 || this.y > canvas.height + 100) {
+                        this.x = centerX + (Math.random() - 0.5) * 50;
+                        this.y = centerY + (Math.random() - 0.5) * 50;
+                        this.vx *= 0.1;
+                        this.vy *= 0.1;
+                    }
+                }
+                
+                // Apply attractors
+                attractors.forEach(attractor => {
+                    const dx = attractor.x - this.x;
+                    const dy = attractor.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist > 1) {
+                        const force = attractor.strength * 100 / (dist * dist);
+                        this.ax += (dx / dist) * force;
+                        this.ay += (dy / dist) * force;
+                    }
+                });
+                
+                // Update velocity
+                this.vx += this.ax * dt;
+                this.vy += this.ay * dt;
+                
+                // Damping - stronger for certain modes to prevent perpetual motion
+                let dampingFactor = 0.99;
+                if (mode === 'magnetic') dampingFactor = 0.97;
+                if (mode === 'electric' || mode === 'repel') dampingFactor = 0.96; // Strong damping for electric
+                this.vx *= dampingFactor;
+                this.vy *= dampingFactor;
+                
+                // Speed limit to prevent runaway particles
+                const maxSpeed = 15;
+                const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (currentSpeed > maxSpeed) {
+                    const scale = maxSpeed / currentSpeed;
+                    this.vx *= scale;
+                    this.vy *= scale;
+                }
+                
+                // Update position
+                this.x += this.vx * dt;
+                this.y += this.vy * dt;
+                
+                // Bounce off walls
+                if (this.x < 0 || this.x > canvas.width) {
+                    this.vx *= -0.8;
+                    this.x = Math.max(0, Math.min(canvas.width, this.x));
+                }
+                if (this.y < 0 || this.y > canvas.height) {
+                    this.vy *= -0.8;
+                    this.y = Math.max(0, Math.min(canvas.height, this.y));
+                }
+                
+                // Skip trail updates for performance
+                // Trails are disabled permanently for better FPS
+                
+                // Check for collisions with other particles for color mixing
+                particles.forEach(other => {
+                    if (other === this) return;
+                    const dx = other.x - this.x;
+                    const dy = other.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < this.size + other.size + 5) {
+                        // Color mixing on collision
+                        const mixRatio = 0.1;
+                        this.hue = (this.hue + other.hue * mixRatio) % 360;
+                        other.hue = (other.hue + this.hue * mixRatio) % 360;
+                    }
+                });
+                
+                // Update visual properties
+                this.hue = (this.hue + 1) % 360;
+                this.pulsePhase += 0.1; // Update pulse animation
+                this.age += dt;
+                
+                // Size evolution based on age only (removed speed factor that caused visual issues)
+                const ageFactor = Math.sin(this.age * 0.03) * 0.2 + 1; // Gentler pulsing
+                this.size = this.baseSize * ageFactor;
+                this.size = Math.max(1, Math.min(this.size, this.baseSize * 1.5)); // Max 1.5x original size
+            }
+            
+            draw() {
+                // Skip trails for performance - trails are expensive
+                if (false) {  // Trails disabled for performance
+                    if (this.trailStyle === 'lightning') {
+                        // LIGHTNING TRAILS - jagged, electric paths
+                        for (let i = 0; i < this.trail.length - 1; i++) {
+                            const current = this.trail[i];
+                            const next = this.trail[i + 1];
+                            const trailAlpha = (i / this.trail.length) * 0.8;
+                            const trailWidth = (i / this.trail.length) * this.size * 0.8;
+                            
+                            // Create jagged lightning path
+                            ctx.strokeStyle = `hsla(${this.hue + 180}, 100%, 80%, ${trailAlpha})`;
+                            ctx.lineWidth = trailWidth + 1;
+                            ctx.lineCap = 'round';
+                            ctx.beginPath();
+                            
+                            // Add random zigzag points between current and next
+                            const segments = 3;
+                            ctx.moveTo(current.x, current.y);
+                            
+                            for (let s = 1; s <= segments; s++) {
+                                const progress = s / segments;
+                                const baseX = current.x + (next.x - current.x) * progress;
+                                const baseY = current.y + (next.y - current.y) * progress;
+                                
+                                // Add random jagged offset
+                                const zigzagX = baseX + (Math.random() - 0.5) * 15;
+                                const zigzagY = baseY + (Math.random() - 0.5) * 15;
+                                ctx.lineTo(zigzagX, zigzagY);
+                            }
+                            ctx.lineTo(next.x, next.y);
+                            ctx.stroke();
+                            
+                            // Add electric glow effect
+                            ctx.strokeStyle = `hsla(${this.hue + 180}, 100%, 90%, ${trailAlpha * 0.3})`;
+                            ctx.lineWidth = trailWidth * 3;
+                            ctx.stroke();
+                        }
+                    } else if (this.trailStyle === 'ribbon') {
+                        // RIBBON TRAILS - simplified for performance
+                        for (let i = 0; i < this.trail.length - 1; i += 2) {  // Skip every other point
+                            const current = this.trail[i];
+                            const next = this.trail[i + 1];
+                            const trailAlpha = (i / this.trail.length) * 0.7;
+                            const ribbonWidth = (i / this.trail.length) * this.size * 4;
+                            
+                            // No gradient - just solid color for performance
+                            ctx.strokeStyle = `hsla(${this.hue}, 80%, 60%, ${trailAlpha})`;
+                            ctx.lineWidth = ribbonWidth + 2;
+                            ctx.lineCap = 'round';
+                            ctx.lineJoin = 'round';
+                            ctx.beginPath();
+                            ctx.moveTo(current.x, current.y);
+                            ctx.lineTo(next.x, next.y);
+                            ctx.stroke();
+                            
+                            // Add silk-like shimmer effect
+                            const shimmerOffset = Math.sin(this.age * 0.1 + i * 0.3) * 3;
+                            ctx.strokeStyle = `hsla(${this.hue + 60}, 100%, 90%, ${trailAlpha * 0.4})`;
+                            ctx.lineWidth = ribbonWidth * 0.3;
+                            ctx.beginPath();
+                            ctx.moveTo(current.x + shimmerOffset, current.y);
+                            ctx.lineTo(next.x + shimmerOffset, next.y);
+                            ctx.stroke();
+                            
+                            // Add ribbon edges for depth
+                            ctx.strokeStyle = `hsla(${this.hue - 20}, 60%, 40%, ${trailAlpha * 0.6})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(current.x - ribbonWidth/2, current.y);
+                            ctx.lineTo(next.x - ribbonWidth/2, next.y);
+                            ctx.stroke();
+                            ctx.beginPath();
+                            ctx.moveTo(current.x + ribbonWidth/2, current.y);
+                            ctx.lineTo(next.x + ribbonWidth/2, next.y);
+                            ctx.stroke();
+                        }
+                    } else {
+                        // NORMAL TRAILS with splitting effects
+                        for (let i = 0; i < this.trail.length - 1; i++) {
+                            const current = this.trail[i];
+                            const next = this.trail[i + 1];
+                            const trailAlpha = (i / this.trail.length) * 0.6;
+                            const trailWidth = (i / this.trail.length) * this.size;
+                            
+                            // Main trail
+                            ctx.strokeStyle = `hsla(${this.hue}, 100%, 50%, ${trailAlpha})`;
+                            ctx.lineWidth = trailWidth;
+                            ctx.beginPath();
+                            ctx.moveTo(current.x, current.y);
+                            ctx.lineTo(next.x, next.y);
+                            ctx.stroke();
+                            
+                            // Split trail effect (every few segments)
+                            if (i % 3 === 0 && i > 0) {
+                                const splitAngle = Math.PI / 6;
+                                const splitLength = trailWidth * 2;
+                                const angle = Math.atan2(next.y - current.y, next.x - current.x);
+                                
+                                ctx.strokeStyle = `hsla(${this.hue + 60}, 80%, 60%, ${trailAlpha * 0.5})`;
+                                ctx.lineWidth = trailWidth * 0.5;
+                                
+                                // Left split
+                                ctx.beginPath();
+                                ctx.moveTo(current.x, current.y);
+                                ctx.lineTo(
+                                    current.x + Math.cos(angle + splitAngle) * splitLength,
+                                    current.y + Math.sin(angle + splitAngle) * splitLength
+                                );
+                                ctx.stroke();
+                                
+                                // Right split
+                                ctx.beginPath();
+                                ctx.moveTo(current.x, current.y);
+                                ctx.lineTo(
+                                    current.x + Math.cos(angle - splitAngle) * splitLength,
+                                    current.y + Math.sin(angle - splitAngle) * splitLength
+                                );
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                }
+                
+                // Draw particle
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 50%, ${this.life})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Pulsing aura effect with sine waves
+                const pulseIntensity = Math.sin(this.pulsePhase) * 0.5 + 0.5; // 0 to 1
+                const auraSizeMultiplier = 2 + pulseIntensity * 2; // 2x to 4x size
+                const auraOpacity = this.life * (0.3 + pulseIntensity * 0.4); // Varies with pulse
+                
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0, 
+                    this.x, this.y, this.size * auraSizeMultiplier
+                );
+                gradient.addColorStop(0, `hsla(${this.hue}, 100%, 70%, ${auraOpacity})`);
+                gradient.addColorStop(0.5, `hsla(${this.hue + 30}, 100%, 60%, ${auraOpacity * 0.5})`);
+                gradient.addColorStop(1, `hsla(${this.hue + 60}, 100%, 50%, 0)`);
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * auraSizeMultiplier, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        // Spawn functions
+        function spawnParticle(x, y) {
+            if (particles.length >= MAX_PARTICLES) return;
+            
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 5;
+            const particle = new Particle(
+                x,
+                y,
+                Math.cos(angle) * speed,
+                Math.sin(angle) * speed
+            );
+            particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
+            // Trails disabled for performance
+            particles.push(particle);
+        }
+        
+        function spawnExplosion() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const count = Math.min(100, MAX_PARTICLES - particles.length);
+            
+            for (let i = 0; i < count; i++) {
+                const angle = (Math.PI * 2 * i) / count;
+                const speed = 5 + Math.random() * 10;
+                
+                // In blackhole mode, spawn particles outside the event horizon
+                const spawnRadius = mode === 'blackhole' ? 20 : 0;
+                const x = centerX + Math.cos(angle) * spawnRadius;
+                const y = centerY + Math.sin(angle) * spawnRadius;
+                
+                const particle = new Particle(
+                    x,
+                    y,
+                    Math.cos(angle) * speed,
+                    Math.sin(angle) * speed
+                );
+                particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
+                // Trails disabled for performance
+                particles.push(particle);
+            }
+        }
+        
+        function spawnGalaxy() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const count = Math.min(200, MAX_PARTICLES - particles.length);
+            for (let i = 0; i < count; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const radius = Math.random() * 200;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                // Orbital velocity
+                const orbitalSpeed = Math.sqrt(50 / radius) * 5;
+                const vx = -Math.sin(angle) * orbitalSpeed;
+                const vy = Math.cos(angle) * orbitalSpeed;
+                
+                const particle = new Particle(x, y, vx, vy);
+                particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
+                // Trails disabled for performance
+                particles.push(particle);
+            }
+        }
+        
+        function spawnRain() {
+            if (rainInterval) {
+                clearInterval(rainInterval);
+            }
+            rainInterval = setInterval(() => {
+                if (particles.length >= MAX_PARTICLES) {
+                    clearInterval(rainInterval);
+                    rainInterval = null;
+                    return;
+                }
+                const x = Math.random() * canvas.width;
+                const particle = new Particle(x, 0, 0, 2);
+                particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
+                // Trails disabled for performance
+                particles.push(particle);
+            }, 50);
+        }
+        
+        function clearParticles() {
+            particles.length = 0;
+            attractors.length = 0;
+            if (rainInterval) {
+                clearInterval(rainInterval);
+                rainInterval = null;
+            }
+        }
+        
+        function updateMode() {
+            document.getElementById('mode').textContent = 
+                mode.charAt(0).toUpperCase() + mode.slice(1);
+        }
+        
+        // Mouse events
+        canvas.addEventListener('mousedown', (e) => {
+            mouseDown = true;
+            if (e.button === 2) {
+                // Right click - add attractor
+                e.preventDefault();
+                attractors.push({
+                    x: e.clientX,
+                    y: e.clientY,
+                    strength: parseFloat(document.getElementById('forceStrength').value)
+                });
+            }
+        });
+        
+        canvas.addEventListener('mouseup', () => {
+            mouseDown = false;
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            if (mouseDown) {
+                spawnParticle(mouseX, mouseY);
+            }
+        });
+        
+        canvas.addEventListener('click', (e) => {
+            if (e.button === 0) {
+                for (let i = 0; i < 5; i++) {
+                    spawnParticle(
+                        e.clientX + (Math.random() - 0.5) * 20,
+                        e.clientY + (Math.random() - 0.5) * 20
+                    );
+                }
+            }
+        });
+        
+        canvas.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+        
+        // Multi-touch gesture support
+        let touches = [];
+        let lastPinchDistance = 0;
+        
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            touches = Array.from(e.touches);
+            
+            if (touches.length === 1) {
+                // Single touch - spawn particles
+                const touch = touches[0];
+                for (let i = 0; i < 3; i++) {
+                    spawnParticle(
+                        touch.clientX + (Math.random() - 0.5) * 15,
+                        touch.clientY + (Math.random() - 0.5) * 15
+                    );
+                }
+            } else if (touches.length === 2) {
+                // Two finger pinch - calculate initial distance
+                const dx = touches[1].clientX - touches[0].clientX;
+                const dy = touches[1].clientY - touches[0].clientY;
+                lastPinchDistance = Math.sqrt(dx * dx + dy * dy);
+            }
+        });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            touches = Array.from(e.touches);
+            
+            if (touches.length === 1) {
+                // Single touch drag - create particle stream
+                const touch = touches[0];
+                spawnParticle(touch.clientX, touch.clientY);
+            } else if (touches.length === 2) {
+                // Two finger gestures
+                const dx = touches[1].clientX - touches[0].clientX;
+                const dy = touches[1].clientY - touches[0].clientY;
+                const currentDistance = Math.sqrt(dx * dx + dy * dy);
+                const centerX = (touches[0].clientX + touches[1].clientX) / 2;
+                const centerY = (touches[0].clientY + touches[1].clientY) / 2;
+                
+                if (lastPinchDistance > 0) {
+                    const pinchRatio = currentDistance / lastPinchDistance;
+                    if (pinchRatio < 0.9) {
+                        // Pinch in - create black hole effect
+                        attractors.push({x: centerX, y: centerY, strength: 10});
+                    } else if (pinchRatio > 1.1) {
+                        // Pinch out - create explosion
+                        for (let i = 0; i < 20; i++) {
+                            const angle = (Math.PI * 2 * i) / 20;
+                            const speed = 5 + Math.random() * 5;
+                            const particle = new Particle(
+                                centerX,
+                                centerY,
+                                Math.cos(angle) * speed,
+                                Math.sin(angle) * speed
+                            );
+                            particle.size = parseFloat(document.getElementById('particleSize').value);
+            particle.baseSize = particle.size;
+                            // Trails disabled for performance
+                            particles.push(particle);
+                        }
+                    }
+                }
+                lastPinchDistance = currentDistance;
+            }
+        });
+        
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            touches = Array.from(e.touches);
+            if (touches.length === 0) {
+                lastPinchDistance = 0;
+            }
+        });
+        
+        // Slider events
+        document.getElementById('forceStrength').addEventListener('input', (e) => {
+            document.getElementById('forceValue').textContent = e.target.value;
+        });
+        
+        document.getElementById('particleSize').addEventListener('input', (e) => {
+            document.getElementById('sizeValue').textContent = e.target.value;
+            particles.forEach(p => p.size = parseFloat(e.target.value));
+        });
+        
+        // Trail control removed - trails disabled for performance
+        
+        let frameCounter = 0;
+        
+        // Animation loop
+        function animate() {
+            // Calculate FPS
+            const currentTime = performance.now();
+            const deltaTime = Math.min((currentTime - lastTime) / 16.67, 2);
+            fps = Math.round(1000 / (currentTime - lastTime));
+            lastTime = currentTime;
+            frameCounter++;
+            
+            // Auto quality adjustment
+            if (fps < 35 && particles.length > 400) {
+                // Remove oldest particles if FPS drops severely
+                particles.splice(0, 30);
+            }
+            
+            // Always update spatial grid for electric/repel modes
+            if (mode === 'electric' || mode === 'repel') {
+                if (!spatialGrid || spatialGrid.cols * GRID_SIZE < canvas.width || 
+                    spatialGrid.rows * GRID_SIZE < canvas.height) {
+                    spatialGrid = new SpatialGrid(canvas.width, canvas.height, GRID_SIZE);
+                }
+                spatialGrid.clear();
+                particles.forEach(p => spatialGrid.add(p));
+            }
+            
+            // Clear canvas with fade effect
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw attractors
+            attractors.forEach(attractor => {
+                ctx.strokeStyle = '#0ff';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(attractor.x, attractor.y, 20, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.arc(attractor.x, attractor.y, 10, 0, Math.PI * 2);
+                ctx.stroke();
+            });
+            
+            // Update and draw particles
+            // Always skip physics every other frame for performance
+            const shouldUpdatePhysics = frameCounter % 2 === 0;
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const particle = particles[i];
+                
+                if (shouldUpdatePhysics) {
+                    particle.update(deltaTime * 2); // Always double timestep since we skip frames
+                }
+                
+                particle.draw();
+                
+                // Remove dead particles
+                if (particle.life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+            
+            // Draw black hole if in that mode
+            if (mode === 'blackhole') {
+                const centerX = canvas.width / 2;
+                const centerY = canvas.height / 2;
+                
+                // Black hole
+                const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 50);
+                gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
+                gradient.addColorStop(0.5, 'rgba(50, 0, 100, 0.5)');
+                gradient.addColorStop(1, 'rgba(100, 0, 200, 0)');
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 50, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Event horizon
+                ctx.strokeStyle = '#f0f';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 10, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            
+            
+            // Update stats
+            document.getElementById('particleCount').textContent = particles.length;
+            document.getElementById('fps').textContent = fps;
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Start with some particles
+        spawnExplosion();
+        
+        // Start animation
+        animate();
+    </script>
+</body>
+</html>
