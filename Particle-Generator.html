@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Particle Physics Sandbox</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,89 +16,248 @@
         body {
             background: #000;
             overflow: hidden;
-            font-family: monospace;
+            font-family: 'Orbitron', monospace;
             color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(120, 217, 255, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 119, 252, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(120, 255, 214, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            animation: floatingGradient 20s ease infinite;
+        }
+        
+        @keyframes floatingGradient {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
         }
         
         canvas {
             display: block;
             cursor: crosshair;
+            position: relative;
+            z-index: 2;
         }
         
         #controls {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border: 1px solid #444;
-            border-radius: 10px;
-            width: 250px;
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(25, 25, 55, 0.8));
+            backdrop-filter: blur(20px);
+            padding: 25px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            width: 280px;
+            z-index: 100;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5),
+                        inset 0 0 20px rgba(0, 255, 255, 0.1);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.5), inset 0 0 20px rgba(0, 255, 255, 0.1); }
+            50% { box-shadow: 0 0 60px rgba(0, 255, 255, 0.8), inset 0 0 30px rgba(0, 255, 255, 0.2); }
         }
         
         h3 {
-            margin-bottom: 15px;
-            color: #0ff;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff00, #00ffff);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            font-size: 20px;
+            text-align: center;
+            letter-spacing: 2px;
+            animation: gradientShift 3s ease infinite;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         button {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            background: #111;
-            color: #0ff;
-            border: 1px solid #0ff;
-            border-radius: 5px;
+            padding: 12px;
+            margin: 6px 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            color: #fff;
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            border-radius: 10px;
             cursor: pointer;
-            font-family: monospace;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 11px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+            text-transform: uppercase;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        button:hover::before {
+            left: 100%;
         }
         
         button:hover {
-            background: #0ff;
-            color: #000;
+            transform: translateY(-2px) scale(1.02);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(255, 0, 255, 0.3));
+            border-color: #0ff;
+            box-shadow: 0 5px 25px rgba(0, 255, 255, 0.6),
+                        inset 0 0 15px rgba(0, 255, 255, 0.2);
+            color: #0ff;
+            text-shadow: 0 0 10px currentColor;
+        }
+        
+        button:active {
+            transform: translateY(0) scale(0.98);
         }
         
         .slider-container {
-            margin: 10px 0;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
         }
         
         label {
-            display: block;
-            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
             color: #0ff;
-            font-size: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        label span {
+            color: #fff;
+            background: linear-gradient(135deg, #0ff, #f0f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
         }
         
         input[type="range"] {
             width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #0ff 0%, #f0f 50%, #0f0 100%);
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        input[type="range"]:hover {
+            opacity: 1;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #fff, #0ff);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            transition: all 0.3s;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 1);
         }
         
         #stats {
             position: fixed;
             top: 20px;
             left: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            border: 1px solid #444;
-            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(25, 25, 55, 0.8));
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
             font-size: 14px;
+            z-index: 100;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
+                        inset 0 0 15px rgba(0, 255, 255, 0.1);
         }
         
         .stat {
-            margin: 5px 0;
+            margin: 8px 0;
             color: #0ff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stat span {
+            color: #fff;
+            font-weight: 900;
+            background: linear-gradient(90deg, #0ff, #f0f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 16px;
+            text-shadow: 0 0 10px currentColor;
         }
         
         #info {
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            border: 1px solid #444;
-            border-radius: 10px;
-            font-size: 12px;
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(25, 25, 55, 0.8));
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 20px;
+            font-size: 11px;
             max-width: 300px;
+            z-index: 100;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        #info strong {
+            color: #0ff;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 13px;
         }
     </style>
 </head>
@@ -118,8 +279,6 @@
         <button onclick="mode = 'blackhole'; updateMode()">🌌 Black Hole</button>
         <button onclick="mode = 'repel'; updateMode()">💫 Repulsion</button>
         <button onclick="mode = 'dna'; updateMode()">🧬 DNA Helix</button>
-        <button onclick="mode = 'vortex'; updateMode()">🌀 Vortex Storm</button>
-        <button onclick="mode = 'kaleidoscope'; updateMode()">🌈 Kaleidoscope</button>
         
         <div class="slider-container">
             <label>Force Strength: <span id="forceValue">5</span></label>
@@ -131,10 +290,6 @@
             <input type="range" id="particleSize" min="1" max="10" value="2">
         </div>
         
-        <div class="slider-container">
-            <label>Trail Length: <span id="trailValue">10</span></label>
-            <input type="range" id="trailLength" min="0" max="50" value="10">
-        </div>
         
         <button onclick="clearParticles()">🗑️ Clear All</button>
         <button onclick="spawnExplosion()">💥 Explosion</button>
@@ -172,7 +327,59 @@
         let lastTime = performance.now();
         let fps = 60;
         let rainInterval = null;
-        const MAX_PARTICLES = 1000;
+        const MAX_PARTICLES = 2000;  // Raised limit since we optimized performance
+        
+        // Performance optimizations - always enabled
+        let spatialGrid = null;
+        const GRID_SIZE = 50; // Size of each grid cell
+        const MAX_FORCE_DISTANCE = 50; // Maximum distance for force calculations
+        
+        // Spatial grid for O(n) particle lookups
+        class SpatialGrid {
+            constructor(width, height, cellSize) {
+                this.cellSize = cellSize;
+                this.cols = Math.ceil(width / cellSize);
+                this.rows = Math.ceil(height / cellSize);
+                this.grid = [];
+                this.clear();
+            }
+            
+            clear() {
+                this.grid = Array(this.cols * this.rows).fill(null).map(() => []);
+            }
+            
+            getIndex(x, y) {
+                const col = Math.floor(x / this.cellSize);
+                const row = Math.floor(y / this.cellSize);
+                if (col < 0 || col >= this.cols || row < 0 || row >= this.rows) return -1;
+                return row * this.cols + col;
+            }
+            
+            add(particle) {
+                const index = this.getIndex(particle.x, particle.y);
+                if (index >= 0) {
+                    this.grid[index].push(particle);
+                }
+            }
+            
+            getNearby(particle, radius) {
+                const nearby = [];
+                const minCol = Math.max(0, Math.floor((particle.x - radius) / this.cellSize));
+                const maxCol = Math.min(this.cols - 1, Math.floor((particle.x + radius) / this.cellSize));
+                const minRow = Math.max(0, Math.floor((particle.y - radius) / this.cellSize));
+                const maxRow = Math.min(this.rows - 1, Math.floor((particle.y + radius) / this.cellSize));
+                
+                for (let row = minRow; row <= maxRow; row++) {
+                    for (let col = minCol; col <= maxCol; col++) {
+                        const index = row * this.cols + col;
+                        if (this.grid[index]) {
+                            nearby.push(...this.grid[index]);
+                        }
+                    }
+                }
+                return nearby;
+            }
+        }
         
         // Particle class
         class Particle {
@@ -183,8 +390,9 @@
                 this.vy = vy;
                 this.ax = 0;
                 this.ay = 0;
+                // Trails removed for performance
                 this.trail = [];
-                this.maxTrail = 10;
+                this.maxTrail = 0;  // Trails disabled
                 this.size = 2;
                 this.baseSize = 2; // Store original size for evolution
                 this.charge = Math.random() > 0.5 ? 1 : -1;
@@ -226,14 +434,18 @@
                         }
                     }
                 } else if (mode === 'electric') {
-                    // Electric field
-                    particles.forEach(other => {
+                    // Electric field - always use spatial grid
+                    const nearbyParticles = spatialGrid ? 
+                        spatialGrid.getNearby(this, 50) : particles;
+                    
+                    nearbyParticles.forEach(other => {
                         if (other === this) return;
                         const dx = other.x - this.x;
                         const dy = other.y - this.y;
                         const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist > 5 && dist < 200) {
-                            const force = (this.charge * other.charge * -5 * forceStrength) / (dist * dist);
+                        if (dist > 5 && dist < 50) {  // Reduced from 200 to 50
+                            // Reduced force multiplier from -5 to -2 to prevent explosions
+                            const force = (this.charge * other.charge * -2 * forceStrength) / (dist * dist);
                             this.ax += (dx / dist) * force;
                             this.ay += (dy / dist) * force;
                         }
@@ -268,8 +480,11 @@
                         this.life = 0;
                     }
                 } else if (mode === 'repel') {
-                    // Repel from all other particles
-                    particles.forEach(other => {
+                    // Repel from all other particles - always use spatial grid
+                    const nearbyParticles = spatialGrid ? 
+                        spatialGrid.getNearby(this, 100) : particles;
+                    
+                    nearbyParticles.forEach(other => {
                         if (other === this) return;
                         const dx = this.x - other.x;
                         const dy = this.y - other.y;
@@ -321,37 +536,6 @@
                         this.vx *= 0.1;
                         this.vy *= 0.1;
                     }
-                } else if (mode === 'vortex') {
-                    // Multiple spinning vortexes
-                    const vortexes = [
-                        {x: canvas.width * 0.25, y: canvas.height * 0.25, strength: 1},
-                        {x: canvas.width * 0.75, y: canvas.height * 0.25, strength: -1},
-                        {x: canvas.width * 0.5, y: canvas.height * 0.75, strength: 1}
-                    ];
-                    
-                    vortexes.forEach(vortex => {
-                        const dx = vortex.x - this.x;
-                        const dy = vortex.y - this.y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist > 5 && dist < 200) {
-                            // Spiral inward force
-                            const attractForce = (30 * forceStrength) / (dist + 10);
-                            this.ax += (dx / dist) * attractForce * 0.02;
-                            this.ay += (dy / dist) * attractForce * 0.02;
-                            
-                            // Rotational/tangential force (creates the spiral)
-                            const rotationForce = forceStrength * vortex.strength * 0.8;
-                            this.ax += (-dy / dist) * rotationForce;
-                            this.ay += (dx / dist) * rotationForce;
-                            
-                            // Add some random turbulence
-                            if (dist < 50) {
-                                this.ax += (Math.random() - 0.5) * 2;
-                                this.ay += (Math.random() - 0.5) * 2;
-                            }
-                        }
-                    });
-                }
                 
                 // Apply attractors
                 attractors.forEach(attractor => {
@@ -369,9 +553,21 @@
                 this.vx += this.ax * dt;
                 this.vy += this.ay * dt;
                 
-                // Damping
-                this.vx *= 0.99;
-                this.vy *= 0.99;
+                // Damping - stronger for certain modes to prevent perpetual motion
+                let dampingFactor = 0.99;
+                if (mode === 'magnetic') dampingFactor = 0.97;
+                if (mode === 'electric' || mode === 'repel') dampingFactor = 0.96; // Strong damping for electric
+                this.vx *= dampingFactor;
+                this.vy *= dampingFactor;
+                
+                // Speed limit to prevent runaway particles
+                const maxSpeed = 15;
+                const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (currentSpeed > maxSpeed) {
+                    const scale = maxSpeed / currentSpeed;
+                    this.vx *= scale;
+                    this.vy *= scale;
+                }
                 
                 // Update position
                 this.x += this.vx * dt;
@@ -387,11 +583,8 @@
                     this.y = Math.max(0, Math.min(canvas.height, this.y));
                 }
                 
-                // Update trail
-                this.trail.push({ x: this.x, y: this.y });
-                if (this.trail.length > this.maxTrail) {
-                    this.trail.shift();
-                }
+                // Skip trail updates for performance
+                // Trails are disabled permanently for better FPS
                 
                 // Check for collisions with other particles for color mixing
                 particles.forEach(other => {
@@ -412,17 +605,15 @@
                 this.pulsePhase += 0.1; // Update pulse animation
                 this.age += dt;
                 
-                // Size evolution based on speed and age - FIXED
-                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                const speedFactor = 0.63 + Math.min(speed / 15, 1.17); // Base 0.63x (10% smaller), up to 1.8x when fast
+                // Size evolution based on age only (removed speed factor that caused visual issues)
                 const ageFactor = Math.sin(this.age * 0.03) * 0.2 + 1; // Gentler pulsing
-                this.size = this.baseSize * speedFactor * ageFactor;
-                this.size = Math.max(1, Math.min(this.size, 10)); // Better size bounds
+                this.size = this.baseSize * ageFactor;
+                this.size = Math.max(1, Math.min(this.size, this.baseSize * 1.5)); // Max 1.5x original size
             }
             
             draw() {
-                // Enhanced trail with fading and splitting effects
-                if (this.trail.length > 1) {
+                // Skip trails for performance - trails are expensive
+                if (false) {  // Trails disabled for performance
                     if (this.trailStyle === 'lightning') {
                         // LIGHTNING TRAILS - jagged, electric paths
                         for (let i = 0; i < this.trail.length - 1; i++) {
@@ -460,21 +651,15 @@
                             ctx.stroke();
                         }
                     } else if (this.trailStyle === 'ribbon') {
-                        // RIBBON TRAILS - thick, flowing silk-like ribbons
-                        for (let i = 0; i < this.trail.length - 1; i++) {
+                        // RIBBON TRAILS - simplified for performance
+                        for (let i = 0; i < this.trail.length - 1; i += 2) {  // Skip every other point
                             const current = this.trail[i];
                             const next = this.trail[i + 1];
                             const trailAlpha = (i / this.trail.length) * 0.7;
-                            const ribbonWidth = (i / this.trail.length) * this.size * 4; // Much thicker
+                            const ribbonWidth = (i / this.trail.length) * this.size * 4;
                             
-                            // Create smooth ribbon with gradient
-                            const gradient = ctx.createLinearGradient(current.x, current.y, next.x, next.y);
-                            gradient.addColorStop(0, `hsla(${this.hue}, 80%, 60%, ${trailAlpha})`);
-                            gradient.addColorStop(0.5, `hsla(${this.hue + 20}, 90%, 70%, ${trailAlpha * 0.8})`);
-                            gradient.addColorStop(1, `hsla(${this.hue + 40}, 100%, 80%, ${trailAlpha * 0.6})`);
-                            
-                            // Draw main ribbon body
-                            ctx.strokeStyle = gradient;
+                            // No gradient - just solid color for performance
+                            ctx.strokeStyle = `hsla(${this.hue}, 80%, 60%, ${trailAlpha})`;
                             ctx.lineWidth = ribbonWidth + 2;
                             ctx.lineCap = 'round';
                             ctx.lineJoin = 'round';
@@ -590,7 +775,7 @@
             );
             particle.size = parseFloat(document.getElementById('particleSize').value);
             particle.baseSize = particle.size;
-            particle.maxTrail = parseInt(document.getElementById('trailLength').value);
+            // Trails disabled for performance
             particles.push(particle);
         }
         
@@ -616,7 +801,7 @@
                 );
                 particle.size = parseFloat(document.getElementById('particleSize').value);
             particle.baseSize = particle.size;
-                particle.maxTrail = parseInt(document.getElementById('trailLength').value);
+                // Trails disabled for performance
                 particles.push(particle);
             }
         }
@@ -639,7 +824,7 @@
                 const particle = new Particle(x, y, vx, vy);
                 particle.size = parseFloat(document.getElementById('particleSize').value);
             particle.baseSize = particle.size;
-                particle.maxTrail = parseInt(document.getElementById('trailLength').value);
+                // Trails disabled for performance
                 particles.push(particle);
             }
         }
@@ -658,7 +843,7 @@
                 const particle = new Particle(x, 0, 0, 2);
                 particle.size = parseFloat(document.getElementById('particleSize').value);
             particle.baseSize = particle.size;
-                particle.maxTrail = parseInt(document.getElementById('trailLength').value);
+                // Trails disabled for performance
                 particles.push(particle);
             }, 50);
         }
@@ -778,7 +963,7 @@
                             );
                             particle.size = parseFloat(document.getElementById('particleSize').value);
             particle.baseSize = particle.size;
-                            particle.maxTrail = parseInt(document.getElementById('trailLength').value);
+                            // Trails disabled for performance
                             particles.push(particle);
                         }
                     }
@@ -805,10 +990,9 @@
             particles.forEach(p => p.size = parseFloat(e.target.value));
         });
         
-        document.getElementById('trailLength').addEventListener('input', (e) => {
-            document.getElementById('trailValue').textContent = e.target.value;
-            particles.forEach(p => p.maxTrail = parseInt(e.target.value));
-        });
+        // Trail control removed - trails disabled for performance
+        
+        let frameCounter = 0;
         
         // Animation loop
         function animate() {
@@ -817,6 +1001,23 @@
             const deltaTime = Math.min((currentTime - lastTime) / 16.67, 2);
             fps = Math.round(1000 / (currentTime - lastTime));
             lastTime = currentTime;
+            frameCounter++;
+            
+            // Auto quality adjustment
+            if (fps < 35 && particles.length > 400) {
+                // Remove oldest particles if FPS drops severely
+                particles.splice(0, 30);
+            }
+            
+            // Always update spatial grid for electric/repel modes
+            if (mode === 'electric' || mode === 'repel') {
+                if (!spatialGrid || spatialGrid.cols * GRID_SIZE < canvas.width || 
+                    spatialGrid.rows * GRID_SIZE < canvas.height) {
+                    spatialGrid = new SpatialGrid(canvas.width, canvas.height, GRID_SIZE);
+                }
+                spatialGrid.clear();
+                particles.forEach(p => spatialGrid.add(p));
+            }
             
             // Clear canvas with fade effect
             ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
@@ -836,49 +1037,21 @@
             });
             
             // Update and draw particles
-            if (mode === 'kaleidoscope') {
-                // Kaleidoscope mode - draw particles with 6-way symmetry
-                ctx.save();
-                const centerX = canvas.width / 2;
-                const centerY = canvas.height / 2;
+            // Always skip physics every other frame for performance
+            const shouldUpdatePhysics = frameCounter % 2 === 0;
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const particle = particles[i];
                 
-                for (let segment = 0; segment < 6; segment++) {
-                    ctx.save();
-                    ctx.translate(centerX, centerY);
-                    ctx.rotate((segment * Math.PI) / 3);
-                    ctx.translate(-centerX, -centerY);
-                    
-                    if (segment % 2 === 1) {
-                        ctx.scale(-1, 1);
-                        ctx.translate(-canvas.width, 0);
-                    }
-                    
-                    for (let i = particles.length - 1; i >= 0; i--) {
-                        const particle = particles[i];
-                        if (segment === 0) {
-                            particle.update(deltaTime);
-                        }
-                        particle.draw();
-                        
-                        // Remove dead particles (only check once)
-                        if (segment === 0 && particle.life <= 0) {
-                            particles.splice(i, 1);
-                        }
-                    }
-                    ctx.restore();
+                if (shouldUpdatePhysics) {
+                    particle.update(deltaTime * 2); // Always double timestep since we skip frames
                 }
-                ctx.restore();
-            } else {
-                // Normal mode
-                for (let i = particles.length - 1; i >= 0; i--) {
-                    const particle = particles[i];
-                    particle.update(deltaTime);
-                    particle.draw();
-                    
-                    // Remove dead particles
-                    if (particle.life <= 0) {
-                        particles.splice(i, 1);
-                    }
+                
+                particle.draw();
+                
+                // Remove dead particles
+                if (particle.life <= 0) {
+                    particles.splice(i, 1);
                 }
             }
             
