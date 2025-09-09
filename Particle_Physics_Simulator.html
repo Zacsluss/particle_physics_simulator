@@ -50,23 +50,24 @@
         
         #controls {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(25, 25, 55, 0.8));
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.11), rgba(25, 25, 55, 0.1));
             backdrop-filter: blur(20px);
             padding: 25px;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.04);
             border-radius: 20px;
             width: 280px;
             z-index: 100;
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5),
-                        inset 0 0 20px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.06),
+                        inset 0 0 20px rgba(0, 255, 255, 0.01);
             animation: pulseGlow 3s ease-in-out infinite;
         }
         
         @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.5), inset 0 0 20px rgba(0, 255, 255, 0.1); }
-            50% { box-shadow: 0 0 60px rgba(0, 255, 255, 0.8), inset 0 0 30px rgba(0, 255, 255, 0.2); }
+            0%, 100% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.06), inset 0 0 20px rgba(0, 255, 255, 0.01); }
+            50% { box-shadow: 0 0 60px rgba(0, 255, 255, 0.1), inset 0 0 30px rgba(0, 255, 255, 0.025); }
         }
         
         h3 {
@@ -93,9 +94,9 @@
             width: 100%;
             padding: 12px;
             margin: 6px 0;
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.01), rgba(255, 0, 255, 0.01));
             color: #fff;
-            border: 1px solid rgba(0, 255, 255, 0.5);
+            border: 1px solid rgba(0, 255, 255, 0.06);
             border-radius: 10px;
             cursor: pointer;
             font-family: 'Orbitron', monospace;
@@ -125,10 +126,10 @@
         
         button:hover {
             transform: translateY(-2px) scale(1.02);
-            background: linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(255, 0, 255, 0.3));
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.04), rgba(255, 0, 255, 0.04));
             border-color: #0ff;
-            box-shadow: 0 5px 25px rgba(0, 255, 255, 0.6),
-                        inset 0 0 15px rgba(0, 255, 255, 0.2);
+            box-shadow: 0 5px 25px rgba(0, 255, 255, 0.08),
+                        inset 0 0 15px rgba(0, 255, 255, 0.025);
             color: #0ff;
             text-shadow: 0 0 10px currentColor;
         }
@@ -140,9 +141,9 @@
         .slider-container {
             margin: 15px 0;
             padding: 10px;
-            background: rgba(0, 255, 255, 0.05);
+            background: rgba(0, 255, 255, 0.006);
             border-radius: 10px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.025);
         }
         
         label {
@@ -202,15 +203,16 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(25, 25, 55, 0.8));
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.11), rgba(25, 25, 55, 0.1));
             backdrop-filter: blur(20px);
-            padding: 20px;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 25px;
+            border: 1px solid rgba(0, 255, 255, 0.04);
             border-radius: 20px;
+            width: 280px;
             font-size: 14px;
             z-index: 100;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
-                        inset 0 0 15px rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.05),
+                        inset 0 0 15px rgba(0, 255, 255, 0.01);
         }
         
         .stat {
@@ -240,15 +242,15 @@
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(25, 25, 55, 0.8));
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.11), rgba(25, 25, 55, 0.1));
             backdrop-filter: blur(20px);
-            padding: 20px;
-            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 25px;
+            border: 1px solid rgba(0, 255, 255, 0.04);
             border-radius: 20px;
             font-size: 11px;
-            max-width: 300px;
+            width: 280px;
             z-index: 100;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -271,7 +273,7 @@
     </div>
     
     <div id="controls">
-        <h3>⚛️ Particle Controls</h3>
+        <h3>Particle Controls</h3>
         
         <button onclick="mode = 'gravity'; updateMode()">🌍 Gravity Mode</button>
         <button onclick="mode = 'electric'; updateMode()">⚡ Electric Field</button>
@@ -287,7 +289,7 @@
         
         <div class="slider-container">
             <label>Particle Size: <span id="sizeValue">2</span></label>
-            <input type="range" id="particleSize" min="1" max="10" value="2">
+            <input type="range" id="particleSize" min="1" max="5" value="2">
         </div>
         
         
@@ -774,8 +776,8 @@
                 Math.cos(angle) * speed,
                 Math.sin(angle) * speed
             );
-            particle.size = parseFloat(document.getElementById('particleSize').value);
-            particle.baseSize = particle.size;
+            particle.baseSize = parseFloat(document.getElementById('particleSize').value);
+            particle.size = particle.baseSize;
             // Trails disabled for performance
             particles.push(particle);
         }
@@ -800,8 +802,8 @@
                     Math.cos(angle) * speed,
                     Math.sin(angle) * speed
                 );
-                particle.size = parseFloat(document.getElementById('particleSize').value);
-            particle.baseSize = particle.size;
+                particle.baseSize = parseFloat(document.getElementById('particleSize').value);
+                particle.size = particle.baseSize;
                 // Trails disabled for performance
                 particles.push(particle);
             }
@@ -823,8 +825,8 @@
                 const vy = Math.cos(angle) * orbitalSpeed;
                 
                 const particle = new Particle(x, y, vx, vy);
-                particle.size = parseFloat(document.getElementById('particleSize').value);
-            particle.baseSize = particle.size;
+                particle.baseSize = parseFloat(document.getElementById('particleSize').value);
+                particle.size = particle.baseSize;
                 // Trails disabled for performance
                 particles.push(particle);
             }
@@ -842,8 +844,8 @@
                 }
                 const x = Math.random() * canvas.width;
                 const particle = new Particle(x, 0, 0, 2);
-                particle.size = parseFloat(document.getElementById('particleSize').value);
-            particle.baseSize = particle.size;
+                particle.baseSize = parseFloat(document.getElementById('particleSize').value);
+                particle.size = particle.baseSize;
                 // Trails disabled for performance
                 particles.push(particle);
             }, 50);
@@ -962,8 +964,8 @@
                                 Math.cos(angle) * speed,
                                 Math.sin(angle) * speed
                             );
-                            particle.size = parseFloat(document.getElementById('particleSize').value);
-            particle.baseSize = particle.size;
+                            particle.baseSize = parseFloat(document.getElementById('particleSize').value);
+                particle.size = particle.baseSize;
                             // Trails disabled for performance
                             particles.push(particle);
                         }
@@ -988,7 +990,11 @@
         
         document.getElementById('particleSize').addEventListener('input', (e) => {
             document.getElementById('sizeValue').textContent = e.target.value;
-            particles.forEach(p => p.size = parseFloat(e.target.value));
+            const newSize = parseFloat(e.target.value);
+            particles.forEach(p => {
+                p.size = newSize;
+                p.baseSize = newSize;
+            });
         });
         
         // Trail control removed - trails disabled for performance
