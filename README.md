@@ -59,19 +59,19 @@
 <table>
   <tr>
     <td align="center">
-      <img src="https://img.shields.io/badge/Performance-60_FPS-00ff88?style=flat-square&logo=speedtest&logoColor=white"/><br/>
+      <img src="https://img.shields.io/badge/Performance-60_FPS-2d7a3e?style=flat-square&logo=speedtest&logoColor=white"/><br/>
       <sub><b>Frame Rate</b></sub>
     </td>
     <td align="center">
-      <img src="https://img.shields.io/badge/Particles-1,000-0088ff?style=flat-square&logo=atom&logoColor=white"/><br/>
+      <img src="https://img.shields.io/badge/Particles-1,000-1E4A6D?style=flat-square&logo=atom&logoColor=white"/><br/>
       <sub><b>Simultaneous</b></sub>
     </td>
     <td align="center">
-      <img src="https://img.shields.io/badge/Optimization-100x-ff6b6b?style=flat-square&logo=rocket&logoColor=white"/><br/>
+      <img src="https://img.shields.io/badge/Optimization-100x-8B3A3A?style=flat-square&logo=rocket&logoColor=white"/><br/>
       <sub><b>Speed Boost</b></sub>
     </td>
     <td align="center">
-      <img src="https://img.shields.io/badge/Modes-6_Physics-ffd93d?style=flat-square&logo=physics&logoColor=white"/><br/>
+      <img src="https://img.shields.io/badge/Modes-6_Physics-8B6914?style=flat-square&logo=physics&logoColor=white"/><br/>
       <sub><b>Simulations</b></sub>
     </td>
   </tr>
@@ -271,8 +271,8 @@ Bug reports and feature suggestions welcome. See [CONTRIBUTING.md](CONTRIBUTING.
 
 **Built by [Zachary Sluss](https://github.com/Zacsluss)** • MIT License
 
-[![Portfolio](https://img.shields.io/badge/🌐_My_Portfolio-00ff88?style=flat-square)](https://zacsluss.github.io/portfolio)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/zacharyjsluss)
-[![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:zacsluss@yahoo.com)
+[![Portfolio](https://img.shields.io/badge/🌐_My_Portfolio-2d7a3e?style=flat-square)](https://zacsluss.github.io/portfolio)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0055A4?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/zacharyjsluss)
+[![Email](https://img.shields.io/badge/Email-8B2E0F?style=flat-square&logo=gmail&logoColor=white)](mailto:zacsluss@yahoo.com)
 
 </div>
