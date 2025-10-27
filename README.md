@@ -22,10 +22,10 @@
 
 <!-- GitHub Stats Badges -->
 <p align="center">
-  <img src="https://img.shields.io/github/stars/Zacsluss/Particle_Physics_Simulator?style=social" alt="Stars"/>
-  <img src="https://img.shields.io/github/forks/Zacsluss/Particle_Physics_Simulator?style=social" alt="Forks"/>
-  <img src="https://img.shields.io/github/license/Zacsluss/Particle_Physics_Simulator?style=flat-square&color=555555" alt="License"/>
-  <img src="https://img.shields.io/github/last-commit/Zacsluss/Particle_Physics_Simulator?style=flat-square&color=666666" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/stars/Zacsluss/particle_physics_simulator?style=social" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/Zacsluss/particle_physics_simulator?style=social" alt="Forks"/>
+  <img src="https://img.shields.io/github/license/Zacsluss/particle_physics_simulator?style=flat-square&color=555555" alt="License"/>
+  <img src="https://img.shields.io/github/last-commit/Zacsluss/particle_physics_simulator?style=flat-square&color=666666" alt="Last Commit"/>
 </p>
 
 </div>
@@ -145,7 +145,7 @@
 
 ### 🌐 Online
 
-**[Launch Simulator](https://zacsluss.github.io/Particle_Physics_Simulator/)**
+**[Launch Simulator](https://zacsluss.github.io/particle_physics_simulator/)**
 
 Instant access, no installation
 
@@ -154,7 +154,7 @@ Instant access, no installation
 
 ### 💾 Offline
 
-**[Download ZIP](https://github.com/Zacsluss/Particle_Physics_Simulator/archive/refs/heads/main.zip)**
+**[Download ZIP](https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip)**
 
 Open index.html in browser
 
