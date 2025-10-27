@@ -35,8 +35,8 @@ Want to contribute code? Awesome! Please follow the guidelines below.
 1. **Fork the repository**
    ```bash
    # Click "Fork" on GitHub, then clone your fork
-   git clone https://github.com/YOUR_USERNAME/Particle_Physics_Simulator.git
-   cd Particle_Physics_Simulator
+   git clone https://github.com/YOUR_USERNAME/particle_physics_simulator.git
+   cd particle_physics_simulator
    ```
 
 2. **Create a branch**
@@ -175,7 +175,7 @@ Add screenshots or GIFs demonstrating the change
 Understanding the codebase:
 
 ```
-Particle_Physics_Simulator/
+particle_physics_simulator/
 ├── index.html              # HTML structure, ARIA labels
 ├── css/
 │   └── styles.css         # All styling (responsive, animations)

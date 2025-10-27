@@ -131,7 +131,7 @@ Complete architectural overhaul from monolithic HTML to modular, professional co
 
 ---
 
-[2.0.0]: https://github.com/Zacsluss/Particle_Physics_Simulator/compare/v1.2.0...v2.0.0
-[1.2.0]: https://github.com/Zacsluss/Particle_Physics_Simulator/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/Zacsluss/Particle_Physics_Simulator/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/Zacsluss/Particle_Physics_Simulator/releases/tag/v1.0.0
+[2.0.0]: https://github.com/Zacsluss/particle_physics_simulator/compare/v1.2.0...v2.0.0
+[1.2.0]: https://github.com/Zacsluss/particle_physics_simulator/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/Zacsluss/particle_physics_simulator/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/Zacsluss/particle_physics_simulator/releases/tag/v1.0.0
