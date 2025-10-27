@@ -55,6 +55,20 @@
 
 <div align="center">
 
+### See it in action:
+
+<img src="particlesim.gif" alt="Particle Physics Simulator Preview" width="800"/>
+
+<br/>
+
+*1,000 particles interacting in real-time at 60 FPS*
+
+</div>
+
+<br/>
+
+<div align="center">
+
 <!-- Performance Metrics -->
 <table>
   <tr>
