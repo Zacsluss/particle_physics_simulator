@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Zacsluss/Particle_Physics_Simulator.git"
+    "url": "https://github.com/Zacsluss/particle_physics_simulator.git"
   },
   "keywords": [
     "physics",
@@ -37,9 +37,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Zacsluss/Particle_Physics_Simulator/issues"
+    "url": "https://github.com/Zacsluss/particle_physics_simulator/issues"
   },
-  "homepage": "https://zacsluss.github.io/Particle_Physics_Simulator/",
+  "homepage": "https://zacsluss.github.io/particle_physics_simulator/",
   "engines": {
     "node": ">=12.0.0"
   },
