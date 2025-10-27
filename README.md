@@ -186,9 +186,9 @@ git clone <repo>
 
 <div align="center">
 
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Canvas](https://img.shields.io/badge/Canvas_API-FF6B6B?style=for-the-badge&logo=html5&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-8B7500?style=for-the-badge&logo=javascript&logoColor=white)
+![Canvas](https://img.shields.io/badge/Canvas_API-8B3A3A?style=for-the-badge&logo=html5&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-8B2E0F?style=for-the-badge&logo=html5&logoColor=white)
 
 </div>
 
