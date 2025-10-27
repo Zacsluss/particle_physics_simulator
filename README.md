@@ -12,10 +12,10 @@
 
 <!-- Main Action Buttons -->
 <p align="center">
-  <a href="https://zacsluss.github.io/Particle_Physics_Simulator/">
+  <a href="https://zacsluss.github.io/particle_physics_simulator/">
     <img src="https://img.shields.io/badge/⚛️_LAUNCH-LIVE_DEMO-2d7a3e?style=for-the-badge&labelColor=000000&logo=atom&logoColor=white" alt="Live Demo"/>
   </a>
-  <a href="https://github.com/Zacsluss/Particle_Physics_Simulator/archive/refs/heads/main.zip">
+  <a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip">
     <img src="https://img.shields.io/badge/⬇️_DOWNLOAD-ZIP-0366d6?style=for-the-badge&labelColor=000000&logo=download&logoColor=white" alt="Download"/>
   </a>
 </p>
