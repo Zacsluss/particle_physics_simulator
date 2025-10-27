@@ -1,0 +1,48 @@
+{
+  "name": "particle-physics-simulator",
+  "version": "2.0.0",
+  "description": "Interactive particle physics sandbox with gravity, electric fields, magnetic forces, black holes, and DNA helix simulations. Features real-time 60 FPS rendering with 1000+ particles.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zacsluss/Particle_Physics_Simulator.git"
+  },
+  "keywords": [
+    "physics",
+    "simulation",
+    "particles",
+    "canvas",
+    "javascript",
+    "interactive",
+    "educational",
+    "visualization",
+    "gravity",
+    "electromagnetism",
+    "black-hole",
+    "dna-helix",
+    "real-time",
+    "60fps",
+    "performance-optimization",
+    "spatial-grid",
+    "es6-modules"
+  ],
+  "author": {
+    "name": "Zachary Sluss",
+    "url": "https://zacsluss.github.io/Portfolio/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zacsluss/Particle_Physics_Simulator/issues"
+  },
+  "homepage": "https://zacsluss.github.io/Particle_Physics_Simulator/",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
