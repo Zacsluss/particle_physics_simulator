@@ -282,13 +282,6 @@ js/app.js       24.3 KB → 8.2 KB gzipped
 Total           59.0 KB → 21.0 KB gzipped (64% reduction)
 ```
 
-**How I optimized it:**
-- ✅ Spatial grid partitioning (100x faster collision detection)
-- ✅ Verlet integration (stable physics with less computation)
-- ✅ Batched canvas operations (minimize redraws)
-- ✅ Throttled DOM updates (90% fewer DOM writes)
-- ✅ Pre-computed constants (no runtime math)
-
 </details>
 
 ---
