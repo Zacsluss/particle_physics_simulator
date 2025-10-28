@@ -37,15 +37,14 @@
 
 ## 👋 Hey, I'm Zac
 
-I work on enterprise platforms by day and build unusually fun projects by night. This one simulates **1,000 particles at locked 60 FPS** across six different physics modes—gravity wells, electric fields, magnetic vortices, black holes, repulsion fields, and DNA helixes.
+I work on enterprise platforms by day and build unusually fun projects by night. This one simulates **1,000 particles at 60 FPS** across several different physics modes including electric fields, magnetic vortices, black holes, repulsion fields, and DNA helixes.
 
 **What makes it interesting:**
 - **100x performance boost** from O(n²) brute force to O(n) spatial grid optimization
 - Real physics formulas (Newton's gravity, Coulomb's law, Lorentz force, Verlet integration)
-- Zero dependencies—pure JavaScript with Canvas API, no frameworks or libraries
-- Fixed an algorithmic bug where "nearest 20 particles" actually used "first 20 particles" (completely wrong physics)
+- Zero dependencies - pure JavaScript with Canvas API, no frameworks or libraries
 
-Built with vanilla JavaScript, HTML5 Canvas, and a lot of caffeine.
+Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 
 <div align="center">
 
@@ -149,7 +148,7 @@ Built with vanilla JavaScript, HTML5 Canvas, and a lot of caffeine.
 
 ## 🧠 The Technical Challenge
 
-**Achieving smooth performance with 1,000 interacting particles.** The naive approach—checking every particle against every other particle—requires 1,000,000 comparisons per frame, which crashes at 15 FPS.
+**Achieving smooth performance with 1,000 interacting particles.** The naive approach is checking every particle against every other particle which requires a whopping 1,000,000 comparisons per frame! This crashes at ~15 FPS.
 
 **The solution: Spatial grid partitioning reduces collision detection from O(n²) to O(n), achieving 100x performance improvement and maintaining 60 FPS.**
 
@@ -246,7 +245,7 @@ Particles form double-helix structure with spring-like constraints between stran
 #### Desktop (1920×1080)
 | Metric | Value |
 |--------|-------|
-| Frame Rate | 60 FPS locked |
+| Frame Rate | 60 FPS |
 | Particles | 1,000 simultaneous |
 | CPU Usage | ~15% (single core) |
 | Memory | ~25 MB |
@@ -255,10 +254,10 @@ Particles form double-helix structure with spring-like constraints between stran
 </td>
 <td width="50%">
 
-#### Mobile (iPhone 12)
+#### Mobile (iPhone 13)
 | Metric | Value |
 |--------|-------|
-| Frame Rate | 60 FPS locked |
+| Frame Rate | 60 FPS |
 | Particles | 1,000 simultaneous |
 | CPU Usage | ~25% |
 | Memory | ~30 MB |
