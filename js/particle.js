@@ -9,7 +9,9 @@ import {
     AURA_SIZE_MULTIPLIER,
     AURA_PULSE_AMPLITUDE,
     AURA_OPACITY,
-    SIZE_UPDATE_INTERVAL
+    SIZE_UPDATE_INTERVAL,
+    WALL_BOUNCE_DAMPING,
+    PARTICLE_SIZE_AGE_MULTIPLIER
 } from './constants.js';
 
 /**
@@ -22,8 +24,17 @@ export class Particle {
      * @param {number} y - Initial Y position
      * @param {number} vx - Initial X velocity
      * @param {number} vy - Initial Y velocity
+     * @throws {Error} If position or velocity values are invalid
      */
     constructor(x, y, vx = 0, vy = 0) {
+        // Input validation
+        if (!Number.isFinite(x) || !Number.isFinite(y)) {
+            throw new Error(`Invalid particle position: x=${x}, y=${y}`);
+        }
+        if (!Number.isFinite(vx) || !Number.isFinite(vy)) {
+            throw new Error(`Invalid particle velocity: vx=${vx}, vy=${vy}`);
+        }
+
         // Physics properties
         this.x = x;
         this.y = y;
@@ -96,11 +107,11 @@ export class Particle {
 
         // Bounce off walls with energy loss
         if (this.x < 0 || this.x > canvasWidth) {
-            this.vx *= -0.8;
+            this.vx *= -WALL_BOUNCE_DAMPING;
             this.x = Math.max(0, Math.min(canvasWidth, this.x));
         }
         if (this.y < 0 || this.y > canvasHeight) {
-            this.vy *= -0.8;
+            this.vy *= -WALL_BOUNCE_DAMPING;
             this.y = Math.max(0, Math.min(canvasHeight, this.y));
         }
 
@@ -114,7 +125,7 @@ export class Particle {
             const ageFactor = Math.sin(this.age * PARTICLE_AGE_FACTOR) * 0.2 + 1;
             this.size = this.baseSize * ageFactor;
             // Clamp size to reasonable bounds
-            this.size = Math.max(1, Math.min(this.size, this.baseSize * 1.5));
+            this.size = Math.max(1, Math.min(this.size, this.baseSize * PARTICLE_SIZE_AGE_MULTIPLIER));
         }
     }
 
