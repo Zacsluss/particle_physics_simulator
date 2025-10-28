@@ -146,6 +146,52 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 
 ---
 
+## 🏗️ Architecture
+
+<div align="center">
+
+### System Design
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      User Interaction                        │
+│         (Mouse, Touch, Keyboard, UI Controls)                │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   ParticleSimulator                          │
+│                  (Main Application)                          │
+│  • Event handling  • Animation loop  • State management      │
+└──────┬──────────────┬──────────────┬──────────────┬─────────┘
+       │              │              │              │
+       ▼              ▼              ▼              ▼
+┌────────────┐ ┌──────────┐ ┌────────────┐ ┌──────────────┐
+│  Particle  │ │ Physics  │ │  Spatial   │ │  Constants   │
+│   Class    │ │  Engine  │ │    Grid    │ │    Config    │
+└─────┬──────┘ └─────┬────┘ └──────┬─────┘ └──────┬───────┘
+      │              │              │              │
+      │              │              │              │
+      └──────────────┴──────────────┴──────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    Canvas 2D Context                         │
+│               (Visual Output Rendering)                      │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Key Components:**
+- **ParticleSimulator**: Orchestrates the entire simulation
+- **Particle**: Individual particle with physics properties
+- **Physics Engine**: Calculates forces for 6 different modes
+- **Spatial Grid**: O(n) optimization for particle interactions
+- **Constants**: Centralized configuration for tuning
+
+</div>
+
+---
+
 ## 🧠 The Technical Challenge
 
 **Achieving smooth performance with 1,000 interacting particles.** The naive approach is checking every particle against every other particle which requires a whopping 1,000,000 comparisons per frame! This crashes at ~15 FPS.
@@ -214,6 +260,80 @@ Particles form double-helix structure with spring-like constraints between stran
 
 </details>
 
+<details>
+<summary><b>📚 Physics Formulas Reference</b></summary>
+
+<br/>
+
+This simulator implements real physics equations from classical mechanics and electromagnetism:
+
+### Newton's Law of Universal Gravitation
+**Gravity Mode** uses the inverse-square law:
+
+```
+F = G × m₁ × m₂ / r²
+```
+
+- `F` = Gravitational force
+- `G` = Gravitational constant (simplified to GRAVITY_STRENGTH)
+- `m₁, m₂` = Masses (assumed unit mass = 1)
+- `r` = Distance between particles
+
+**Learn more:** [Newton's Law (Wikipedia)](https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation)
+
+### Coulomb's Law
+**Electric Field Mode** uses electrostatic force:
+
+```
+F = k × q₁ × q₂ / r²
+```
+
+- `F` = Electrostatic force (positive = repulsion, negative = attraction)
+- `k` = Coulomb's constant
+- `q₁, q₂` = Electric charges (+1 or -1)
+- `r` = Distance between particles
+
+**Learn more:** [Coulomb's Law (Wikipedia)](https://en.wikipedia.org/wiki/Coulomb%27s_law)
+
+### Lorentz Force
+**Magnetic Vortex Mode** simulates magnetic fields:
+
+```
+F = q(v × B)
+```
+
+- `F` = Magnetic force (perpendicular to velocity and field)
+- `q` = Particle charge
+- `v` = Particle velocity vector
+- `B` = Magnetic field strength (pointing out of screen)
+
+**Learn more:** [Lorentz Force (Wikipedia)](https://en.wikipedia.org/wiki/Lorentz_force)
+
+### Verlet Integration
+All modes use **Verlet integration** for stable physics:
+
+```
+x(t + Δt) = x(t) + v(t) × Δt
+v(t + Δt) = v(t) + a(t) × Δt
+```
+
+- Implicit velocity calculation prevents instabilities
+- Delta time capped at 2× for stability during lag spikes
+
+**Learn more:** [Verlet Integration (Wikipedia)](https://en.wikipedia.org/wiki/Verlet_integration)
+
+### Simplifications Made
+For real-time performance, some simplifications were applied:
+
+1. **Unit mass assumption**: All particles have mass = 1
+2. **Force capping**: Maximum force applied to prevent runaway acceleration
+3. **Distance cutoffs**: Forces only calculated within 50px radius
+4. **Interaction limits**: Maximum 10 particle interactions per frame
+
+These trade-offs maintain physics accuracy while achieving 60 FPS.
+
+</details>
+
 ---
 
 ## ⚡ Performance Optimizations
@@ -227,6 +347,93 @@ Particles form double-helix structure with spring-like constraints between stran
 - ✅ **DOM updates throttled** — Stats update every 10 frames (90% reduction)
 - ✅ **Dynamic frame skipping** — Maintains responsiveness under heavy load
 - ✅ **Pre-computed constants** — TWO_PI, cell sizes, etc.
+
+<details>
+<summary><b>🎛️ Performance Tuning Guide</b></summary>
+
+<br/>
+
+Want to optimize for your device? Edit `js/constants.js` to tune performance:
+
+### For Lower-End Devices (Boost FPS)
+
+```javascript
+// Reduce maximum particles
+export const MAX_PARTICLES = 500; // Down from 1000
+
+// Increase grid size (fewer cells = faster)
+export const GRID_SIZE = 100; // Up from 50
+
+// Reduce interaction distance
+export const MAX_FORCE_DISTANCE = 30; // Down from 50
+
+// Lower interaction limit
+export const MAX_INTERACTIONS_PER_PARTICLE = 5; // Down from 10
+
+// Skip more frames
+export const FRAME_SKIP_PARTICLE_THRESHOLD = 300; // Down from 500
+```
+
+**Expected result:** 60 FPS with 500 particles on older devices
+
+### For High-End Devices (Maximize Particles)
+
+```javascript
+// Increase maximum particles
+export const MAX_PARTICLES = 2000; // Up from 1000
+
+// Decrease grid size (more precise)
+export const GRID_SIZE = 40; // Down from 50
+
+// Increase interaction distance
+export const MAX_FORCE_DISTANCE = 70; // Up from 50
+
+// Higher interaction limit
+export const MAX_INTERACTIONS_PER_PARTICLE = 15; // Up from 10
+
+// Disable frame skipping
+export const FRAME_SKIP_PARTICLE_THRESHOLD = 9999; // Effectively disabled
+```
+
+**Expected result:** 60 FPS with 2000+ particles on modern GPUs
+
+### Visual Quality vs Performance
+
+**Higher quality (slower):**
+```javascript
+export const FPS_UPDATE_INTERVAL = 1; // Update every frame
+export const SIZE_UPDATE_INTERVAL = 1; // Update size every frame
+export const CANVAS_FADE_ALPHA = 0.05; // Longer trails
+```
+
+**Better performance (less visual fidelity):**
+```javascript
+export const FPS_UPDATE_INTERVAL = 30; // Update every 30 frames
+export const SIZE_UPDATE_INTERVAL = 10; // Update size every 10 frames
+export const CANVAS_FADE_ALPHA = 0.3; // Shorter trails
+```
+
+### Grid Size Optimization
+
+The `GRID_SIZE` constant is **critical** for performance:
+
+- **Too small** (e.g., 20px): Too many cells to check
+- **Too large** (e.g., 200px): Too many particles per cell
+- **Sweet spot**: 50-100px for 1920×1080 screens
+
+**Formula:** `GRID_SIZE ≈ MAX_FORCE_DISTANCE` for optimal performance
+
+### Monitor Performance
+
+Watch the FPS counter in the top-left stats panel:
+- **60 FPS**: Perfect, increase particles if desired
+- **45-59 FPS**: Good, minor optimizations possible
+- **30-44 FPS**: Reduce MAX_PARTICLES or increase GRID_SIZE
+- **<30 FPS**: Significant optimization needed
+
+The simulator automatically removes particles if FPS drops below 35.
+
+</details>
 
 ---
 
