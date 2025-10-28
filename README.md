@@ -242,7 +242,7 @@ Particles form double-helix structure with spring-like constraints between stran
 
 #### Desktop (1920×1080)
 | Metric | Value |
-|--------|-------|
+|:------:|:-----:|
 | Frame Rate | 60 FPS |
 | Particles | 1,000 simultaneous |
 | CPU Usage | ~15% (single core) |
@@ -254,7 +254,7 @@ Particles form double-helix structure with spring-like constraints between stran
 
 #### Mobile (iPhone 13)
 | Metric | Value |
-|--------|-------|
+|:------:|:-----:|
 | Frame Rate | 60 FPS |
 | Particles | 1,000 simultaneous |
 | CPU Usage | ~25% |
