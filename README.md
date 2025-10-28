@@ -236,8 +236,6 @@ Particles form double-helix structure with spring-like constraints between stran
 
 ### Real numbers from testing on various devices
 
-</div>
-
 <table style="margin: 0 auto;">
 <tr>
 <td width="50%">
@@ -266,6 +264,8 @@ Particles form double-helix structure with spring-like constraints between stran
 </td>
 </tr>
 </table>
+
+</div>
 
 <details>
 <summary><b>📦 File size breakdown</b></summary>
