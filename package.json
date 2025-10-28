@@ -1,6 +1,6 @@
 {
   "name": "particle-physics-simulator",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Interactive particle physics sandbox with gravity, electric fields, magnetic forces, black holes, and DNA helix simulations. Features real-time 60 FPS rendering with 1000+ particles.",
   "main": "index.html",
   "scripts": {
@@ -36,7 +36,7 @@
   ],
   "author": {
     "name": "Zachary Sluss",
-    "url": "https://zacsluss.github.io/Portfolio/"
+    "url": "https://zacsluss.github.io/portfolio/"
   },
   "license": "MIT",
   "bugs": {
