@@ -67,7 +67,6 @@ canvas {
                 inset 0 1px 1px rgba(255, 255, 255, 0.1),
                 0 8px 32px rgba(0, 0, 0, 0.3);
     animation: pulseGlow 3s ease-in-out infinite;
-    position: relative;
 }
 
 /* Glass reflection effect */
@@ -285,7 +284,6 @@ input[type="range"]::-moz-range-thumb:hover {
                 inset 0 0 30px rgba(0, 255, 255, 0.03),
                 inset 0 1px 1px rgba(255, 255, 255, 0.1),
                 0 8px 32px rgba(0, 0, 0, 0.3);
-    position: relative;
 }
 
 /* Glass reflection effect for stats */
@@ -344,7 +342,6 @@ input[type="range"]::-moz-range-thumb:hover {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 1.5;
-    position: relative;
 }
 
 /* Glass reflection effect for info */
