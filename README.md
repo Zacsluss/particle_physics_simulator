@@ -6,7 +6,7 @@
 <br/>
 
 <!-- Animated Typing Subtitle -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&random=false&width=700&lines=6+Physics+Modes+•+O(n²)+→+O(n)+•+100x+Faster;Newton+•+Coulomb+•+Lorentz+•+Verlet;Gravity+•+Electric+•+Magnetic+•+Black+Holes" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&random=false&width=700&lines=6+Physics+Modes+%E2%80%A2+O(n%C2%B2)+%E2%86%92+O(n)+%E2%80%A2+100x+Faster;Newton+%E2%80%A2+Coulomb+%E2%80%A2+Lorentz+%E2%80%A2+Verlet;Gravity+%E2%80%A2+Electric+%E2%80%A2+Magnetic+%E2%80%A2+Black+Holes" alt="Typing SVG" />
 
 <br/>
 
