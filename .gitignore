@@ -26,6 +26,10 @@ yarn-error.log*
 package-lock.json
 yarn.lock
 
+# Test Coverage
+coverage/
+.nyc_output/
+
 # Build & Distribution
 dist/
 build/
