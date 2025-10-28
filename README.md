@@ -343,13 +343,7 @@ Make it yours (takes about 5 minutes):
 
 <br/>
 
-**Make it yours (5 minutes):**
-1. Edit `js/constants.js` — adjust physics parameters, particle limits, colors
-2. Drop your own preview images in the root directory (update README.md references)
-3. Update meta tags in `index.html` (for SEO and social sharing)
-4. Push to GitHub and enable GitHub Pages — you're live!
-
-**Want to add a new physics mode?**
+**Learning Coding or Physics? Want to add a new physics mode?**
 1. Add a button in `index.html` (copy existing button structure)
 2. Create a new function in `js/physics.js` (follow existing pattern)
 3. Add event listener in `js/app.js` to switch modes
@@ -371,9 +365,9 @@ Full license text in [LICENSE](LICENSE) file.
 
 ## 📬 About & Connect
 
-By day, I work as a Lead CRM Systems Analyst at Computershare, managing enterprise platforms and Salesforce integrations across global teams. By night, I build stuff like this.
+I currently work as a Lead CRM Systems Analyst at Computershare, managing enterprise platforms and Salesforce integrations across global teams.
 
-I'm into WebGL, particle systems, shader programming, AI/ML, digital art, and 360° drone photography. Always learning, always building.
+I'm into enterprise systems architecture and management, people management, programming, AI/ML, digital design, art, and photography - which you can find more info about by visiting my portfolio below. Above all, I'm on a never-ending quest for knowledge!
 
 **Let's connect:**
 
