@@ -16,7 +16,7 @@
     <img src="https://img.shields.io/badge/🚀_VIEW-LIVE_DEMO-2e8b57?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white" alt="Live Site"/>
   </a>
   <a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip">
-    <img src="https://img.shields.io/badge/⬇️_DOWNLOAD-PROJECT-d97706?style=for-the-badge&labelColor=000000&logo=github&logoColor=white" alt="Download"/>
+    <img src="https://img.shields.io/badge/⬇️_DOWNLOAD-TEMPLATE-d97706?style=for-the-badge&labelColor=000000&logo=github&logoColor=white" alt="Download"/>
   </a>
 </p>
 
@@ -365,9 +365,9 @@ Full license text in [LICENSE](LICENSE) file.
 
 ## 📬 About & Connect
 
-I currently work as a Lead CRM Systems Analyst at Computershare, managing enterprise platforms and Salesforce integrations across global teams.
+By day, I work as a Lead CRM Systems Analyst at Computershare, managing enterprise platforms and Salesforce integrations across global teams. By night, I build stuff like this.
 
-I'm into enterprise systems architecture and management, people management, programming, AI/ML, digital design, art, and photography - which you can find more info about by visiting my portfolio below. Above all, I'm on a never-ending quest for knowledge!
+I'm into enterprise systems architecture and management, people management, programming, AI/ML, digital design, art, and photography. Above all, I'm on a never-ending quest for knowledge!
 
 **Let's connect:**
 
@@ -382,11 +382,11 @@ I'm into enterprise systems architecture and management, people management, prog
 <a href="https://linkedin.com/in/zacharyjsluss">
   <img src="https://img.shields.io/badge/LinkedIn-Zachary_Sluss-064789?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
-<a href="Zachary_Sluss_Resume.pdf">
-  <img src="https://img.shields.io/badge/Download-Resume-a78bfa?style=for-the-badge&logo=adobeacrobatreader&logoColor=white"/>
-</a>
 <a href="mailto:zacharyjsluss@gmail.com">
   <img src="https://img.shields.io/badge/Email-zacharyjsluss@gmail.com-b91c1c?style=for-the-badge&logo=gmail&logoColor=white"/>
+</a>
+<a href="Zachary_Sluss_Resume.pdf">
+  <img src="https://img.shields.io/badge/Download-Resume-7c3aed?style=for-the-badge&logo=adobeacrobatreader&logoColor=white"/>
 </a>
 
 <br/>
