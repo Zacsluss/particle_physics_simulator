@@ -382,6 +382,9 @@ I'm into enterprise systems architecture and management, people management, prog
 <a href="https://linkedin.com/in/zacharyjsluss">
   <img src="https://img.shields.io/badge/LinkedIn-Zachary_Sluss-064789?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
+<a href="Zachary_Sluss_Resume.docx">
+  <img src="https://img.shields.io/badge/Resume-Download-6366f1?style=for-the-badge&logo=microsoftword&logoColor=white"/>
+</a>
 <a href="mailto:zacharyjsluss@gmail.com">
   <img src="https://img.shields.io/badge/Email-zacharyjsluss@gmail.com-b91c1c?style=for-the-badge&logo=gmail&logoColor=white"/>
 </a>
