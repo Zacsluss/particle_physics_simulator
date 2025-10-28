@@ -238,7 +238,7 @@ Particles form double-helix structure with spring-like constraints between stran
 
 </div>
 
-<table>
+<table style="margin: 0 auto;">
 <tr>
 <td width="50%">
 
