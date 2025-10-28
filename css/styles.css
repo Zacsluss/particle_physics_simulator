@@ -197,6 +197,19 @@ button:focus {
     outline-offset: 2px;
 }
 
+/* Active state for mode buttons */
+button.active {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.18));
+    border-color: rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
+                inset 0 0 25px rgba(0, 255, 255, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 0 20px rgba(0, 255, 255, 0.6);
+    color: #0ff;
+    text-shadow: 0 0 15px currentColor;
+    font-weight: 900;
+}
+
 /* ===== SLIDERS ===== */
 .slider-container {
     margin: 15px 0;

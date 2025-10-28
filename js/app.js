@@ -106,6 +106,7 @@ class ParticleSimulator {
         this.resizeCanvas();
         this.bindEvents();
         this.updateModeDisplay();
+        this.updateActiveModeButton(); // Set initial active button state
         this.spawnExplosion(); // Start with some particles
         this.animate();
     }
@@ -372,6 +373,7 @@ class ParticleSimulator {
     setMode(mode) {
         this.mode = mode;
         this.updateModeDisplay();
+        this.updateActiveModeButton();
     }
 
     /**
@@ -382,6 +384,42 @@ class ParticleSimulator {
         if (modeDisplay) {
             const modeName = this.mode.charAt(0).toUpperCase() + this.mode.slice(1);
             modeDisplay.textContent = modeName;
+        }
+    }
+
+    /**
+     * Update active state styling on mode buttons
+     */
+    updateActiveModeButton() {
+        // Remove active class from all mode buttons
+        const modeButtons = [
+            'gravityBtn', 'electricBtn', 'magneticBtn',
+            'blackholeBtn', 'repelBtn', 'dnaBtn'
+        ];
+
+        modeButtons.forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Add active class to current mode button
+        const modeButtonMap = {
+            [MODES.GRAVITY]: 'gravityBtn',
+            [MODES.ELECTRIC]: 'electricBtn',
+            [MODES.MAGNETIC]: 'magneticBtn',
+            [MODES.BLACK_HOLE]: 'blackholeBtn',
+            [MODES.REPEL]: 'repelBtn',
+            [MODES.DNA]: 'dnaBtn'
+        };
+
+        const activeButtonId = modeButtonMap[this.mode];
+        if (activeButtonId) {
+            const activeBtn = document.getElementById(activeButtonId);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
         }
     }
 
