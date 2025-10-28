@@ -708,35 +708,74 @@ class ParticleSimulator {
     }
 
     /**
-     * Main animation loop
+     * Main animation loop with error boundary
      */
     animate() {
-        // Calculate FPS and delta time
-        const currentTime = performance.now();
-        const deltaTime = Math.min((currentTime - this.lastTime) / 16.67, 2); // Cap at 2x for stability
-        this.fps = Math.round(1000 / (currentTime - this.lastTime));
-        this.lastTime = currentTime;
-        this.frameCounter++;
+        try {
+            // Calculate FPS and delta time
+            const currentTime = performance.now();
+            const deltaTime = Math.min((currentTime - this.lastTime) / 16.67, 2); // Cap at 2x for stability
+            this.fps = Math.round(1000 / (currentTime - this.lastTime));
+            this.lastTime = currentTime;
+            this.frameCounter++;
 
-        if (!this.isPaused) {
-            // Update spatial grid
-            this.updateSpatialGrid();
+            if (!this.isPaused) {
+                // Update spatial grid
+                this.updateSpatialGrid();
 
-            // Update particles
-            this.updateParticles(deltaTime);
+                // Update particles
+                this.updateParticles(deltaTime);
 
-            // Auto quality adjustment
-            this.autoQualityAdjustment();
+                // Auto quality adjustment
+                this.autoQualityAdjustment();
+            }
+
+            // Draw everything
+            this.draw();
+
+            // Update stats
+            this.updateStats();
+        } catch (error) {
+            // Log error and pause simulation to prevent cascade failures
+            console.error('Animation loop error:', error);
+            this.isPaused = true;
+
+            // Show user-friendly error message
+            const announcement = document.getElementById('announcements');
+            if (announcement) {
+                announcement.textContent = 'Simulation paused due to an error. Check console for details.';
+            }
+
+            // Try to recover by clearing problematic particles
+            this.particles = this.particles.filter(p => {
+                try {
+                    return Number.isFinite(p.x) && Number.isFinite(p.y);
+                } catch {
+                    return false;
+                }
+            });
         }
-
-        // Draw everything
-        this.draw();
-
-        // Update stats
-        this.updateStats();
 
         // Continue animation loop
         requestAnimationFrame(() => this.animate());
+    }
+
+    /**
+     * Clean up resources and stop animation
+     */
+    destroy() {
+        // Clear rain interval if active
+        if (this.rainInterval) {
+            clearInterval(this.rainInterval);
+            this.rainInterval = null;
+        }
+
+        // Pause simulation
+        this.isPaused = true;
+
+        // Clear particles
+        this.particles = [];
+        this.attractors = [];
     }
 }
 

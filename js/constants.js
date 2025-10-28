@@ -24,6 +24,7 @@ export const DAMPING_DEFAULT = 0.99; // Default velocity damping factor
 export const DAMPING_MAGNETIC = 0.97; // Damping for magnetic mode
 export const DAMPING_ELECTRIC = 0.96; // Damping for electric/repulsion modes
 export const WALL_BOUNCE_DAMPING = 0.8; // Energy loss on wall collision
+export const PARTICLE_SIZE_AGE_MULTIPLIER = 1.5; // Maximum size multiplier from age effects
 
 // Math Constants (cached for performance)
 export const TWO_PI = Math.PI * 2;
