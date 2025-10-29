@@ -49,23 +49,26 @@ canvas {
     z-index: 2;
 }
 
+
 /* ===== CONTROL PANEL ===== */
 #controls {
     position: fixed;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
+    top: 17px;
+    bottom: 17px;
+    left: 17px;
+    width: 238px;
+    padding: 17px;
     background: linear-gradient(135deg, rgba(15, 15, 35, 0.2), rgba(25, 25, 55, 0.18));
     backdrop-filter: blur(20px) saturate(180%);
-    padding: 25px;
     border: 1px solid rgba(0, 255, 255, 0.25);
-    border-radius: 20px;
-    width: 280px;
-    z-index: 100;
+    border-radius: 17px;
     box-shadow: 0 0 40px rgba(0, 255, 255, 0.1),
                 inset 0 0 30px rgba(0, 255, 255, 0.03),
                 inset 0 1px 1px rgba(255, 255, 255, 0.1),
                 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 100;
     animation: pulseGlow 3s ease-in-out infinite;
 }
 
@@ -78,7 +81,7 @@ canvas {
     right: 0;
     height: 50%;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
-    border-radius: 20px 20px 0 0;
+    border-radius: 17px 17px 0 0;
     pointer-events: none;
 }
 
@@ -97,9 +100,49 @@ canvas {
     }
 }
 
+
+/* Controls info section at bottom */
+#controls-info {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 255, 255, 0.15);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    line-height: 1.7;
+}
+
+#controls-info strong {
+    color: #0ff;
+    display: inline-block;
+    margin-bottom: 6px;
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+}
+
 /* ===== HEADINGS ===== */
+
+/* Stats section in controls */
+#controls .stat:last-of-type {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+}
+
+/* Title and subtitle in controls */
+#controls #glassism-title {
+    margin-bottom: 7px;
+}
+
+#controls #glassism-subtitle {
+    margin-bottom: 14px;
+}
+
 h3 {
-    margin-bottom: 20px;
+    margin-top: 22px;
+    margin-bottom: 18px;
     background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff00, #00ffff);
     background-size: 300% 100%;
     -webkit-background-clip: text;
@@ -114,7 +157,7 @@ h3 {
 }
 
 h4 {
-    margin: 15px 0 10px 0;
+    margin: 16px 0 10px 0;
     background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff00, #00ffff);
     background-size: 300% 100%;
     -webkit-background-clip: text;
@@ -126,6 +169,12 @@ h4 {
     letter-spacing: 1.5px;
     animation: gradientShift 3s ease infinite;
     text-transform: uppercase;
+}
+
+
+/* Section spacing */
+#controls section {
+    margin-bottom: 18px;
 }
 
 @keyframes gradientShift {
@@ -140,12 +189,12 @@ h4 {
 /* ===== BUTTONS ===== */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     margin: 6px 0;
     background: linear-gradient(135deg, rgba(0, 255, 255, 0.08), rgba(255, 0, 255, 0.06));
     color: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(0, 255, 255, 0.3);
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     font-family: 'Orbitron', monospace;
     font-weight: 700;
@@ -212,10 +261,10 @@ button.active {
 
 /* ===== SLIDERS ===== */
 .slider-container {
-    margin: 15px 0;
-    padding: 10px;
+    margin: 14px 0;
+    padding: 9px;
     background: rgba(0, 255, 255, 0.05);
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid rgba(0, 255, 255, 0.2);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2),
                 inset 0 -1px 0 rgba(255, 255, 255, 0.05);
@@ -297,21 +346,9 @@ input[type="range"]::-moz-range-thumb:hover {
 
 /* ===== STATS PANEL ===== */
 #stats {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background: linear-gradient(135deg, rgba(15, 15, 35, 0.2), rgba(25, 25, 55, 0.18));
-    backdrop-filter: blur(20px) saturate(180%);
-    padding: 25px;
-    border: 1px solid rgba(0, 255, 255, 0.25);
-    border-radius: 20px;
-    width: 280px;
+    padding: 18px 20px;
     font-size: 14px;
-    z-index: 100;
-    box-shadow: 0 0 40px rgba(0, 255, 255, 0.1),
-                inset 0 0 30px rgba(0, 255, 255, 0.03),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1),
-                0 8px 32px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.15);
 }
 
 /* Glass reflection effect for stats */
@@ -327,12 +364,69 @@ input[type="range"]::-moz-range-thumb:hover {
     pointer-events: none;
 }
 
+
+
+/* ===== GLASSISM TITLE ===== */
+#glassism-title {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    text-transform: uppercase;
+    position: relative;
+
+    /* Animated gradient text */
+    background: linear-gradient(
+        120deg,
+        #00ffff 0%,
+        #ffffff 50%,
+        #00ffff 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    /* Subtle animation */
+    animation: glassismShimmer 6s ease-in-out infinite;
+}
+
+/* Shimmer animation - gradient moves */
+@keyframes glassismShimmer {
+    0%, 100% {
+        background-position: 0% center;
+    }
+    50% {
+        background-position: 200% center;
+    }
+}
+
+
+
+/* ===== GLASSISM SUBTITLE ===== */
+#glassism-subtitle {
+    text-align: center;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+    text-transform: uppercase;
+    color: rgba(0, 255, 255, 0.6);
+    opacity: 0.8;
+}
+
+
 .stat {
     margin: 8px 0;
     color: #0ff;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 1px;
     display: flex;
     justify-content: space-between;
@@ -346,30 +440,17 @@ input[type="range"]::-moz-range-thumb:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-size: 16px;
+    font-size: 15px;
     text-shadow: 0 0 10px currentColor;
 }
 
 /* ===== INFO PANEL ===== */
 #info {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: linear-gradient(135deg, rgba(15, 15, 35, 0.2), rgba(25, 25, 55, 0.18));
-    backdrop-filter: blur(20px) saturate(180%);
-    padding: 15px;
-    border: 1px solid rgba(0, 255, 255, 0.25);
-    border-radius: 20px;
-    font-size: 10px;
-    width: 280px;
-    z-index: 100;
-    box-shadow: 0 0 40px rgba(0, 255, 255, 0.1),
-                inset 0 0 30px rgba(0, 255, 255, 0.03),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1),
-                0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 18px;
+    font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    line-height: 1.5;
+    letter-spacing: 0.7px;
+    line-height: 1.7;
 }
 
 /* Glass reflection effect for info */
@@ -389,8 +470,10 @@ input[type="range"]::-moz-range-thumb:hover {
     color: #0ff;
     display: inline-block;
     margin-bottom: 5px;
-    margin-top: 5px;
+    margin-top: 7px;
     font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
 }
 
 /* ===== ACCESSIBILITY ===== */
