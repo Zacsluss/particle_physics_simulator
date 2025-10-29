@@ -7,15 +7,18 @@
     <meta name="description" content="Interactive particle physics simulator with gravity, electric fields, magnetic forces, and more">
     <meta name="keywords" content="physics, simulation, particles, interactive, canvas, javascript">
     <meta name="author" content="Zachary Sluss">
-    <title>Particle Physics Sandbox</title>
+    <title>Particle Physics Simulator</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Main Canvas -->
     <canvas id="canvas" role="img" aria-label="Interactive particle physics simulation"></canvas>
 
-    <!-- Stats Panel -->
-    <aside id="stats" role="region" aria-label="Simulation statistics">
+        <!-- Control Panel -->
+    <aside id="controls" role="region" aria-label="Simulation controls">
+        <div id="glassism-title">Particle Physics Simulator</div>
+        <div id="glassism-subtitle">By Zac Sluss</div>
+        
         <div class="stat">
             Particles:
             <span id="particleCount" aria-live="polite">0</span>
@@ -28,10 +31,7 @@
             Mode:
             <span id="mode" aria-live="polite">Gravity</span>
         </div>
-    </aside>
 
-    <!-- Control Panel -->
-    <aside id="controls" role="region" aria-label="Simulation controls">
         <h3>Particle Controls</h3>
 
         <!-- Mode Selection -->
@@ -105,6 +105,13 @@
                 🗑️ Clear All
             </button>
         </section>
+    
+        <div id="controls-info">
+            <strong>Controls:</strong><br>
+            • Click/Drag: Spawn particles<br>
+            • Right-Click: Add attractor<br>
+            <strong>Keys:</strong> Space (pause) • C (clear) • E (explosion) • G (galaxy) • 1-6 (modes)
+        </div>
     </aside>
 
     <!-- Info Panel -->
