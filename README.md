@@ -60,7 +60,7 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 
 <div align="center">
 
-**Interactive physics sandbox** • **1,000 particles at 60 FPS** • **6 physics modes** • **100x faster than brute force**
+**Interactive physics simulator** • **1,000 particles at 60 FPS** • **6 physics modes** • **100x faster than brute force**
 
 </div>
 
