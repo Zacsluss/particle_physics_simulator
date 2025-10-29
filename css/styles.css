@@ -344,28 +344,6 @@ input[type="range"]::-moz-range-thumb:hover {
     box-shadow: 0 0 30px rgba(0, 255, 255, 1);
 }
 
-/* ===== STATS PANEL ===== */
-#stats {
-    padding: 18px 20px;
-    font-size: 14px;
-    border-bottom: 1px solid rgba(0, 255, 255, 0.15);
-}
-
-/* Glass reflection effect for stats */
-#stats::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
-    border-radius: 20px 20px 0 0;
-    pointer-events: none;
-}
-
-
-
 /* ===== GLASSISM TITLE ===== */
 #glassism-title {
     text-align: center;
@@ -444,38 +422,6 @@ input[type="range"]::-moz-range-thumb:hover {
     text-shadow: 0 0 10px currentColor;
 }
 
-/* ===== INFO PANEL ===== */
-#info {
-    padding: 18px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.7px;
-    line-height: 1.7;
-}
-
-/* Glass reflection effect for info */
-#info::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
-    border-radius: 20px 20px 0 0;
-    pointer-events: none;
-}
-
-#info strong {
-    color: #0ff;
-    display: inline-block;
-    margin-bottom: 5px;
-    margin-top: 7px;
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 0.8px;
-}
-
 /* ===== ACCESSIBILITY ===== */
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
@@ -523,27 +469,9 @@ input[type="range"]::-moz-range-thumb:hover {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-    #controls,
-    #stats,
-    #info {
-        width: 240px;
-        padding: 20px;
-    }
-
     #controls {
-        top: auto;
-        bottom: 20px;
-        transform: none;
-    }
-
-    #stats {
-        top: 20px;
-        right: 20px;
-        left: auto;
-    }
-
-    #info {
-        display: none; /* Hide on mobile to save space */
+        width: 200px;
+        padding: 15px;
     }
 
     button {
@@ -557,10 +485,9 @@ input[type="range"]::-moz-range-thumb:hover {
 }
 
 @media (max-width: 480px) {
-    #controls,
-    #stats {
-        width: 200px;
-        padding: 15px;
+    #controls {
+        width: 180px;
+        padding: 12px;
     }
 
     button {
