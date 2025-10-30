@@ -169,6 +169,7 @@ h4 {
     letter-spacing: 1.5px;
     animation: gradientShift 3s ease infinite;
     text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
 }
 
 
@@ -356,20 +357,16 @@ input[type="range"]::-moz-range-thumb:hover {
     text-transform: uppercase;
     position: relative;
 
-    /* Animated gradient text */
-    background: linear-gradient(
-        120deg,
-        #00ffff 0%,
-        #ffffff 50%,
-        #00ffff 100%
-    );
-    background-size: 200% auto;
+    /* Animated gradient text - matches h3/h4 */
+    background: linear-gradient(90deg, #00ffff, #ff00ff, #00ff00, #00ffff);
+    background-size: 300% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 
-    /* Subtle animation */
-    animation: glassismShimmer 6s ease-in-out infinite;
+    /* Animation - matches h3/h4 */
+    animation: gradientShift 3s ease infinite;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
 }
 
 /* Shimmer animation - gradient moves */
@@ -419,7 +416,7 @@ input[type="range"]::-moz-range-thumb:hover {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-size: 15px;
-    text-shadow: 0 0 9px currentColor;
+    text-shadow: 0 0 5px currentColor;
 }
 
 /* ===== ACCESSIBILITY ===== */
