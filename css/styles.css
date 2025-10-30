@@ -58,8 +58,8 @@ canvas {
     left: 17px;
     width: 238px;
     padding: 17px;
-    background: linear-gradient(135deg, rgba(15, 15, 35, 0.17), rgba(25, 25, 55, 0.15));
-    backdrop-filter: blur(20px) saturate(180%);
+    background: linear-gradient(135deg, rgba(15, 15, 35, 0.10), rgba(25, 25, 55, 0.10));
+    backdrop-filter: blur(15px) saturate(180%);
     border: 1px solid rgba(0, 255, 255, 0.25);
     border-radius: 17px;
     box-shadow: 0 0 40px rgba(0, 255, 255, 0.1),
