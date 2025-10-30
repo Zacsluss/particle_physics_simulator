@@ -37,12 +37,12 @@
 
 ## 👋 Hey, I'm Zac
 
-I work on enterprise platforms by day and build unusually fun projects by night. This one simulates **1,000 particles at 60 FPS** across several different physics modes including electric fields, magnetic vortices, black holes, repulsion fields, and DNA helixes.
+Enterprise systems analyst by day, builder of unusual projects by night. This simulates **1,000 particles at 60 FPS** with real physics.
 
-**What makes it interesting:**
-- **100x performance boost** from O(n²) brute force to O(n) spatial grid optimization
-- Real physics formulas (Newton's gravity, Coulomb's law, Lorentz force, Verlet integration)
-- Zero dependencies - pure JavaScript with Canvas API, no frameworks or libraries
+**Key achievements:**
+- **100x performance boost** - O(n²) → O(n) via spatial grid optimization
+- Real physics formulas - Newton, Coulomb, Lorentz, Verlet integration
+- Zero dependencies - Pure vanilla JavaScript & Canvas API
 
 Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 
@@ -60,7 +60,7 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 
 <div align="center">
 
-**Interactive physics simulator** • **1,000 particles at 60 FPS** • **6 physics modes** • **100x faster than brute force**
+**Real-time particle interactions** • **6 physics modes** • **Spatial grid optimization**
 
 </div>
 
@@ -97,11 +97,12 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 
 <div align="center">
 
-### What I Used to Build This
-
 <img src="https://skillicons.dev/icons?i=js,html,css,git,github,vscode" alt="Tech Stack" />
 
-### Core Technologies
+<details>
+<summary><b>📦 Core Technologies Breakdown</b></summary>
+
+<br/>
 
 <table>
 <tr>
@@ -123,6 +124,8 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 </td>
 </tr>
 </table>
+
+</details>
 
 </div>
 
@@ -147,6 +150,11 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 ---
 
 ## 🏗️ Architecture
+
+<details>
+<summary><b>📐 System Design & Components</b></summary>
+
+<br/>
 
 <div align="center">
 
@@ -190,16 +198,18 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 
 </div>
 
+</details>
+
 ---
 
 ## 🧠 The Technical Challenge
 
-**Achieving smooth performance with 1,000 interacting particles.** The naive approach is checking every particle against every other particle which requires a whopping 1,000,000 comparisons per frame! This crashes at ~15 FPS.
+**Achieving smooth performance with 1,000 interacting particles.** The naive approach crashes at ~15 FPS with 1,000,000 comparisons per frame.
 
-**The solution: Spatial grid partitioning reduces collision detection from O(n²) to O(n), achieving 100x performance improvement and maintaining 60 FPS.**
+**Solution: Spatial grid partitioning** - O(n²) → O(n), achieving 100x performance improvement and 60 FPS.
 
 <details>
-<summary><b>📐 How spatial grid optimization works</b></summary>
+<summary><b>📐 How the optimization works</b></summary>
 
 <br/>
 
@@ -441,7 +451,13 @@ The simulator automatically removes particles if FPS drops below 35.
 
 <div align="center">
 
-### Real numbers from testing on various devices
+**Desktop:** 60 FPS @ 1,000 particles • ~15% CPU • 25 MB memory
+**Mobile:** 60 FPS @ 1,000 particles • ~25% CPU • 30 MB memory
+
+<details>
+<summary><b>📈 Detailed benchmark results</b></summary>
+
+<br/>
 
 <table style="margin: 0 auto;">
 <tr>
@@ -471,6 +487,8 @@ The simulator automatically removes particles if FPS drops below 35.
 </td>
 </tr>
 </table>
+
+</details>
 
 </div>
 
