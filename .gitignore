@@ -17,6 +17,7 @@ desktop.ini
 .project
 .settings/
 .classpath
+.claude/settings.local.json
 
 # Node.js (if added in future)
 node_modules/
@@ -29,6 +30,9 @@ yarn.lock
 # Test Coverage
 coverage/
 .nyc_output/
+
+# Generated Documentation
+docs/api/
 
 # Build & Distribution
 dist/
