@@ -67,7 +67,6 @@ export class SpatialGrid {
     /**
      * Get all particles within a radius of a given particle
      * Only checks cells that overlap with the search radius
-     *
      * @param {Particle} particle - Center particle
      * @param {number} radius - Search radius in pixels
      * @returns {Particle[]} Array of nearby particles
@@ -101,7 +100,6 @@ export class SpatialGrid {
      * @returns {boolean} True if grid needs rebuilding
      */
     needsRebuild(width, height) {
-        return this.cols * this.cellSize < width ||
-               this.rows * this.cellSize < height;
+        return this.cols * this.cellSize < width || this.rows * this.cellSize < height;
     }
 }

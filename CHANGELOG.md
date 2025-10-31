@@ -12,36 +12,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Comprehensive quality improvements bringing the project to production-ready, enterprise-grade status.
 
 ### Added
+
 - **Comprehensive Testing Suite**: 63 unit tests with Vitest
-  - 18 tests for spatial-grid.js (boundary handling, performance)
-  - 25 tests for particle.js (validation, physics, collisions)
-  - 20 tests for physics.js (all 6 modes, damping)
-  - Coverage reporting with V8 provider
+    - 18 tests for spatial-grid.js (boundary handling, performance)
+    - 25 tests for particle.js (validation, physics, collisions)
+    - 20 tests for physics.js (all 6 modes, damping)
+    - Coverage reporting with V8 provider
 - **Enhanced Documentation**:
-  - Architecture diagram with system flow
-  - Performance tuning guide (low-end/high-end devices)
-  - Physics formulas reference with Wikipedia links
-  - Grid size optimization recommendations
+    - Architecture diagram with system flow
+    - Performance tuning guide (low-end/high-end devices)
+    - Physics formulas reference with Wikipedia links
+    - Grid size optimization recommendations
 - **UI/UX Improvements**:
-  - Active mode button indicator (glowing cyan)
-  - Reorganized control panel with "Particle Spawn Effects" section
-  - Fixed panel positioning issues
-  - Enhanced glassmorphism with visible borders
+    - Active mode button indicator (glowing cyan)
+    - Reorganized control panel with "Particle Spawn Effects" section
+    - Fixed panel positioning issues
+    - Enhanced glassmorphism with visible borders
 - **Security Enhancements**:
-  - Content Security Policy (CSP) headers
-  - Whitelisted Google Fonts in CSP
+    - Content Security Policy (CSP) headers
+    - Whitelisted Google Fonts in CSP
 - **Code Quality**:
-  - Input validation in Particle constructor (prevents NaN/Infinity)
-  - Error boundary in animation loop with recovery
-  - Memory leak fix (rainInterval cleanup method)
-  - All remaining magic numbers extracted to constants
+    - Input validation in Particle constructor (prevents NaN/Infinity)
+    - Error boundary in animation loop with recovery
+    - Memory leak fix (rainInterval cleanup method)
+    - All remaining magic numbers extracted to constants
 
 ### Fixed
+
 - **Critical**: Duplicate `position: relative` overriding `position: fixed` on UI panels
 - **Bug**: Active mode button state now persists through Clear All
 - **Inconsistency**: Portfolio URL capitalization standardized
 
 ### Changed
+
 - Moved Clear All button to Particle Spawn Effects section
 - Updated .gitignore to include coverage/ directory
 - Improved button active state styling (brighter, more visible)
@@ -55,30 +58,32 @@ Comprehensive quality improvements bringing the project to production-ready, ent
 Complete architectural overhaul from monolithic HTML to modular, professional codebase.
 
 ### Added
+
 - **Modular Architecture**: Separated into 7 distinct modules
-  - `index.html` - Semantic HTML with ARIA accessibility
-  - `css/styles.css` - Complete styling separation
-  - `js/constants.js` - Configuration constants (50+ extracted)
-  - `js/spatial-grid.js` - Optimized spatial hashing system
-  - `js/particle.js` - Encapsulated Particle class
-  - `js/physics.js` - Physics engine with all 6 modes
-  - `js/app.js` - Main application logic
+    - `index.html` - Semantic HTML with ARIA accessibility
+    - `css/styles.css` - Complete styling separation
+    - `js/constants.js` - Configuration constants (50+ extracted)
+    - `js/spatial-grid.js` - Optimized spatial hashing system
+    - `js/particle.js` - Encapsulated Particle class
+    - `js/physics.js` - Physics engine with all 6 modes
+    - `js/app.js` - Main application logic
 - **Accessibility Features**:
-  - Full keyboard navigation (Space, C, E, G, 1-6)
-  - ARIA labels on all interactive elements
-  - `prefers-reduced-motion` media query support
-  - Visible focus indicators for keyboard users
-  - Screen reader friendly structure
+    - Full keyboard navigation (Space, C, E, G, 1-6)
+    - ARIA labels on all interactive elements
+    - `prefers-reduced-motion` media query support
+    - Visible focus indicators for keyboard users
+    - Screen reader friendly structure
 - **Professional Documentation**:
-  - Comprehensive JSDoc comments throughout
-  - MIT LICENSE file
-  - package.json with proper metadata
-  - CHANGELOG.md (this file)
-  - CONTRIBUTING.md guidelines
+    - Comprehensive JSDoc comments throughout
+    - MIT LICENSE file
+    - package.json with proper metadata
+    - CHANGELOG.md (this file)
+    - CONTRIBUTING.md guidelines
 - **Error Handling**: Comprehensive null checks for canvas/DOM operations
 - **Memory Management**: Attractor limit (max 10) to prevent memory leaks
 
 ### Fixed
+
 - **Critical Bug**: Removed ~150 lines of dead trail rendering code
 - **Memory Leak**: Attractors now properly limited and managed
 - **Algorithm Bug**: Particle neighbor selection now uses spatial grid correctly (nearest 20, not first 20)
@@ -87,6 +92,7 @@ Complete architectural overhaul from monolithic HTML to modular, professional co
 - **Broken Links**: Updated all README links to point to correct files
 
 ### Changed
+
 - **Code Organization**: From 1 monolithic file (1,119 lines) to 7 modular files (~900 lines)
 - **ES6 Modules**: Proper import/export statements throughout
 - **Strict Mode**: Enabled in all JavaScript modules
@@ -95,6 +101,7 @@ Complete architectural overhaul from monolithic HTML to modular, professional co
 - **UI Layout**: Condensed instructions panel for better mobile experience
 
 ### Performance
+
 - Efficient DOM updates (stats refresh every 10 frames)
 - Dynamic frame skipping based on particle count
 - Batched canvas operations
@@ -102,6 +109,7 @@ Complete architectural overhaul from monolithic HTML to modular, professional co
 - Maintains 60 FPS with 1000 particles
 
 ### Removed
+
 - Dead trail rendering code (~150 lines)
 - Global variable pollution
 - Inline event handlers
@@ -113,10 +121,12 @@ Complete architectural overhaul from monolithic HTML to modular, professional co
 ## [1.2.0] - 2025-10-26
 
 ### Added
+
 - Touch gesture support (pinch to zoom/explode)
 - Mobile responsive design improvements
 
 ### Changed
+
 - Updated default particle size to 3
 - Improved button styling and hover effects
 
@@ -125,11 +135,13 @@ Complete architectural overhaul from monolithic HTML to modular, professional co
 ## [1.1.0] - 2025-10-25
 
 ### Added
+
 - DNA Helix physics mode
 - Multi-touch gesture support
 - Particle rain effect
 
 ### Fixed
+
 - Black hole event horizon physics
 - Electric field particle interactions
 - Performance optimizations for high particle counts
@@ -141,13 +153,14 @@ Complete architectural overhaul from monolithic HTML to modular, professional co
 ### Initial Release
 
 ### Added
+
 - 6 Physics Modes:
-  - Gravity Mode (Newtonian physics)
-  - Electric Field (Coulomb's Law)
-  - Magnetic Vortex (Lorentz Force)
-  - Black Hole (Gravitational singularity)
-  - Repulsion Field (Inverse gravity)
-  - DNA Helix (Double helix formation)
+    - Gravity Mode (Newtonian physics)
+    - Electric Field (Coulomb's Law)
+    - Magnetic Vortex (Lorentz Force)
+    - Black Hole (Gravitational singularity)
+    - Repulsion Field (Inverse gravity)
+    - DNA Helix (Double helix formation)
 - Real-time particle system (up to 1000 particles)
 - Interactive controls (mouse and touch)
 - Force strength and particle size sliders
@@ -157,6 +170,7 @@ Complete architectural overhaul from monolithic HTML to modular, professional co
 - Animated gradient backgrounds
 
 ### Performance
+
 - Spatial grid optimization for particle interactions
 - 60 FPS target with automatic quality adjustment
 - Frame skipping under heavy load
@@ -165,12 +179,12 @@ Complete architectural overhaul from monolithic HTML to modular, professional co
 
 ## Version History Summary
 
-| Version | Date | Description |
-|---------|------|-------------|
-| 2.0.0 | 2025-10-27 | Major refactoring - Modular architecture |
-| 1.2.0 | 2025-10-26 | Touch gestures & mobile improvements |
-| 1.1.0 | 2025-10-25 | DNA Helix mode added |
-| 1.0.0 | 2025-10-24 | Initial public release |
+| Version | Date       | Description                              |
+| ------- | ---------- | ---------------------------------------- |
+| 2.0.0   | 2025-10-27 | Major refactoring - Modular architecture |
+| 1.2.0   | 2025-10-26 | Touch gestures & mobile improvements     |
+| 1.1.0   | 2025-10-25 | DNA Helix mode added                     |
+| 1.0.0   | 2025-10-24 | Initial public release                   |
 
 ---
 

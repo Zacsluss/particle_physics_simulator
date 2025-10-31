@@ -11,11 +11,13 @@ export const TARGET_FPS = 60;
 export const FPS_UPDATE_INTERVAL = 10; // Update FPS display every N frames
 export const LOW_FPS_THRESHOLD = 35; // Trigger particle cleanup if FPS drops below this
 export const PARTICLE_CLEANUP_COUNT = 30; // Remove this many particles when FPS is low
+export const AUTO_QUALITY_MIN_PARTICLES = 400; // Minimum particles before auto quality adjustment kicks in
 
 // Spatial Grid Optimization
 export const GRID_SIZE = 50; // Size of each grid cell in pixels
 export const MAX_FORCE_DISTANCE = 50; // Maximum distance for force calculations
 export const MAX_INTERACTIONS_PER_PARTICLE = 10; // Limit particle-to-particle interactions
+export const SPATIAL_GRID_REBUILD_INTERVAL = 3; // Rebuild grid every N frames (optimized from 2)
 
 // Physics Constants
 export const GRAVITY_STRENGTH = 0.2; // Base gravity acceleration

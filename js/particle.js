@@ -125,7 +125,10 @@ export class Particle {
             const ageFactor = Math.sin(this.age * PARTICLE_AGE_FACTOR) * 0.2 + 1;
             this.size = this.baseSize * ageFactor;
             // Clamp size to reasonable bounds
-            this.size = Math.max(1, Math.min(this.size, this.baseSize * PARTICLE_SIZE_AGE_MULTIPLIER));
+            this.size = Math.max(
+                1,
+                Math.min(this.size, this.baseSize * PARTICLE_SIZE_AGE_MULTIPLIER)
+            );
         }
     }
 
