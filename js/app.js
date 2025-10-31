@@ -22,8 +22,10 @@ import {
     FPS_UPDATE_INTERVAL,
     LOW_FPS_THRESHOLD,
     PARTICLE_CLEANUP_COUNT,
+    AUTO_QUALITY_MIN_PARTICLES,
     FRAME_SKIP_PARTICLE_THRESHOLD,
     FRAME_SKIP_RATE,
+    SPATIAL_GRID_REBUILD_INTERVAL,
     BLACK_HOLE_RADIUS,
     BLACK_HOLE_INNER_RADIUS,
     BLACK_HOLE_EVENT_HORIZON,
@@ -57,6 +59,9 @@ import {
  * Handles initialization, event binding, animation loop, and user interactions
  */
 class ParticleSimulator {
+    /**
+     *
+     */
     constructor() {
         // Get canvas and context with error handling
         this.canvas = document.getElementById('canvas');
@@ -95,6 +100,20 @@ class ParticleSimulator {
         // Rain effect interval
         this.rainInterval = null;
 
+        // Store bound event handlers for cleanup
+        this.boundHandlers = {
+            resize: () => this.resizeCanvas(),
+            mouseDown: (e) => this.handleMouseDown(e),
+            mouseUp: () => this.handleMouseUp(),
+            mouseMove: (e) => this.handleMouseMove(e),
+            click: (e) => this.handleClick(e),
+            contextMenu: (e) => e.preventDefault(),
+            touchStart: (e) => this.handleTouchStart(e),
+            touchMove: (e) => this.handleTouchMove(e),
+            touchEnd: (e) => this.handleTouchEnd(e),
+            keyDown: (e) => this.handleKeyDown(e)
+        };
+
         // Initialize
         this.init();
     }
@@ -129,25 +148,25 @@ class ParticleSimulator {
      */
     bindEvents() {
         // Window events
-        window.addEventListener('resize', () => this.resizeCanvas());
+        window.addEventListener('resize', this.boundHandlers.resize);
 
         // Mouse events
-        this.canvas.addEventListener('mousedown', (e) => this.handleMouseDown(e));
-        this.canvas.addEventListener('mouseup', () => this.handleMouseUp());
-        this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
-        this.canvas.addEventListener('click', (e) => this.handleClick(e));
-        this.canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+        this.canvas.addEventListener('mousedown', this.boundHandlers.mouseDown);
+        this.canvas.addEventListener('mouseup', this.boundHandlers.mouseUp);
+        this.canvas.addEventListener('mousemove', this.boundHandlers.mouseMove);
+        this.canvas.addEventListener('click', this.boundHandlers.click);
+        this.canvas.addEventListener('contextmenu', this.boundHandlers.contextMenu);
 
         // Touch events
-        this.canvas.addEventListener('touchstart', (e) => this.handleTouchStart(e));
-        this.canvas.addEventListener('touchmove', (e) => this.handleTouchMove(e));
-        this.canvas.addEventListener('touchend', (e) => this.handleTouchEnd(e));
+        this.canvas.addEventListener('touchstart', this.boundHandlers.touchStart);
+        this.canvas.addEventListener('touchmove', this.boundHandlers.touchMove);
+        this.canvas.addEventListener('touchend', this.boundHandlers.touchEnd);
 
         // Control events - use proper event listeners instead of inline handlers
         this.bindControlEvents();
 
         // Keyboard events (for accessibility)
-        document.addEventListener('keydown', (e) => this.handleKeyDown(e));
+        document.addEventListener('keydown', this.boundHandlers.keyDown);
     }
 
     /**
@@ -156,12 +175,12 @@ class ParticleSimulator {
     bindControlEvents() {
         // Mode buttons
         const modeButtons = {
-            'gravityBtn': MODES.GRAVITY,
-            'electricBtn': MODES.ELECTRIC,
-            'magneticBtn': MODES.MAGNETIC,
-            'blackholeBtn': MODES.BLACK_HOLE,
-            'repelBtn': MODES.REPEL,
-            'dnaBtn': MODES.DNA
+            gravityBtn: MODES.GRAVITY,
+            electricBtn: MODES.ELECTRIC,
+            magneticBtn: MODES.MAGNETIC,
+            blackholeBtn: MODES.BLACK_HOLE,
+            repelBtn: MODES.REPEL,
+            dnaBtn: MODES.DNA
         };
 
         for (const [id, mode] of Object.entries(modeButtons)) {
@@ -173,10 +192,10 @@ class ParticleSimulator {
 
         // Action buttons
         const actionButtons = {
-            'clearBtn': () => this.clearParticles(),
-            'explosionBtn': () => this.spawnExplosion(),
-            'galaxyBtn': () => this.spawnGalaxy(),
-            'rainBtn': () => this.spawnRain()
+            clearBtn: () => this.clearParticles(),
+            explosionBtn: () => this.spawnExplosion(),
+            galaxyBtn: () => this.spawnGalaxy(),
+            rainBtn: () => this.spawnRain()
         };
 
         for (const [id, action] of Object.entries(actionButtons)) {
@@ -207,57 +226,60 @@ class ParticleSimulator {
                 }
                 // Update all existing particles
                 const newSize = parseFloat(e.target.value);
-                this.particles.forEach(p => p.setSize(newSize));
+                this.particles.forEach((p) => p.setSize(newSize));
             });
         }
     }
 
     /**
      * Handle keyboard input for accessibility
+     * @param e
      */
     handleKeyDown(e) {
         switch (e.key) {
-            case ' ': // Spacebar - pause/resume
-                e.preventDefault();
-                this.isPaused = !this.isPaused;
-                break;
-            case 'c': // C - clear
-                this.clearParticles();
-                break;
-            case 'e': // E - explosion
-                this.spawnExplosion();
-                break;
-            case 'g': // G - galaxy
-                this.spawnGalaxy();
-                break;
-            case '1': // Number keys for modes
-                this.setMode(MODES.GRAVITY);
-                break;
-            case '2':
-                this.setMode(MODES.ELECTRIC);
-                break;
-            case '3':
-                this.setMode(MODES.MAGNETIC);
-                break;
-            case '4':
-                this.setMode(MODES.BLACK_HOLE);
-                break;
-            case '5':
-                this.setMode(MODES.REPEL);
-                break;
-            case '6':
-                this.setMode(MODES.DNA);
-                break;
+        case ' ': // Spacebar - pause/resume
+            e.preventDefault();
+            this.isPaused = !this.isPaused;
+            break;
+        case 'c': // C - clear
+            this.clearParticles();
+            break;
+        case 'e': // E - explosion
+            this.spawnExplosion();
+            break;
+        case 'g': // G - galaxy
+            this.spawnGalaxy();
+            break;
+        case '1': // Number keys for modes
+            this.setMode(MODES.GRAVITY);
+            break;
+        case '2':
+            this.setMode(MODES.ELECTRIC);
+            break;
+        case '3':
+            this.setMode(MODES.MAGNETIC);
+            break;
+        case '4':
+            this.setMode(MODES.BLACK_HOLE);
+            break;
+        case '5':
+            this.setMode(MODES.REPEL);
+            break;
+        case '6':
+            this.setMode(MODES.DNA);
+            break;
         }
     }
 
     /**
      * Handle mouse down event
+     * @param e
      */
     handleMouseDown(e) {
         this.mouseDown = true;
 
-        if (e.button === 2) { // Right click - add attractor
+        if (e.button === 2) {
+            // Right click - add attractor
             e.preventDefault();
             this.addAttractor(e.clientX, e.clientY);
         }
@@ -272,6 +294,7 @@ class ParticleSimulator {
 
     /**
      * Handle mouse move event
+     * @param e
      */
     handleMouseMove(e) {
         this.mouseX = e.clientX;
@@ -284,9 +307,11 @@ class ParticleSimulator {
 
     /**
      * Handle mouse click event
+     * @param e
      */
     handleClick(e) {
-        if (e.button === 0) { // Left click
+        if (e.button === 0) {
+            // Left click
             for (let i = 0; i < CLICK_SPAWN_COUNT; i++) {
                 this.spawnParticle(
                     e.clientX + (Math.random() - 0.5) * CLICK_SPAWN_SPREAD,
@@ -298,6 +323,7 @@ class ParticleSimulator {
 
     /**
      * Handle touch start event
+     * @param e
      */
     handleTouchStart(e) {
         e.preventDefault();
@@ -322,6 +348,7 @@ class ParticleSimulator {
 
     /**
      * Handle touch move event
+     * @param e
      */
     handleTouchMove(e) {
         e.preventDefault();
@@ -357,6 +384,7 @@ class ParticleSimulator {
 
     /**
      * Handle touch end event
+     * @param e
      */
     handleTouchEnd(e) {
         e.preventDefault();
@@ -369,6 +397,7 @@ class ParticleSimulator {
 
     /**
      * Set the physics mode
+     * @param mode
      */
     setMode(mode) {
         this.mode = mode;
@@ -393,11 +422,15 @@ class ParticleSimulator {
     updateActiveModeButton() {
         // Remove active class from all mode buttons
         const modeButtons = [
-            'gravityBtn', 'electricBtn', 'magneticBtn',
-            'blackholeBtn', 'repelBtn', 'dnaBtn'
+            'gravityBtn',
+            'electricBtn',
+            'magneticBtn',
+            'blackholeBtn',
+            'repelBtn',
+            'dnaBtn'
         ];
 
-        modeButtons.forEach(id => {
+        modeButtons.forEach((id) => {
             const btn = document.getElementById(id);
             if (btn) {
                 btn.classList.remove('active');
@@ -428,8 +461,11 @@ class ParticleSimulator {
      */
     getForceStrength() {
         const slider = document.getElementById('forceStrength');
-        if (!slider) return 1;
-        return parseFloat(slider.value) / FORCE_NORMALIZATION;
+        if (!slider) {
+            return 1;
+        }
+        const value = parseFloat(slider.value);
+        return Number.isFinite(value) ? value / FORCE_NORMALIZATION : 1;
     }
 
     /**
@@ -437,25 +473,27 @@ class ParticleSimulator {
      */
     getParticleSize() {
         const slider = document.getElementById('particleSize');
-        if (!slider) return 3;
-        return parseFloat(slider.value);
+        if (!slider) {
+            return 3;
+        }
+        const value = parseFloat(slider.value);
+        return Number.isFinite(value) ? value : 3;
     }
 
     /**
      * Spawn a single particle at a position
+     * @param x
+     * @param y
      */
     spawnParticle(x, y) {
-        if (this.particles.length >= MAX_PARTICLES) return;
+        if (this.particles.length >= MAX_PARTICLES) {
+            return;
+        }
 
         const angle = Math.random() * TWO_PI;
         const speed = Math.random() * 5;
 
-        const particle = new Particle(
-            x,
-            y,
-            Math.cos(angle) * speed,
-            Math.sin(angle) * speed
-        );
+        const particle = new Particle(x, y, Math.cos(angle) * speed, Math.sin(angle) * speed);
 
         particle.setSize(this.getParticleSize());
         this.particles.push(particle);
@@ -463,13 +501,17 @@ class ParticleSimulator {
 
     /**
      * Spawn an explosion at the center (or specified position)
+     * @param x
+     * @param y
+     * @param count
      */
     spawnExplosionAt(x, y, count = EXPLOSION_COUNT) {
         const spawnCount = Math.min(count, MAX_PARTICLES - this.particles.length);
 
         for (let i = 0; i < spawnCount; i++) {
             const angle = (TWO_PI * i) / spawnCount;
-            const speed = EXPLOSION_MIN_SPEED + Math.random() * (EXPLOSION_MAX_SPEED - EXPLOSION_MIN_SPEED);
+            const speed =
+                EXPLOSION_MIN_SPEED + Math.random() * (EXPLOSION_MAX_SPEED - EXPLOSION_MIN_SPEED);
 
             // In black hole mode, spawn particles outside the event horizon
             const spawnRadius = this.mode === MODES.BLACK_HOLE ? EXPLOSION_SPAWN_RADIUS : 0;
@@ -545,6 +587,9 @@ class ParticleSimulator {
 
     /**
      * Add an attractor at a position
+     * @param x
+     * @param y
+     * @param strength
      */
     addAttractor(x, y, strength = null) {
         // Limit number of attractors to prevent memory leak
@@ -579,20 +624,28 @@ class ParticleSimulator {
         // Only use spatial grid for modes that need it
         if (this.mode === MODES.ELECTRIC || this.mode === MODES.REPEL) {
             // Create or rebuild grid if needed
-            if (!this.spatialGrid || this.spatialGrid.needsRebuild(this.canvas.width, this.canvas.height)) {
-                this.spatialGrid = new SpatialGrid(this.canvas.width, this.canvas.height, GRID_SIZE);
+            if (
+                !this.spatialGrid ||
+                this.spatialGrid.needsRebuild(this.canvas.width, this.canvas.height)
+            ) {
+                this.spatialGrid = new SpatialGrid(
+                    this.canvas.width,
+                    this.canvas.height,
+                    GRID_SIZE
+                );
             }
 
-            // Update less frequently for performance
-            if (this.frameCounter % 2 === 0) {
+            // Update less frequently for performance (optimized from every 2 frames to every 3)
+            if (this.frameCounter % SPATIAL_GRID_REBUILD_INTERVAL === 0) {
                 this.spatialGrid.clear();
-                this.particles.forEach(p => this.spatialGrid.add(p));
+                this.particles.forEach((p) => this.spatialGrid.add(p));
             }
         }
     }
 
     /**
      * Update all particles
+     * @param deltaTime
      */
     updateParticles(deltaTime) {
         const forceStrength = this.getForceStrength();
@@ -602,10 +655,13 @@ class ParticleSimulator {
         const currentTime = performance.now();
 
         // Dynamic frame skipping based on particle count
-        const skipRate = this.particles.length > FRAME_SKIP_PARTICLE_THRESHOLD ? FRAME_SKIP_RATE : 1;
+        const skipRate =
+            this.particles.length > FRAME_SKIP_PARTICLE_THRESHOLD ? FRAME_SKIP_RATE : 1;
         const shouldUpdatePhysics = this.frameCounter % skipRate === 0;
 
-        if (!shouldUpdatePhysics) return; // Skip physics this frame
+        if (!shouldUpdatePhysics) {
+            return;
+        } // Skip physics this frame
 
         const adjustedDelta = deltaTime * skipRate;
 
@@ -617,35 +673,59 @@ class ParticleSimulator {
 
             // Apply mode-specific forces
             switch (this.mode) {
-                case MODES.GRAVITY:
-                    applyGravityForces(particle, forceStrength, this.mouseDown, this.mouseX, this.mouseY);
-                    break;
-                case MODES.ELECTRIC:
-                    applyElectricForces(particle, forceStrength, this.spatialGrid);
-                    break;
-                case MODES.MAGNETIC:
-                    applyMagneticForces(particle, forceStrength, centerX, centerY);
-                    break;
-                case MODES.BLACK_HOLE:
-                    applyBlackHoleForces(particle, forceStrength, centerX, centerY);
-                    break;
-                case MODES.REPEL:
-                    applyRepulsionForces(particle, forceStrength, this.spatialGrid);
-                    break;
-                case MODES.DNA:
-                    applyDNAHelixForces(particle, forceStrength, centerX, centerY, currentTime, this.canvas.width, this.canvas.height);
-                    break;
+            case MODES.GRAVITY:
+                applyGravityForces(
+                    particle,
+                    forceStrength,
+                    this.mouseDown,
+                    this.mouseX,
+                    this.mouseY
+                );
+                break;
+            case MODES.ELECTRIC:
+                applyElectricForces(particle, forceStrength, this.spatialGrid);
+                break;
+            case MODES.MAGNETIC:
+                applyMagneticForces(particle, forceStrength, centerX, centerY);
+                break;
+            case MODES.BLACK_HOLE:
+                applyBlackHoleForces(particle, forceStrength, centerX, centerY);
+                break;
+            case MODES.REPEL:
+                applyRepulsionForces(particle, forceStrength, this.spatialGrid);
+                break;
+            case MODES.DNA:
+                applyDNAHelixForces(
+                    particle,
+                    forceStrength,
+                    centerX,
+                    centerY,
+                    currentTime,
+                    this.canvas.width,
+                    this.canvas.height
+                );
+                break;
             }
 
             // Apply attractor forces
             applyAttractorForces(particle, this.attractors);
 
             // Update particle
-            particle.update(adjustedDelta, damping, SPEED_LIMIT, this.canvas.width, this.canvas.height, this.frameCounter);
+            particle.update(
+                adjustedDelta,
+                damping,
+                SPEED_LIMIT,
+                this.canvas.width,
+                this.canvas.height,
+                this.frameCounter
+            );
 
-            // Remove dead particles
+            // Remove dead particles using swap-and-pop for O(1) removal
             if (particle.isDead()) {
-                this.particles.splice(i, 1);
+                // Swap with last particle and pop (O(1) instead of O(n))
+                this.particles[i] = this.particles[this.particles.length - 1];
+                this.particles.pop();
+                i--; // Re-check this index since we swapped
             }
         }
     }
@@ -668,7 +748,7 @@ class ParticleSimulator {
 
         // Draw particles
         this.ctx.save();
-        this.particles.forEach(particle => particle.draw(this.ctx));
+        this.particles.forEach((particle) => particle.draw(this.ctx));
         this.ctx.restore();
     }
 
@@ -676,7 +756,7 @@ class ParticleSimulator {
      * Draw all attractors
      */
     drawAttractors() {
-        this.attractors.forEach(attractor => {
+        this.attractors.forEach((attractor) => {
             this.ctx.strokeStyle = '#0ff';
             this.ctx.lineWidth = 2;
 
@@ -740,8 +820,10 @@ class ParticleSimulator {
      * Auto quality adjustment - remove particles if FPS drops too low
      */
     autoQualityAdjustment() {
-        if (this.fps < LOW_FPS_THRESHOLD && this.particles.length > 400) {
-            this.particles.splice(0, PARTICLE_CLEANUP_COUNT);
+        if (this.fps < LOW_FPS_THRESHOLD && this.particles.length > AUTO_QUALITY_MIN_PARTICLES) {
+            // Optimize: reduce array length instead of splice (O(1) vs O(n))
+            const removeCount = Math.min(PARTICLE_CLEANUP_COUNT, this.particles.length);
+            this.particles.length -= removeCount;
         }
     }
 
@@ -781,11 +863,12 @@ class ParticleSimulator {
             // Show user-friendly error message
             const announcement = document.getElementById('announcements');
             if (announcement) {
-                announcement.textContent = 'Simulation paused due to an error. Check console for details.';
+                announcement.textContent =
+                    'Simulation paused due to an error. Check console for details.';
             }
 
             // Try to recover by clearing problematic particles
-            this.particles = this.particles.filter(p => {
+            this.particles = this.particles.filter((p) => {
                 try {
                     return Number.isFinite(p.x) && Number.isFinite(p.y);
                 } catch {
@@ -807,6 +890,18 @@ class ParticleSimulator {
             clearInterval(this.rainInterval);
             this.rainInterval = null;
         }
+
+        // Remove all event listeners to prevent memory leaks
+        window.removeEventListener('resize', this.boundHandlers.resize);
+        this.canvas.removeEventListener('mousedown', this.boundHandlers.mouseDown);
+        this.canvas.removeEventListener('mouseup', this.boundHandlers.mouseUp);
+        this.canvas.removeEventListener('mousemove', this.boundHandlers.mouseMove);
+        this.canvas.removeEventListener('click', this.boundHandlers.click);
+        this.canvas.removeEventListener('contextmenu', this.boundHandlers.contextMenu);
+        this.canvas.removeEventListener('touchstart', this.boundHandlers.touchStart);
+        this.canvas.removeEventListener('touchmove', this.boundHandlers.touchMove);
+        this.canvas.removeEventListener('touchend', this.boundHandlers.touchEnd);
+        document.removeEventListener('keydown', this.boundHandlers.keyDown);
 
         // Pause simulation
         this.isPaused = true;

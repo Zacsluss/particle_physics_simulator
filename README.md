@@ -40,6 +40,7 @@
 Enterprise systems analyst by day, builder of unusual projects by night. This simulates **1,000 particles at 60 FPS** with real physics.
 
 **Key achievements:**
+
 - **100x performance boost** - O(n²) → O(n) via spatial grid optimization
 - Real physics formulas - Newton, Coulomb, Lorentz, Verlet integration
 - Zero dependencies - Pure vanilla JavaScript & Canvas API
@@ -50,7 +51,7 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 
 <img src="particlesim.gif" alt="Particle Physics Simulator Preview" width="800"/>
 
-*1,000 particles interacting in real-time at 60 FPS*
+_1,000 particles interacting in real-time at 60 FPS_
 
 </div>
 
@@ -65,6 +66,7 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 </div>
 
 **Key Features:**
+
 - ✨ Six distinct physics modes with real formulas (gravity, electric, magnetic, black hole, repulsion, DNA helix)
 - 🎮 Interactive controls—click to spawn, drag for streams, right-click for attractors
 - 🔬 Spatial grid partitioning reduces collision detection from O(n²) to O(n)
@@ -134,12 +136,13 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 
 ```json
 {
-  "dependencies": {},
-  "devDependencies": {}
+    "dependencies": {},
+    "devDependencies": {}
 }
 ```
 
 **Zero external dependencies.** This project uses only native Web APIs:
+
 - Canvas 2D Context for rendering
 - ES6 Modules for code organization
 - Vanilla JavaScript for all logic
@@ -190,6 +193,7 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little creativity!
 ```
 
 **Key Components:**
+
 - **ParticleSimulator**: Orchestrates the entire simulation
 - **Particle**: Individual particle with physics properties
 - **Physics Engine**: Calculates forces for 6 different modes
@@ -221,6 +225,7 @@ Instead of checking every particle against every other particle (n² comparisons
 4. **Result: O(n) lookups** instead of O(n²)
 
 **Example:**
+
 - 1,000 particles, no grid: 1,000,000 comparisons/frame
 - 1,000 particles, with grid: ~10,000 comparisons/frame
 - **100x reduction** in computational cost
@@ -239,31 +244,37 @@ The grid is rebuilt every frame as particles move, but that's O(n) which is triv
 <br/>
 
 ### 1. Gravity Mode
+
 **Formula:** `F = G × m₁ × m₂ / r²` (Newton's law of universal gravitation)
 
 Particles attract each other based on mass and distance. Creates orbital patterns and galaxy formations.
 
 ### 2. Electric Field
+
 **Formula:** `F = k × q₁ × q₂ / r²` (Coulomb's law)
 
 Particles have positive/negative charges. Opposites attract, likes repel. Creates complex swirling patterns.
 
 ### 3. Magnetic Vortex
+
 **Formula:** `F = q(v × B)` (Lorentz force)
 
 Particles experience force perpendicular to velocity and magnetic field. Creates spiral vortex patterns.
 
 ### 4. Black Hole
+
 **Formula:** Schwarzschild radius accretion
 
 Particles are pulled into a central singularity. Those crossing the event horizon are consumed. Creates dramatic spiral infall.
 
 ### 5. Repulsion Field
+
 **Formula:** Inverse gravity (repulsive force)
 
 All particles push away from each other. Creates explosive dispersion patterns.
 
 ### 6. DNA Helix
+
 **Formula:** Constrained molecular bonds
 
 Particles form double-helix structure with spring-like constraints between strands.
@@ -278,6 +289,7 @@ Particles form double-helix structure with spring-like constraints between stran
 This simulator implements real physics equations from classical mechanics and electromagnetism:
 
 ### Newton's Law of Universal Gravitation
+
 **Gravity Mode** uses the inverse-square law:
 
 ```
@@ -292,6 +304,7 @@ F = G × m₁ × m₂ / r²
 **Learn more:** [Newton's Law (Wikipedia)](https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation)
 
 ### Coulomb's Law
+
 **Electric Field Mode** uses electrostatic force:
 
 ```
@@ -306,6 +319,7 @@ F = k × q₁ × q₂ / r²
 **Learn more:** [Coulomb's Law (Wikipedia)](https://en.wikipedia.org/wiki/Coulomb%27s_law)
 
 ### Lorentz Force
+
 **Magnetic Vortex Mode** simulates magnetic fields:
 
 ```
@@ -320,6 +334,7 @@ F = q(v × B)
 **Learn more:** [Lorentz Force (Wikipedia)](https://en.wikipedia.org/wiki/Lorentz_force)
 
 ### Verlet Integration
+
 All modes use **Verlet integration** for stable physics:
 
 ```
@@ -333,6 +348,7 @@ v(t + Δt) = v(t) + a(t) × Δt
 **Learn more:** [Verlet Integration (Wikipedia)](https://en.wikipedia.org/wiki/Verlet_integration)
 
 ### Simplifications Made
+
 For real-time performance, some simplifications were applied:
 
 1. **Unit mass assumption**: All particles have mass = 1
@@ -410,6 +426,7 @@ export const FRAME_SKIP_PARTICLE_THRESHOLD = 9999; // Effectively disabled
 ### Visual Quality vs Performance
 
 **Higher quality (slower):**
+
 ```javascript
 export const FPS_UPDATE_INTERVAL = 1; // Update every frame
 export const SIZE_UPDATE_INTERVAL = 1; // Update size every frame
@@ -417,6 +434,7 @@ export const CANVAS_FADE_ALPHA = 0.05; // Longer trails
 ```
 
 **Better performance (less visual fidelity):**
+
 ```javascript
 export const FPS_UPDATE_INTERVAL = 30; // Update every 30 frames
 export const SIZE_UPDATE_INTERVAL = 10; // Update size every 10 frames
@@ -436,6 +454,7 @@ The `GRID_SIZE` constant is **critical** for performance:
 ### Monitor Performance
 
 Watch the FPS counter in the top-left stats panel:
+
 - **60 FPS**: Perfect, increase particles if desired
 - **45-59 FPS**: Good, minor optimizations possible
 - **30-44 FPS**: Reduce MAX_PARTICLES or increase GRID_SIZE
@@ -464,25 +483,27 @@ The simulator automatically removes particles if FPS drops below 35.
 <td width="50%">
 
 #### Desktop (1920×1080)
-| Metric | Value |
-|:------:|:-----:|
-| Frame Rate | 60 FPS |
-| Particles | 1,000 simultaneous |
-| CPU Usage | ~15% (single core) |
-| Memory | ~25 MB |
-| Load Time | <100ms |
+
+|   Metric   |       Value        |
+| :--------: | :----------------: |
+| Frame Rate |       60 FPS       |
+| Particles  | 1,000 simultaneous |
+| CPU Usage  | ~15% (single core) |
+|   Memory   |       ~25 MB       |
+| Load Time  |       <100ms       |
 
 </td>
 <td width="50%">
 
 #### Mobile (iPhone 13)
-| Metric | Value |
-|:------:|:-----:|
-| Frame Rate | 60 FPS |
-| Particles | 1,000 simultaneous |
-| CPU Usage | ~25% |
-| Memory | ~30 MB |
-| Load Time | ~150ms |
+
+|   Metric   |       Value        |
+| :--------: | :----------------: |
+| Frame Rate |       60 FPS       |
+| Particles  | 1,000 simultaneous |
+| CPU Usage  |        ~25%        |
+|   Memory   |       ~30 MB       |
+| Load Time  |       ~150ms       |
 
 </td>
 </tr>
@@ -569,6 +590,7 @@ Make it yours (takes about 5 minutes):
 <br/>
 
 **Learning Coding or Physics? Want to add a new physics mode?**
+
 1. Add a button in `index.html` (copy existing button structure)
 2. Create a new function in `js/physics.js` (follow existing pattern)
 3. Add event listener in `js/app.js` to switch modes

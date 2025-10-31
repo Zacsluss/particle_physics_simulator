@@ -19,7 +19,6 @@ import {
 /**
  * Apply gravity mode physics
  * Particles fall downward and are attracted to mouse when pressed
- *
  * @param {Particle} particle - The particle to apply forces to
  * @param {number} forceStrength - User-controlled force multiplier
  * @param {boolean} mouseDown - Is mouse button pressed
@@ -49,36 +48,45 @@ export function applyGravityForces(particle, forceStrength, mouseDown, mouseX, m
  * Particles with opposite charges attract, same charges repel
  *
  * Uses spatial grid for O(n) performance instead of O(n²)
- *
  * @param {Particle} particle - The particle to apply forces to
  * @param {number} forceStrength - User-controlled force multiplier
  * @param {SpatialGrid} spatialGrid - Grid for efficient neighbor lookup
  */
 export function applyElectricForces(particle, forceStrength, spatialGrid) {
-    if (!spatialGrid) return;
+    if (!spatialGrid) {
+        return;
+    }
 
     // Get nearby particles within interaction radius
     const nearbyParticles = spatialGrid.getNearby(particle, 50);
 
     let interactionCount = 0;
 
-    for (let i = 0; i < nearbyParticles.length && interactionCount < MAX_INTERACTIONS_PER_PARTICLE; i++) {
+    for (
+        let i = 0;
+        i < nearbyParticles.length && interactionCount < MAX_INTERACTIONS_PER_PARTICLE;
+        i++
+    ) {
         const other = nearbyParticles[i];
-        if (other === particle) continue;
+        if (other === particle) {
+            continue;
+        }
 
         const dx = other.x - particle.x;
         const dy = other.y - particle.y;
         const distSq = dx * dx + dy * dy; // Avoid sqrt for comparison
 
         // Only interact within reasonable distance range
-        if (distSq > 25 && distSq < 2500) { // 5² to 50²
-            const dist = Math.sqrt(distSq);
+        if (distSq > 25 && distSq < 2500) {
+            // 5² to 50²
+            // Optimize: use inverse distance to avoid extra sqrt call
+            const invDist = 1 / Math.sqrt(distSq);
 
             // Coulomb's Law: F = k*q1*q2/r²
             // Negative force = attraction, positive = repulsion
             const force = (particle.charge * other.charge * -2 * forceStrength) / distSq;
 
-            particle.applyForce((dx / dist) * force, (dy / dist) * force);
+            particle.applyForce(dx * force * invDist, dy * force * invDist);
             interactionCount++;
         }
     }
@@ -90,7 +98,6 @@ export function applyElectricForces(particle, forceStrength, spatialGrid) {
  *
  * Simulates Lorentz force: F = q(v × B)
  * Perpendicular force creates rotation, slight inward force creates spiral
- *
  * @param {Particle} particle - The particle to apply forces to
  * @param {number} forceStrength - User-controlled force multiplier
  * @param {number} centerX - Center X position (usually canvas center)
@@ -113,7 +120,6 @@ export function applyMagneticForces(particle, forceStrength, centerX, centerY) {
 /**
  * Apply black hole mode physics
  * Massive gravitational pull toward center, particles consumed at event horizon
- *
  * @param {Particle} particle - The particle to apply forces to
  * @param {number} forceStrength - User-controlled force multiplier
  * @param {number} centerX - Black hole X position
@@ -138,33 +144,42 @@ export function applyBlackHoleForces(particle, forceStrength, centerX, centerY) 
 /**
  * Apply repulsion field mode physics
  * All particles repel each other, creating chaotic dispersion
- *
  * @param {Particle} particle - The particle to apply forces to
  * @param {number} forceStrength - User-controlled force multiplier
  * @param {SpatialGrid} spatialGrid - Grid for efficient neighbor lookup
  */
 export function applyRepulsionForces(particle, forceStrength, spatialGrid) {
-    if (!spatialGrid) return;
+    if (!spatialGrid) {
+        return;
+    }
 
     const nearbyParticles = spatialGrid.getNearby(particle, 100);
 
     let interactionCount = 0;
 
-    for (let i = 0; i < nearbyParticles.length && interactionCount < MAX_INTERACTIONS_PER_PARTICLE; i++) {
+    for (
+        let i = 0;
+        i < nearbyParticles.length && interactionCount < MAX_INTERACTIONS_PER_PARTICLE;
+        i++
+    ) {
         const other = nearbyParticles[i];
-        if (other === particle) continue;
+        if (other === particle) {
+            continue;
+        }
 
         const dx = particle.x - other.x;
         const dy = particle.y - other.y;
         const distSq = dx * dx + dy * dy;
 
-        if (distSq > 1 && distSq < 10000) { // 1 to 100²
-            const dist = Math.sqrt(distSq);
+        if (distSq > 1 && distSq < 10000) {
+            // 1 to 100²
+            // Optimize: use inverse distance to avoid extra sqrt call
+            const invDist = 1 / Math.sqrt(distSq);
 
             // Inverse gravity - push away
             const force = (50 * forceStrength) / distSq;
 
-            particle.applyForce((dx / dist) * force, (dy / dist) * force);
+            particle.applyForce(dx * force * invDist, dy * force * invDist);
             interactionCount++;
         }
     }
@@ -175,7 +190,6 @@ export function applyRepulsionForces(particle, forceStrength, spatialGrid) {
  * Particles form two intertwined helical strands
  *
  * Complex orbital mechanics to create the characteristic double helix structure
- *
  * @param {Particle} particle - The particle to apply forces to
  * @param {number} forceStrength - User-controlled force multiplier
  * @param {number} centerX - Helix center X position
@@ -184,7 +198,15 @@ export function applyRepulsionForces(particle, forceStrength, spatialGrid) {
  * @param {number} canvasWidth - Canvas width for bounds checking
  * @param {number} canvasHeight - Canvas height for bounds checking
  */
-export function applyDNAHelixForces(particle, forceStrength, centerX, centerY, time, canvasWidth, canvasHeight) {
+export function applyDNAHelixForces(
+    particle,
+    forceStrength,
+    centerX,
+    centerY,
+    time,
+    canvasWidth,
+    canvasHeight
+) {
     // Determine which strand based on original hue
     // This ensures particles stay on their assigned strand
     const strand = particle.originalHue > 180 ? 1 : -1;
@@ -219,8 +241,10 @@ export function applyDNAHelixForces(particle, forceStrength, centerX, centerY, t
 
     // Teleport particles that escape bounds (instead of letting them fly away)
     if (
-        particle.x < -100 || particle.x > canvasWidth + 100 ||
-        particle.y < -100 || particle.y > canvasHeight + 100
+        particle.x < -100 ||
+        particle.x > canvasWidth + 100 ||
+        particle.y < -100 ||
+        particle.y > canvasHeight + 100
     ) {
         particle.x = centerX + (Math.random() - 0.5) * 50;
         particle.y = centerY + (Math.random() - 0.5) * 50;
@@ -232,12 +256,11 @@ export function applyDNAHelixForces(particle, forceStrength, centerX, centerY, t
 /**
  * Apply forces from user-created attractors
  * Attractors are points that pull particles toward them
- *
  * @param {Particle} particle - The particle to apply forces to
  * @param {Array} attractors - Array of attractor objects {x, y, strength}
  */
 export function applyAttractorForces(particle, attractors) {
-    attractors.forEach(attractor => {
+    attractors.forEach((attractor) => {
         const dx = attractor.x - particle.x;
         const dy = attractor.y - particle.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -253,7 +276,6 @@ export function applyAttractorForces(particle, attractors) {
 /**
  * Get the appropriate damping factor for a given mode
  * Different modes need different energy dissipation rates
- *
  * @param {string} mode - Current physics mode
  * @returns {number} Damping factor (0-1)
  */

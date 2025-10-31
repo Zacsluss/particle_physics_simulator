@@ -9,7 +9,12 @@
     "serve": "python -m http.server 8000",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint js/**/*.js tests/**/*.js",
+    "lint:fix": "eslint js/**/*.js tests/**/*.js --fix",
+    "format": "prettier --write \"**/*.{js,css,html,md}\"",
+    "format:check": "prettier --check \"**/*.{js,css,html,md}\"",
+    "docs": "jsdoc -c jsdoc.json -r js/ -d docs/api"
   },
   "repository": {
     "type": "git",
@@ -50,7 +55,11 @@
     "vitest": "^1.6.0",
     "@vitest/ui": "^1.6.0",
     "@vitest/coverage-v8": "^1.6.0",
-    "jsdom": "^24.0.0"
+    "jsdom": "^24.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jsdoc": "^48.0.0",
+    "prettier": "^3.2.5",
+    "jsdoc": "^4.0.2"
   },
   "dependencies": {}
 }
