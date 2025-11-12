@@ -17,22 +17,38 @@ desktop.ini
 .project
 .settings/
 .classpath
-.claude/settings.local.json
 
-# Node.js (if added in future)
+# Claude Code Files (keep locally, not in GitHub)
+.claude/
+
+# Node.js & Package Management
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package.json
 package-lock.json
 yarn.lock
 
-# Test Coverage
+# Development Tool Configuration (keep locally, not in GitHub)
+.eslintrc.json
+.prettierrc.json
+.prettierignore
+vitest.config.js
+jsdoc.json
+
+# Testing Files (keep locally, not in GitHub)
+tests/
 coverage/
 .nyc_output/
 
+# Developer Documentation (keep locally, not in GitHub)
+CONTRIBUTING.md
+CHANGELOG.md
+
 # Generated Documentation
 docs/api/
+docs/
 
 # Build & Distribution
 dist/
