@@ -109,11 +109,11 @@ export function applyMagneticForces(particle, forceStrength, centerX, centerY) {
     const dist = Math.sqrt(dx * dx + dy * dy);
 
     if (dist > 1) {
-        // Perpendicular force for swirl (cross product)
-        particle.applyForce((-dy / dist) * 0.5 * forceStrength, (dx / dist) * 0.5 * forceStrength);
+        // Perpendicular force for swirl (cross product) - increased from 0.5 to 1.5
+        particle.applyForce((-dy / dist) * 1.5 * forceStrength, (dx / dist) * 1.5 * forceStrength);
 
-        // Slight inward force for spiral effect
-        particle.applyForce((dx / dist) * 0.1 * forceStrength, (dy / dist) * 0.1 * forceStrength);
+        // Slight inward force for spiral effect - increased from 0.1 to 0.25
+        particle.applyForce((dx / dist) * 0.25 * forceStrength, (dy / dist) * 0.25 * forceStrength);
     }
 }
 
