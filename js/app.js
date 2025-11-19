@@ -69,6 +69,11 @@ class ParticleSimulator {
             throw new Error('Canvas element not found');
         }
 
+        // Check if canvas is supported
+        if (!this.canvas.getContext) {
+            throw new Error('Canvas is not supported in this browser. Please use a modern browser.');
+        }
+
         this.ctx = this.canvas.getContext('2d');
         if (!this.ctx) {
             throw new Error('Could not get 2D context from canvas');
@@ -99,6 +104,10 @@ class ParticleSimulator {
 
         // Rain effect interval
         this.rainInterval = null;
+
+        // Spawn rate limiting (prevent abuse)
+        this.lastSpawnTime = 0;
+        this.SPAWN_COOLDOWN = 50; // milliseconds
 
         // Store bound event handlers for cleanup
         this.boundHandlers = {
@@ -311,7 +320,13 @@ class ParticleSimulator {
      */
     handleClick(e) {
         if (e.button === 0) {
-            // Left click
+            // Left click - with rate limiting to prevent abuse
+            const now = performance.now();
+            if (now - this.lastSpawnTime < this.SPAWN_COOLDOWN) {
+                return; // Ignore rapid clicks
+            }
+            this.lastSpawnTime = now;
+
             for (let i = 0; i < CLICK_SPAWN_COUNT; i++) {
                 this.spawnParticle(
                     e.clientX + (Math.random() - 0.5) * CLICK_SPAWN_SPREAD,
@@ -330,7 +345,13 @@ class ParticleSimulator {
         this.touches = Array.from(e.touches);
 
         if (this.touches.length === 1) {
-            // Single touch - spawn particles
+            // Single touch - spawn particles with rate limiting
+            const now = performance.now();
+            if (now - this.lastSpawnTime < this.SPAWN_COOLDOWN) {
+                return; // Ignore rapid touches
+            }
+            this.lastSpawnTime = now;
+
             const touch = this.touches[0];
             for (let i = 0; i < TOUCH_SPAWN_COUNT; i++) {
                 this.spawnParticle(
@@ -462,10 +483,15 @@ class ParticleSimulator {
     getForceStrength() {
         const slider = document.getElementById('forceStrength');
         if (!slider) {
+            console.warn('[ParticleSimulator] Force strength slider not found, using default value (1)');
             return 1;
         }
         const value = parseFloat(slider.value);
-        return Number.isFinite(value) ? value / FORCE_NORMALIZATION : 1;
+        if (!Number.isFinite(value)) {
+            console.warn(`[ParticleSimulator] Invalid slider value: ${slider.value}, using default (1)`);
+            return 1;
+        }
+        return value / FORCE_NORMALIZATION;
     }
 
     /**
@@ -474,10 +500,15 @@ class ParticleSimulator {
     getParticleSize() {
         const slider = document.getElementById('particleSize');
         if (!slider) {
+            console.warn('[ParticleSimulator] Particle size slider not found, using default value (3)');
             return 3;
         }
         const value = parseFloat(slider.value);
-        return Number.isFinite(value) ? value : 3;
+        if (!Number.isFinite(value)) {
+            console.warn(`[ParticleSimulator] Invalid slider value: ${slider.value}, using default (3)`);
+            return 3;
+        }
+        return value;
     }
 
     /**
