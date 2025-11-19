@@ -42,9 +42,9 @@ tests/
 coverage/
 .nyc_output/
 
-# Developer Documentation (keep locally, not in GitHub)
-CONTRIBUTING.md
-CHANGELOG.md
+# Developer Documentation - Now visible on GitHub to show collaboration standards
+# CONTRIBUTING.md
+# CHANGELOG.md
 
 # Generated Documentation
 docs/api/

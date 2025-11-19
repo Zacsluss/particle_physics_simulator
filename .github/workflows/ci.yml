@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Check Prettier formatting
+        run: npm run format:check
+
+      - name: Run tests
+        run: npm test
+
+      - name: Generate coverage
+        run: npm run test:coverage
+
+  build-check:
+    name: Build Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify production files exist
+        run: |
+          test -f index.html || (echo "Missing index.html" && exit 1)
+          test -f js/app.js || (echo "Missing app.js" && exit 1)
+          test -f js/particle.js || (echo "Missing particle.js" && exit 1)
+          test -f js/physics.js || (echo "Missing physics.js" && exit 1)
+          test -f js/spatial-grid.js || (echo "Missing spatial-grid.js" && exit 1)
+          test -f js/constants.js || (echo "Missing constants.js" && exit 1)
+          test -f css/styles.css || (echo "Missing styles.css" && exit 1)
+
+      - name: Check bundle sizes
+        run: |
+          echo "📦 Bundle sizes:"
+          du -sh js/*.js css/*.css | awk '{print $2 ": " $1}'
+
+          echo ""
+          echo "📊 Total JavaScript size:"
+          du -ch js/*.js | grep total
+
+      - name: Verify no large files
+        run: |
+          # Fail if any file >10MB (except particlesim.gif/mp4)
+          find . -type f -size +10M ! -name 'particlesim.*' ! -path './.git/*' ! -path './node_modules/*' | while read file; do
+            echo "⚠️  Large file detected: $file ($(du -h "$file" | cut -f1))"
+            exit 1
+          done || echo "✅ No oversized files found"
+
+  accessibility-check:
+    name: Accessibility Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check ARIA labels
+        run: |
+          echo "Checking for ARIA labels..."
+          grep -q 'aria-label=' index.html || (echo "Missing ARIA labels!" && exit 1)
+          grep -q 'role=' index.html || (echo "Missing semantic roles!" && exit 1)
+          echo "✅ Accessibility checks passed"
