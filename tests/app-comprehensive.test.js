@@ -319,7 +319,7 @@ describe('ParticleSimulator - Comprehensive Tests', () => {
         it('should stop rain when particle limit reached', async () => {
             const { MAX_PARTICLES } = await import('../js/constants.js');
 
-            let particleCount = MAX_PARTICLES;
+            const particleCount = MAX_PARTICLES;
             let rainInterval = setInterval(() => {
                 if (particleCount >= MAX_PARTICLES) {
                     clearInterval(rainInterval);
