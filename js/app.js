@@ -71,7 +71,9 @@ class ParticleSimulator {
 
         // Check if canvas is supported
         if (!this.canvas.getContext) {
-            throw new Error('Canvas is not supported in this browser. Please use a modern browser.');
+            throw new Error(
+                'Canvas is not supported in this browser. Please use a modern browser.'
+            );
         }
 
         this.ctx = this.canvas.getContext('2d');
@@ -246,37 +248,37 @@ class ParticleSimulator {
      */
     handleKeyDown(e) {
         switch (e.key) {
-        case ' ': // Spacebar - pause/resume
-            e.preventDefault();
-            this.isPaused = !this.isPaused;
-            break;
-        case 'c': // C - clear
-            this.clearParticles();
-            break;
-        case 'e': // E - explosion
-            this.spawnExplosion();
-            break;
-        case 'g': // G - galaxy
-            this.spawnGalaxy();
-            break;
-        case '1': // Number keys for modes
-            this.setMode(MODES.GRAVITY);
-            break;
-        case '2':
-            this.setMode(MODES.ELECTRIC);
-            break;
-        case '3':
-            this.setMode(MODES.MAGNETIC);
-            break;
-        case '4':
-            this.setMode(MODES.BLACK_HOLE);
-            break;
-        case '5':
-            this.setMode(MODES.REPEL);
-            break;
-        case '6':
-            this.setMode(MODES.DNA);
-            break;
+            case ' ': // Spacebar - pause/resume
+                e.preventDefault();
+                this.isPaused = !this.isPaused;
+                break;
+            case 'c': // C - clear
+                this.clearParticles();
+                break;
+            case 'e': // E - explosion
+                this.spawnExplosion();
+                break;
+            case 'g': // G - galaxy
+                this.spawnGalaxy();
+                break;
+            case '1': // Number keys for modes
+                this.setMode(MODES.GRAVITY);
+                break;
+            case '2':
+                this.setMode(MODES.ELECTRIC);
+                break;
+            case '3':
+                this.setMode(MODES.MAGNETIC);
+                break;
+            case '4':
+                this.setMode(MODES.BLACK_HOLE);
+                break;
+            case '5':
+                this.setMode(MODES.REPEL);
+                break;
+            case '6':
+                this.setMode(MODES.DNA);
+                break;
         }
     }
 
@@ -483,12 +485,16 @@ class ParticleSimulator {
     getForceStrength() {
         const slider = document.getElementById('forceStrength');
         if (!slider) {
-            console.warn('[ParticleSimulator] Force strength slider not found, using default value (1)');
+            console.warn(
+                '[ParticleSimulator] Force strength slider not found, using default value (1)'
+            );
             return 1;
         }
         const value = parseFloat(slider.value);
         if (!Number.isFinite(value)) {
-            console.warn(`[ParticleSimulator] Invalid slider value: ${slider.value}, using default (1)`);
+            console.warn(
+                `[ParticleSimulator] Invalid slider value: ${slider.value}, using default (1)`
+            );
             return 1;
         }
         return value / FORCE_NORMALIZATION;
@@ -500,12 +506,16 @@ class ParticleSimulator {
     getParticleSize() {
         const slider = document.getElementById('particleSize');
         if (!slider) {
-            console.warn('[ParticleSimulator] Particle size slider not found, using default value (3)');
+            console.warn(
+                '[ParticleSimulator] Particle size slider not found, using default value (3)'
+            );
             return 3;
         }
         const value = parseFloat(slider.value);
         if (!Number.isFinite(value)) {
-            console.warn(`[ParticleSimulator] Invalid slider value: ${slider.value}, using default (3)`);
+            console.warn(
+                `[ParticleSimulator] Invalid slider value: ${slider.value}, using default (3)`
+            );
             return 3;
         }
         return value;
@@ -704,38 +714,38 @@ class ParticleSimulator {
 
             // Apply mode-specific forces
             switch (this.mode) {
-            case MODES.GRAVITY:
-                applyGravityForces(
-                    particle,
-                    forceStrength,
-                    this.mouseDown,
-                    this.mouseX,
-                    this.mouseY
-                );
-                break;
-            case MODES.ELECTRIC:
-                applyElectricForces(particle, forceStrength, this.spatialGrid);
-                break;
-            case MODES.MAGNETIC:
-                applyMagneticForces(particle, forceStrength, centerX, centerY);
-                break;
-            case MODES.BLACK_HOLE:
-                applyBlackHoleForces(particle, forceStrength, centerX, centerY);
-                break;
-            case MODES.REPEL:
-                applyRepulsionForces(particle, forceStrength, this.spatialGrid);
-                break;
-            case MODES.DNA:
-                applyDNAHelixForces(
-                    particle,
-                    forceStrength,
-                    centerX,
-                    centerY,
-                    currentTime,
-                    this.canvas.width,
-                    this.canvas.height
-                );
-                break;
+                case MODES.GRAVITY:
+                    applyGravityForces(
+                        particle,
+                        forceStrength,
+                        this.mouseDown,
+                        this.mouseX,
+                        this.mouseY
+                    );
+                    break;
+                case MODES.ELECTRIC:
+                    applyElectricForces(particle, forceStrength, this.spatialGrid);
+                    break;
+                case MODES.MAGNETIC:
+                    applyMagneticForces(particle, forceStrength, centerX, centerY);
+                    break;
+                case MODES.BLACK_HOLE:
+                    applyBlackHoleForces(particle, forceStrength, centerX, centerY);
+                    break;
+                case MODES.REPEL:
+                    applyRepulsionForces(particle, forceStrength, this.spatialGrid);
+                    break;
+                case MODES.DNA:
+                    applyDNAHelixForces(
+                        particle,
+                        forceStrength,
+                        centerX,
+                        centerY,
+                        currentTime,
+                        this.canvas.width,
+                        this.canvas.height
+                    );
+                    break;
             }
 
             // Apply attractor forces

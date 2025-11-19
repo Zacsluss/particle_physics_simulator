@@ -108,11 +108,8 @@ describe('ParticleSimulator - Comprehensive Tests', () => {
 
     describe('Auto Quality Adjustment', () => {
         it('should reduce particle count when FPS drops', async () => {
-            const {
-                LOW_FPS_THRESHOLD,
-                AUTO_QUALITY_MIN_PARTICLES,
-                PARTICLE_CLEANUP_COUNT
-            } = await import('../js/constants.js');
+            const { LOW_FPS_THRESHOLD, AUTO_QUALITY_MIN_PARTICLES, PARTICLE_CLEANUP_COUNT } =
+                await import('../js/constants.js');
 
             // Simulate low FPS scenario
             const fps = 30; // Below threshold of 35
@@ -143,7 +140,7 @@ describe('ParticleSimulator - Comprehensive Tests', () => {
 
             // Test that rebuilds happen every 3 frames
             const frames = [0, 1, 2, 3, 4, 5, 6];
-            const shouldRebuild = frames.map(f => f % SPATIAL_GRID_REBUILD_INTERVAL === 0);
+            const shouldRebuild = frames.map((f) => f % SPATIAL_GRID_REBUILD_INTERVAL === 0);
 
             expect(shouldRebuild).toEqual([true, false, false, true, false, false, true]);
         });
@@ -204,7 +201,7 @@ describe('ParticleSimulator - Comprehensive Tests', () => {
             }
 
             expect(particles.length).toBe(3);
-            expect(particles.some(p => p.id === 2)).toBe(false);
+            expect(particles.some((p) => p.id === 2)).toBe(false);
         });
 
         it('should use optimized Math operations', () => {
@@ -303,9 +300,7 @@ describe('ParticleSimulator - Comprehensive Tests', () => {
                 { x: 400, y: 400, vx: 0, vy: 0 }
             ];
 
-            const valid = particles.filter(p =>
-                Number.isFinite(p.x) && Number.isFinite(p.y)
-            );
+            const valid = particles.filter((p) => Number.isFinite(p.x) && Number.isFinite(p.y));
 
             expect(valid.length).toBe(2);
             expect(valid[0].x).toBe(100);

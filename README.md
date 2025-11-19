@@ -77,6 +77,7 @@ When I first implemented collision detection, I used the naive approach: check e
 
 **My Solution:**
 I researched spatial partitioning algorithms and implemented a **spatial grid**. Instead of checking all particles, I:
+
 1. Divide the canvas into a grid of cells
 2. Hash each particle to its cell based on position
 3. Only check particles in the same or adjacent cells
@@ -84,12 +85,14 @@ I researched spatial partitioning algorithms and implemented a **spatial grid**.
 This reduced collision detection to **O(n) complexity**—a 100x performance improvement.
 
 **What I Learned:**
+
 1. **Algorithm complexity is critical** - The difference between O(n²) and O(n) is the difference between 15 FPS and 60 FPS
 2. **Performance engineering requires trade-offs** - Balancing accuracy, visual quality, and frame rate
 3. **Testing and documentation matter** - 127 tests gave me confidence to refactor aggressively
 4. **Real physics is hard** - Implementing Coulomb's Law and Lorentz Force from textbooks to code taught me deep appreciation for computational physics
 
 **Skills Demonstrated:**
+
 - ✅ **Algorithm optimization** - Spatial partitioning, swap-and-pop deletion
 - ✅ **Performance engineering** - Profiling, benchmarking, optimization
 - ✅ **Software craftsmanship** - Testing (127 tests), linting, documentation
@@ -275,6 +278,7 @@ graph TB
 ```
 
 **Legend:**
+
 - 🔵 **Blue:** Core simulation engine
 - 🔴 **Red:** Physics calculations
 - 🟢 **Green:** Performance optimization (spatial grid)
@@ -678,6 +682,7 @@ Total           59.0 KB → 21.0 KB gzipped (64% reduction)
 **Decision:** Implemented spatial grid instead of QuadTree for neighbor lookups.
 
 **Reasoning:**
+
 - **Simpler implementation** - Grid is O(1) insert/query, QuadTree is O(log n)
 - **Predictable performance** - No tree rebalancing overhead
 - **Better for uniform distributions** - Particles spread evenly across canvas
@@ -692,6 +697,7 @@ Total           59.0 KB → 21.0 KB gzipped (64% reduction)
 **Decision:** Used Canvas 2D API instead of WebGL.
 
 **Reasoning:**
+
 - **Universal compatibility** - Works in all browsers, including older ones
 - **Simpler debugging** - Direct pixel manipulation, no shader compilation
 - **Sufficient for target** - Achieves 60 FPS with 1,000 particles (project goal)
@@ -706,6 +712,7 @@ Total           59.0 KB → 21.0 KB gzipped (64% reduction)
 **Decision:** Built with pure vanilla JavaScript—zero runtime dependencies.
 
 **Reasoning:**
+
 - **Demonstrates fundamentals** - Proves I understand core web APIs without abstractions
 - **Performance** - No framework overhead (React would add 40KB gzipped)
 - **Security** - Zero supply chain risk (no `npm audit` vulnerabilities)
@@ -720,6 +727,7 @@ Total           59.0 KB → 21.0 KB gzipped (64% reduction)
 **Decision:** Used Verlet integration for physics updates instead of Euler method.
 
 **Reasoning:**
+
 - **Energy conservation** - Verlet is symplectic (conserves energy over time)
 - **Stability** - Less error accumulation than Euler
 - **Implicit velocity** - Velocity calculated from position history (reduces drift)
@@ -728,13 +736,14 @@ Total           59.0 KB → 21.0 KB gzipped (64% reduction)
 **Trade-off:** Slightly more complex than Euler, requires storing previous position. But stability is critical for 60 FPS physics.
 
 **Formula:**
+
 ```javascript
 // Euler (unstable):
-x_new = x + v * dt
-v_new = v + a * dt
+x_new = x + v * dt;
+v_new = v + a * dt;
 
 // Verlet (stable):
-x_new = x + (x - x_old) * damping + a * dt^2
+x_new = (x + (x - x_old) * damping + a * dt) ^ 2;
 ```
 
 ### 5. Swap-and-Pop Deletion vs Array.splice()
@@ -742,6 +751,7 @@ x_new = x + (x - x_old) * damping + a * dt^2
 **Decision:** Implemented swap-and-pop for particle removal.
 
 **Code:**
+
 ```javascript
 // O(1) removal using swap-and-pop
 if (particle.isDead()) {
@@ -764,6 +774,7 @@ if (particle.isDead()) {
 **Decision:** Implemented dynamic frame skipping when particle count exceeds threshold.
 
 **Reasoning:**
+
 - **Maintains visual smoothness** - 60 FPS rendering, even if physics runs at 30 FPS
 - **User control** - Manual particle count slider lets users prioritize quality vs performance
 - **Adaptive quality** - Automatically removes particles if FPS drops below 35
@@ -771,6 +782,7 @@ if (particle.isDead()) {
 **Trade-off:** Physics accuracy slightly reduced during frame skipping, but visual experience remains smooth.
 
 **Thresholds:**
+
 - `<500 particles`: Full physics every frame
 - `>500 particles`: Physics every 2nd frame
 - `<35 FPS`: Auto-remove 30 particles
@@ -785,6 +797,7 @@ if (particle.isDead()) {
 ### Benchmark Methodology
 
 Tested on:
+
 - **Desktop:** i7-9700K, GTX 1660, Chrome 120
 - **Mobile:** iPhone 13, Safari 17
 
@@ -792,37 +805,38 @@ Profiled using Chrome DevTools Performance tab, measuring average frame time ove
 
 ### Results: Optimization Impact
 
-| Optimization | Before | After | Improvement |
-|--------------|--------|-------|-------------|
-| Spatial Grid (O(n²) → O(n)) | 15 FPS @ 100 particles | 60 FPS @ 1,000 particles | **100x** |
-| Swap-and-Pop Deletion | 12ms/frame | 4ms/frame | **70% faster** |
-| Math.sqrt() Caching | 18ms/frame | 16.5ms/frame | **8% faster** |
-| DOM Update Throttling | 60 updates/sec | 6 updates/sec | **90% reduction** |
-| Frame Skipping (500+ particles) | 30 FPS @ 800 particles | 60 FPS @ 800 particles | **2x** |
+| Optimization                    | Before                 | After                    | Improvement       |
+| ------------------------------- | ---------------------- | ------------------------ | ----------------- |
+| Spatial Grid (O(n²) → O(n))     | 15 FPS @ 100 particles | 60 FPS @ 1,000 particles | **100x**          |
+| Swap-and-Pop Deletion           | 12ms/frame             | 4ms/frame                | **70% faster**    |
+| Math.sqrt() Caching             | 18ms/frame             | 16.5ms/frame             | **8% faster**     |
+| DOM Update Throttling           | 60 updates/sec         | 6 updates/sec            | **90% reduction** |
+| Frame Skipping (500+ particles) | 30 FPS @ 800 particles | 60 FPS @ 800 particles   | **2x**            |
 
 ### Profiling Breakdown (1,000 particles @ 60 FPS)
 
-| Function | Time/Frame | % of Frame Budget (16.67ms) |
-|----------|------------|------------------------------|
-| `updateParticles()` | 8.2ms | 49% |
-| `draw()` | 5.1ms | 31% |
-| `updateSpatialGrid()` | 1.8ms | 11% |
-| `updateStats()` | 0.3ms | 2% |
-| Other | 1.3ms | 7% |
-| **Total** | **16.7ms** | **100%** |
+| Function              | Time/Frame | % of Frame Budget (16.67ms) |
+| --------------------- | ---------- | --------------------------- |
+| `updateParticles()`   | 8.2ms      | 49%                         |
+| `draw()`              | 5.1ms      | 31%                         |
+| `updateSpatialGrid()` | 1.8ms      | 11%                         |
+| `updateStats()`       | 0.3ms      | 2%                          |
+| Other                 | 1.3ms      | 7%                          |
+| **Total**             | **16.7ms** | **100%**                    |
 
 **Analysis:** Physics (`updateParticles`) is the bottleneck at 49% of frame time. Further optimization would target force calculations or move to Web Workers.
 
 ### Memory Usage
 
-| Metric | Value | Notes |
-|--------|-------|-------|
-| Initial load | 12 MB | Before any particles |
-| 1,000 particles | 25 MB | Steady state |
-| Peak usage | 30 MB | During galaxy spawn |
-| Leak rate | 0 MB/min | No leaks detected (10 min test) |
+| Metric          | Value    | Notes                           |
+| --------------- | -------- | ------------------------------- |
+| Initial load    | 12 MB    | Before any particles            |
+| 1,000 particles | 25 MB    | Steady state                    |
+| Peak usage      | 30 MB    | During galaxy spawn             |
+| Leak rate       | 0 MB/min | No leaks detected (10 min test) |
 
 **Leak prevention techniques:**
+
 - Event listener cleanup in `destroy()`
 - Attractor cap (max 10 to prevent unbounded growth)
 - Particle reference removal on death
@@ -884,48 +898,52 @@ Make it yours (takes about 5 minutes):
 This project is optimized for **1,000 particles at 60 FPS**. Beyond this scope, the following limitations apply:
 
 1. **Particle Cap: 1,000**
-   - Performance degrades beyond this on mid-range devices
-   - Hard limit exists to maintain 60 FPS target
-   - **Why:** Canvas 2D rendering is CPU-bound
+    - Performance degrades beyond this on mid-range devices
+    - Hard limit exists to maintain 60 FPS target
+    - **Why:** Canvas 2D rendering is CPU-bound
 
 2. **No State Persistence**
-   - Simulation resets on page refresh
-   - No save/load feature
-   - **Why:** Focus was on real-time performance, not data management
+    - Simulation resets on page refresh
+    - No save/load feature
+    - **Why:** Focus was on real-time performance, not data management
 
 3. **Canvas 2D Rendering**
-   - Could scale to 10,000+ particles with WebGL
-   - **Why:** Canvas 2D demonstrates JavaScript mastery; WebGL would shift focus to graphics programming
+    - Could scale to 10,000+ particles with WebGL
+    - **Why:** Canvas 2D demonstrates JavaScript mastery; WebGL would shift focus to graphics programming
 
 4. **Main Thread Only**
-   - No Web Workers for physics calculations
-   - **Why:** Added complexity without significant benefit at 1,000 particle scale
+    - No Web Workers for physics calculations
+    - **Why:** Added complexity without significant benefit at 1,000 particle scale
 
 5. **Large Demo GIF (44MB)**
-   - Preview animation is large (considering MP4 conversion)
-   - **Why:** Visual demonstration is critical for portfolio
+    - Preview animation is large (considering MP4 conversion)
+    - **Why:** Visual demonstration is critical for portfolio
 
 ### Future Enhancements (If Extended)
 
 If I were to continue developing this project, I'd add:
 
 **Performance & Scalability:**
+
 - [ ] **WebGL Renderer** - GPU-accelerated rendering for 10,000+ particles
 - [ ] **Web Workers** - Off-thread physics calculations
 - [ ] **Instanced rendering** - Batch particle drawing
 
 **Features:**
+
 - [ ] **Save/Load State** - Export simulation to JSON
 - [ ] **Recording Mode** - Export animations as MP4 video
 - [ ] **Custom Physics Mode** - User-defined force equations via math parser
 - [ ] **Preset Scenarios** - Pre-configured interesting simulations (e.g., solar system)
 
 **Advanced Physics:**
+
 - [ ] **3D Simulation** - Extend to three dimensions with Three.js
 - [ ] **Collision Response** - Elastic/inelastic collisions between particles
 - [ ] **Soft-body Physics** - Deformable objects using spring constraints
 
 **User Experience:**
+
 - [ ] **Touch Gestures** - Pinch to zoom (already implemented!), swipe to change modes
 - [ ] **Mobile Optimization** - Reduce particle count on mobile devices automatically
 - [ ] **Dark/Light Mode** - Theme toggle for control panel
@@ -946,14 +964,14 @@ I prioritized **depth over breadth** to create a focused, high-quality portfolio
 
 ### Performance Targets Achieved
 
-| Metric | Target | Actual | Status |
-|--------|--------|--------|--------|
-| Frame Rate | 60 FPS | 60 FPS @ 1,000 particles | ✅ |
-| Load Time | <500ms | ~100ms | ✅ |
-| Memory Usage | <100 MB | ~25 MB | ✅ |
-| Bundle Size | <100 KB | 59 KB (21 KB gzipped) | ✅ |
-| Test Coverage (Core) | 100% | 100% | ✅ |
-| Code Quality | A | A+ (100/100) | ✅ |
+| Metric               | Target  | Actual                   | Status |
+| -------------------- | ------- | ------------------------ | ------ |
+| Frame Rate           | 60 FPS  | 60 FPS @ 1,000 particles | ✅     |
+| Load Time            | <500ms  | ~100ms                   | ✅     |
+| Memory Usage         | <100 MB | ~25 MB                   | ✅     |
+| Bundle Size          | <100 KB | 59 KB (21 KB gzipped)    | ✅     |
+| Test Coverage (Core) | 100%    | 100%                     | ✅     |
+| Code Quality         | A       | A+ (100/100)             | ✅     |
 
 **Conclusion:** All engineering goals achieved. Additional features would be **scope creep** for a portfolio project.
 
