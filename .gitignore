@@ -26,8 +26,9 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-package.json
-package-lock.json
+# Keep package.json and package-lock.json for CI/CD and dependency management
+# package.json
+# package-lock.json
 yarn.lock
 
 # Development Tool Configuration (keep locally, not in GitHub)
