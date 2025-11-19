@@ -31,15 +31,16 @@ yarn-error.log*
 # package-lock.json
 yarn.lock
 
-# Development Tool Configuration (keep locally, not in GitHub)
-.eslintrc.json
-.prettierrc.json
-.prettierignore
-vitest.config.js
-jsdoc.json
+# Development Tool Configuration - Now included for CI/CD and team consistency
+# These files define code quality standards and should be shared
+# .eslintrc.json
+# .prettierrc.json
+# .prettierignore
+# vitest.config.js
+# jsdoc.json
 
-# Testing Files (keep locally, not in GitHub)
-tests/
+# Testing Files - Tests are now included for CI/CD
+# tests/ - Keep tests in repo for automated testing
 coverage/
 .nyc_output/
 

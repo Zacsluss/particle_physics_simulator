@@ -1,0 +1,8 @@
+node_modules
+dist
+build
+coverage
+docs/api
+*.gif
+*.pdf
+.claude
