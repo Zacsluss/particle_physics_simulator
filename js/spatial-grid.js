@@ -3,6 +3,10 @@
 import { GRID_SIZE } from './constants.js';
 
 /**
+ * @typedef {import('./particle.js').Particle} Particle
+ */
+
+/**
  * Spatial Grid for efficient O(n) particle neighbor lookups
  *
  * Instead of checking every particle against every other particle (O(n²)),

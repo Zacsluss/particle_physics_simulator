@@ -1,64 +1,3 @@
-// Mock DOM and globals for testing
-const setupMocks = () => {
-    global.performance = { now: () => Date.now() };
-    global.requestAnimationFrame = vi.fn((cb) => setTimeout(cb, 16));
-    global.cancelAnimationFrame = vi.fn();
-
-    // Create mock canvas
-    const mockCanvas = {
-        width: 800,
-        height: 600,
-        getContext: vi.fn(() => ({
-            fillStyle: '',
-            strokeStyle: '',
-            lineWidth: 0,
-            fillRect: vi.fn(),
-            beginPath: vi.fn(),
-            arc: vi.fn(),
-            fill: vi.fn(),
-            stroke: vi.fn(),
-            save: vi.fn(),
-            restore: vi.fn()
-        }))
-    };
-
-    // Create mock document
-    const elements = {
-        canvas: mockCanvas,
-        gravityBtn: { addEventListener: vi.fn(), classList: { add: vi.fn(), remove: vi.fn() } },
-        electricBtn: { addEventListener: vi.fn(), classList: { add: vi.fn(), remove: vi.fn() } },
-        magneticBtn: { addEventListener: vi.fn(), classList: { add: vi.fn(), remove: vi.fn() } },
-        blackholeBtn: { addEventListener: vi.fn(), classList: { add: vi.fn(), remove: vi.fn() } },
-        repelBtn: { addEventListener: vi.fn(), classList: { add: vi.fn(), remove: vi.fn() } },
-        dnaBtn: { addEventListener: vi.fn(), classList: { add: vi.fn(), remove: vi.fn() } },
-        clearBtn: { addEventListener: vi.fn() },
-        explosionBtn: { addEventListener: vi.fn() },
-        galaxyBtn: { addEventListener: vi.fn() },
-        rainBtn: { addEventListener: vi.fn() },
-        forceStrength: { addEventListener: vi.fn(), value: '5' },
-        particleSize: { addEventListener: vi.fn(), value: '3' },
-        forceValue: { textContent: '5' },
-        sizeValue: { textContent: '3' },
-        particleCount: { textContent: '0' },
-        fps: { textContent: '60' },
-        mode: { textContent: 'Gravity' },
-        announcements: { textContent: '' }
-    };
-
-    global.document = {
-        getElementById: vi.fn((id) => elements[id]),
-        addEventListener: vi.fn()
-    };
-
-    global.window = {
-        innerWidth: 800,
-        innerHeight: 600,
-        addEventListener: vi.fn()
-    };
-
-    return { elements, mockCanvas };
-};
-
 describe('ParticleSimulator - Comprehensive Tests', () => {
     describe('Particle Spawning Logic', () => {
         it('should enforce MAX_PARTICLES limit', async () => {
@@ -166,15 +105,15 @@ describe('ParticleSimulator - Comprehensive Tests', () => {
         it('should store bound handlers for cleanup', () => {
             const handlers = {
                 resize: () => {},
-                mouseDown: (e) => {},
+                mouseDown: (_e) => {},
                 mouseUp: () => {},
-                mouseMove: (e) => {},
-                click: (e) => {},
-                contextMenu: (e) => e.preventDefault(),
-                touchStart: (e) => {},
-                touchMove: (e) => {},
-                touchEnd: (e) => {},
-                keyDown: (e) => {}
+                mouseMove: (_e) => {},
+                click: (_e) => {},
+                contextMenu: (_e) => _e.preventDefault(),
+                touchStart: (_e) => {},
+                touchMove: (_e) => {},
+                touchEnd: (_e) => {},
+                keyDown: (_e) => {}
             };
 
             expect(Object.keys(handlers)).toHaveLength(10);

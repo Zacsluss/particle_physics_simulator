@@ -12,6 +12,11 @@ import {
 } from './constants.js';
 
 /**
+ * @typedef {import('./particle.js').Particle} Particle
+ * @typedef {import('./spatial-grid.js').SpatialGrid} SpatialGrid
+ */
+
+/**
  * Physics engine for different simulation modes
  * Each mode applies different forces to particles
  */

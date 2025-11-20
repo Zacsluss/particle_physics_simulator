@@ -45,16 +45,14 @@ const setupDOM = () => {
 };
 
 describe('ParticleSimulator', () => {
-    let ParticleSimulator;
     let simulator;
-    let dom;
 
     beforeEach(async () => {
         // Setup DOM before importing module
-        dom = setupDOM();
+        setupDOM();
 
         // Dynamically import the module after DOM is setup
-        const module = await import('../js/app.js');
+        await import('../js/app.js');
         // The module creates an instance automatically, but we need access to the class
         // For testing, we'll work with the DOM changes
     });
@@ -100,7 +98,6 @@ describe('ParticleSimulator', () => {
 
         it('should update force value display on slider change', () => {
             const slider = document.getElementById('forceStrength');
-            const display = document.getElementById('forceValue');
 
             slider.value = '10';
             const event = new window.Event('input');

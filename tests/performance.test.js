@@ -161,7 +161,7 @@ describe('Performance Benchmarks', () => {
             });
 
             // All frame times should be under 16.67ms (60 FPS)
-            frameTimes.forEach((time, index) => {
+            frameTimes.forEach((time, _index) => {
                 expect(time).toBeLessThan(17); // Slight margin for 60 FPS
             });
         });
