@@ -205,7 +205,7 @@ graph LR
     Particle --> Update[Verlet Integration]
     Particle --> Forces[Force Application]
 
-    Grid --> Optimize[O(n) Collision Detection]
+    Grid --> Optimize["O(n) Collision Detection"]
 
     style App fill:#4a5f8f
     style Physics fill:#2d3561
