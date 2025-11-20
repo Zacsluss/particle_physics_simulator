@@ -153,30 +153,64 @@ npm run docs               # Generate documentation
 
 ### System Design
 
+```mermaid
+graph TD
+    A[User Input] --> B[ParticleSimulator app.js]
+    B --> C[Event Processing]
+    C --> D[Animation Loop]
+    D --> E[Physics Engine]
+
+    E --> F[Gravity Mode]
+    E --> G[Electric Mode]
+    E --> H[Magnetic Mode]
+    E --> I[Black Hole Mode]
+    E --> J[Repulsion Mode]
+    E --> K[DNA Helix Mode]
+
+    F --> L[Spatial Grid Optimization]
+    G --> L
+    H --> L
+    I --> L
+    J --> L
+    K --> L
+
+    L --> M[Particle Updates]
+    M --> N[Canvas 2D Rendering]
+    N --> O[60 FPS Output]
+
+    P[Constants Config] --> E
+    Q[Particle Class] --> M
+
+    style B fill:#4a5f8f
+    style E fill:#2d3561
+    style L fill:#ff006e
+    style N fill:#00ff88
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      User Interaction                        │
-│         (Mouse, Touch, Keyboard, UI Controls)                │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   ParticleSimulator                          │
-│                  (Main Application)                          │
-│  • Event handling  • Animation loop  • State management      │
-└──────┬──────────────┬──────────────┬──────────────┬─────────┘
-       │              │              │              │
-       ▼              ▼              ▼              ▼
-┌────────────┐ ┌──────────┐ ┌────────────┐ ┌──────────────┐
-│  Particle  │ │ Physics  │ │  Spatial   │ │  Constants   │
-│   Class    │ │  Engine  │ │    Grid    │ │    Config    │
-└────────────┘ └──────────┘ └────────────┘ └──────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    Canvas 2D Context                         │
-│               (Visual Output Rendering)                      │
-└─────────────────────────────────────────────────────────────┘
+
+### Module Hierarchy
+
+```mermaid
+graph LR
+    App[app.js] --> Events[Event Handlers]
+    App --> Loop[Animation Loop]
+    App --> State[State Management]
+
+    Loop --> Physics[physics.js]
+    Loop --> Render[Canvas Renderer]
+
+    Physics --> Particle[particle.js]
+    Physics --> Grid[spatial-grid.js]
+    Physics --> Const[constants.js]
+
+    Particle --> Update[Verlet Integration]
+    Particle --> Forces[Force Application]
+
+    Grid --> Optimize[O(n) Collision Detection]
+
+    style App fill:#4a5f8f
+    style Physics fill:#2d3561
+    style Grid fill:#ff006e
+    style Particle fill:#1a1a2e
 ```
 
 ### Core Modules
