@@ -68,12 +68,14 @@ Real-time particle physics simulator featuring **1,000 particles at 60 FPS** wit
 </p>
 
 **Core Technologies**
+
 - Vanilla JavaScript (ES6+)
 - HTML5 Canvas API
 - CSS3 with custom properties
 - ES6 Modules
 
 **Development Tools**
+
 - Vitest (testing framework)
 - Playwright (E2E testing)
 - ESLint (code quality)
@@ -88,6 +90,7 @@ Real-time particle physics simulator featuring **1,000 particles at 60 FPS** wit
 ## Performance Metrics
 
 **Desktop Performance (Intel i7, 16GB RAM)**
+
 - 1,000 particles at 60 FPS
 - 98% reduction in collision checks (O(n²) → O(n))
 - 7.5x speedup at 1,000 particles
@@ -106,6 +109,7 @@ Real-time particle physics simulator featuring **1,000 particles at 60 FPS** wit
 | 1,000          | 8             | 60              | 7.5x    |
 
 **Collision Detection Complexity:**
+
 - Without grid: O(n²) = 1,000,000 comparisons/frame @ 1000 particles
 - With grid: O(n) ≈ 20,000 comparisons/frame @ 1000 particles
 - **98% reduction in comparisons**
@@ -162,6 +166,7 @@ npm run docs               # Generate documentation
 ```
 
 **Available npm scripts:**
+
 - `npm test` - Run all unit tests
 - `npm run test:e2e` - Run end-to-end tests
 - `npm run test:e2e:ui` - Run E2E tests with UI
@@ -246,34 +251,35 @@ graph LR
 ### Core Modules
 
 - **`app.js`** - Main simulator orchestration and event handling
-  - Event listener management (mouse, touch, keyboard)
-  - Animation loop coordination
-  - State management and UI updates
+    - Event listener management (mouse, touch, keyboard)
+    - Animation loop coordination
+    - State management and UI updates
 
 - **`particle.js`** - Particle class with state and motion logic
-  - Position, velocity, acceleration tracking
-  - Verlet integration for physics
-  - Force application and boundary handling
+    - Position, velocity, acceleration tracking
+    - Verlet integration for physics
+    - Force application and boundary handling
 
 - **`physics.js`** - Six physics mode implementations
-  - Gravity mode (Newtonian attraction)
-  - Electric mode (Coulomb's law)
-  - Magnetic mode (Lorentz force)
-  - Black Hole mode (gravitational singularity)
-  - Repulsion mode (inverse gravity)
-  - DNA Helix mode (cylindrical force field)
+    - Gravity mode (Newtonian attraction)
+    - Electric mode (Coulomb's law)
+    - Magnetic mode (Lorentz force)
+    - Black Hole mode (gravitational singularity)
+    - Repulsion mode (inverse gravity)
+    - DNA Helix mode (cylindrical force field)
 
 - **`spatial-grid.js`** - O(n) collision detection optimization
-  - Canvas space partitioning
-  - Efficient neighbor lookups
-  - Grid cell management
+    - Canvas space partitioning
+    - Efficient neighbor lookups
+    - Grid cell management
 
 - **`constants.js`** - Configuration constants and tuning parameters
-  - Physics constants (gravity, damping, forces)
-  - Performance tuning (max particles, grid size)
-  - Mode configurations
+    - Physics constants (gravity, damping, forces)
+    - Performance tuning (max particles, grid size)
+    - Mode configurations
 
 ### File Structure
+
 ```
 particle_physics_simulator/
 ├── index.html              # Semantic HTML structure
@@ -311,12 +317,14 @@ particle_physics_simulator/
 <br/>
 
 ### Gravity Mode
+
 - **Constant downward force**: F = ma where a = 0.2 (GRAVITY_STRENGTH)
 - **Mouse attraction**: Implements F = G·m₁·m₂/r² with unit masses
 - Particles fall and can be attracted to mouse cursor
 - Damping coefficient: 0.99
 
 ### Electric Mode
+
 - **Coulomb's Law**: F = k·q₁·q₂/r²
 - Each particle has charge +1 or -1 (binary distribution)
 - Like charges repel, opposite charges attract
@@ -324,6 +332,7 @@ particle_physics_simulator/
 - Damping coefficient: 0.96
 
 ### Magnetic Mode
+
 - **Simplified Lorentz Force**: F ⊥ velocity
 - Particles spiral in magnetic field
 - Not full F = q(v × B) implementation (2D simplification)
@@ -331,23 +340,27 @@ particle_physics_simulator/
 - Damping coefficient: 0.97
 
 ### Black Hole Mode
+
 - **Extreme gravitational attraction**: F = G·M/r² (r → 0)
 - Event horizon radius: 50 pixels
 - Particles accelerate toward center
 - Escape velocity mechanics
 
 ### Repulsion Mode
+
 - **Inverse gravity**: All particles repel each other
 - Creates expansion and dispersal effects
 - Useful for testing collision detection
 
 ### DNA Helix Mode
+
 - **Cylindrical force field**: Custom mathematical model
 - Particles form double helix structure
 - Combines radial and tangential forces
 - Demonstrates complex emergent behavior
 
 ### Integration Method
+
 - **Velocity Verlet**: More stable than Euler integration
 - Semi-implicit scheme: v(t+Δt) = [v(t) + a·Δt] × damping
 - Speed limiting: max velocity = 15 pixels/frame
@@ -360,11 +373,13 @@ particle_physics_simulator/
 ## Controls
 
 **Mouse**
+
 - Click to spawn particles
 - Drag for particle streams
 - Right-click for attractors
 
 **Keyboard**
+
 - `Space` - Pause/resume simulation
 - `C` - Clear all particles
 - `E` - Explosion spawn
@@ -372,6 +387,7 @@ particle_physics_simulator/
 - `1-6` - Switch physics modes
 
 **Touch (Mobile)**
+
 - Single tap to spawn particles
 - Swipe for particle streams
 - Two-finger tap for attractors
@@ -381,6 +397,7 @@ particle_physics_simulator/
 ## Optimizations
 
 **Spatial Grid Partitioning**
+
 - Divides canvas into cells
 - Particles only check nearby cells
 - Reduces O(n²) → O(n) complexity
@@ -394,45 +411,45 @@ particle_physics_simulator/
 ### Performance Optimizations
 
 1. **Spatial Grid Partitioning (Primary)**
-   - Divides canvas into grid cells
-   - Each particle only checks 9 cells (self + 8 neighbors)
-   - Reduces collision checks from O(n²) to O(n)
-   - Grid rebuilt every 3 frames (cached)
+    - Divides canvas into grid cells
+    - Each particle only checks 9 cells (self + 8 neighbors)
+    - Reduces collision checks from O(n²) to O(n)
+    - Grid rebuilt every 3 frames (cached)
 
 2. **Verlet Integration**
-   - More numerically stable than Euler integration
-   - Maintains energy conservation better
-   - Prevents particle "explosion" artifacts
+    - More numerically stable than Euler integration
+    - Maintains energy conservation better
+    - Prevents particle "explosion" artifacts
 
 3. **Object Pooling**
-   - Swap-and-pop particle removal (O(1) deletion)
-   - Avoids array splicing overhead
-   - No garbage collection spikes
+    - Swap-and-pop particle removal (O(1) deletion)
+    - Avoids array splicing overhead
+    - No garbage collection spikes
 
 4. **Batched Canvas Rendering**
-   - Single `fillStyle` per particle type
-   - Minimized context state changes
-   - Path batching for fills
+    - Single `fillStyle` per particle type
+    - Minimized context state changes
+    - Path batching for fills
 
 5. **Dynamic Quality Adjustment**
-   - Auto-reduces quality at 500+ particles
-   - Frame skip when FPS drops below 35
-   - Maintains smooth experience
+    - Auto-reduces quality at 500+ particles
+    - Frame skip when FPS drops below 35
+    - Maintains smooth experience
 
 6. **Efficient DOM Updates**
-   - Stats (FPS, count) update every 10 frames
-   - Not every single frame
-   - Reduces layout thrashing
+    - Stats (FPS, count) update every 10 frames
+    - Not every single frame
+    - Reduces layout thrashing
 
 7. **Speed Limiting**
-   - Max velocity: 15 pixels/frame
-   - Prevents tunneling through boundaries
-   - Maintains visual coherence
+    - Max velocity: 15 pixels/frame
+    - Prevents tunneling through boundaries
+    - Maintains visual coherence
 
 8. **Early Exit Conditions**
-   - Distance checks before expensive calculations
-   - Singularity protection (avoid division by zero)
-   - Boundary pre-checks
+    - Distance checks before expensive calculations
+    - Singularity protection (avoid division by zero)
+    - Boundary pre-checks
 
 </details>
 
@@ -441,6 +458,7 @@ particle_physics_simulator/
 ## Testing
 
 **Test Suite Coverage**
+
 - ✅ 154 unit tests (92% coverage)
 - ✅ 25+ E2E tests (Playwright)
 - ✅ Performance benchmarks
@@ -455,6 +473,7 @@ particle_physics_simulator/
 ### Test Coverage Breakdown
 
 **Unit Tests (154 tests)**
+
 - `particle.test.js` - Particle physics and motion (25 tests)
 - `physics.test.js` - All 6 physics modes (32 tests)
 - `spatial-grid.test.js` - Grid optimization (18 tests)
@@ -464,6 +483,7 @@ particle_physics_simulator/
 - `app.test.js` - Application logic (28 tests)
 
 **E2E Tests (25+ tests)**
+
 - `basic-functionality.spec.js` - Page load, canvas, controls (6 tests)
 - `physics-modes.spec.js` - All 6 mode switches (7 tests)
 - `particle-spawning.spec.js` - Explosion, galaxy, rain (5 tests)
@@ -473,6 +493,7 @@ particle_physics_simulator/
 ### CI/CD Pipeline
 
 **GitHub Actions Workflow:**
+
 1. Lint check (ESLint)
 2. Format check (Prettier)
 3. Unit tests (Vitest)
@@ -480,6 +501,7 @@ particle_physics_simulator/
 5. E2E tests (Playwright - 3 browsers)
 
 **Runs on:**
+
 - Every push to main
 - Every pull request
 - Ubuntu latest + Node.js 20
@@ -511,6 +533,7 @@ particle_physics_simulator/
 <br/>
 
 ### Required Features
+
 - **Canvas 2D Context**: For rendering particles
 - **ES6 Modules**: Import/export syntax
 - **RequestAnimationFrame**: Smooth 60 FPS animation
@@ -518,11 +541,13 @@ particle_physics_simulator/
 - **Pointer Events**: Unified input handling
 
 ### Performance Notes
+
 - **Desktop**: Recommended for best experience (1000 particles @ 60 FPS)
 - **Mobile**: Auto-adjusts quality (500 particles @ 30-60 FPS)
 - **Tablet**: Full performance on modern iPads and Android tablets
 
 ### Known Limitations
+
 - IE11 not supported (requires ES6)
 - Very old Android browsers (<4.4) may have issues
 - Safari <14 lacks full module support
@@ -549,35 +574,37 @@ MIT License — free to fork and customize
 ### Customize for Yourself
 
 1. **Fork the repository**
-   ```bash
-   # Click "Fork" on GitHub, then:
-   git clone https://github.com/YOUR_USERNAME/particle_physics_simulator.git
-   ```
+
+    ```bash
+    # Click "Fork" on GitHub, then:
+    git clone https://github.com/YOUR_USERNAME/particle_physics_simulator.git
+    ```
 
 2. **Modify physics constants** (`js/constants.js`)
-   - Adjust gravity strength, damping, forces
-   - Change max particles, grid size
-   - Tune performance parameters
+    - Adjust gravity strength, damping, forces
+    - Change max particles, grid size
+    - Tune performance parameters
 
 3. **Add new physics modes** (`js/physics.js`)
-   - Export new force function
-   - Add to MODES in constants.js
-   - Create UI button in index.html
+    - Export new force function
+    - Add to MODES in constants.js
+    - Create UI button in index.html
 
 4. **Customize visual style** (`css/styles.css`)
-   - Change particle colors
-   - Modify UI theme
-   - Adjust layout
+    - Change particle colors
+    - Modify UI theme
+    - Adjust layout
 
 5. **Deploy to GitHub Pages**
-   ```bash
-   # Already configured - just push to main branch
-   git add .
-   git commit -m "Customize simulator"
-   git push origin main
 
-   # Enable GitHub Pages in repo settings (main branch)
-   ```
+    ```bash
+    # Already configured - just push to main branch
+    git add .
+    git commit -m "Customize simulator"
+    git push origin main
+
+    # Enable GitHub Pages in repo settings (main branch)
+    ```
 
 </details>
 
