@@ -23,7 +23,7 @@
     "brace-style": ["error", "1tbs"],
     "quotes": ["warn", "single", { "avoidEscape": true }],
     "semi": ["error", "always"],
-    "indent": ["error", 4],
+    "indent": "off",
     "no-multi-spaces": "error",
     "no-trailing-spaces": "error",
     "comma-dangle": ["error", "never"],

@@ -248,37 +248,37 @@ class ParticleSimulator {
      */
     handleKeyDown(e) {
         switch (e.key) {
-        case ' ': // Spacebar - pause/resume
-            e.preventDefault();
-            this.isPaused = !this.isPaused;
-            break;
-        case 'c': // C - clear
-            this.clearParticles();
-            break;
-        case 'e': // E - explosion
-            this.spawnExplosion();
-            break;
-        case 'g': // G - galaxy
-            this.spawnGalaxy();
-            break;
-        case '1': // Number keys for modes
-            this.setMode(MODES.GRAVITY);
-            break;
-        case '2':
-            this.setMode(MODES.ELECTRIC);
-            break;
-        case '3':
-            this.setMode(MODES.MAGNETIC);
-            break;
-        case '4':
-            this.setMode(MODES.BLACK_HOLE);
-            break;
-        case '5':
-            this.setMode(MODES.REPEL);
-            break;
-        case '6':
-            this.setMode(MODES.DNA);
-            break;
+            case ' ': // Spacebar - pause/resume
+                e.preventDefault();
+                this.isPaused = !this.isPaused;
+                break;
+            case 'c': // C - clear
+                this.clearParticles();
+                break;
+            case 'e': // E - explosion
+                this.spawnExplosion();
+                break;
+            case 'g': // G - galaxy
+                this.spawnGalaxy();
+                break;
+            case '1': // Number keys for modes
+                this.setMode(MODES.GRAVITY);
+                break;
+            case '2':
+                this.setMode(MODES.ELECTRIC);
+                break;
+            case '3':
+                this.setMode(MODES.MAGNETIC);
+                break;
+            case '4':
+                this.setMode(MODES.BLACK_HOLE);
+                break;
+            case '5':
+                this.setMode(MODES.REPEL);
+                break;
+            case '6':
+                this.setMode(MODES.DNA);
+                break;
         }
     }
 
@@ -714,38 +714,38 @@ class ParticleSimulator {
 
             // Apply mode-specific forces
             switch (this.mode) {
-            case MODES.GRAVITY:
-                applyGravityForces(
-                    particle,
-                    forceStrength,
-                    this.mouseDown,
-                    this.mouseX,
-                    this.mouseY
-                );
-                break;
-            case MODES.ELECTRIC:
-                applyElectricForces(particle, forceStrength, this.spatialGrid);
-                break;
-            case MODES.MAGNETIC:
-                applyMagneticForces(particle, forceStrength, centerX, centerY);
-                break;
-            case MODES.BLACK_HOLE:
-                applyBlackHoleForces(particle, forceStrength, centerX, centerY);
-                break;
-            case MODES.REPEL:
-                applyRepulsionForces(particle, forceStrength, this.spatialGrid);
-                break;
-            case MODES.DNA:
-                applyDNAHelixForces(
-                    particle,
-                    forceStrength,
-                    centerX,
-                    centerY,
-                    currentTime,
-                    this.canvas.width,
-                    this.canvas.height
-                );
-                break;
+                case MODES.GRAVITY:
+                    applyGravityForces(
+                        particle,
+                        forceStrength,
+                        this.mouseDown,
+                        this.mouseX,
+                        this.mouseY
+                    );
+                    break;
+                case MODES.ELECTRIC:
+                    applyElectricForces(particle, forceStrength, this.spatialGrid);
+                    break;
+                case MODES.MAGNETIC:
+                    applyMagneticForces(particle, forceStrength, centerX, centerY);
+                    break;
+                case MODES.BLACK_HOLE:
+                    applyBlackHoleForces(particle, forceStrength, centerX, centerY);
+                    break;
+                case MODES.REPEL:
+                    applyRepulsionForces(particle, forceStrength, this.spatialGrid);
+                    break;
+                case MODES.DNA:
+                    applyDNAHelixForces(
+                        particle,
+                        forceStrength,
+                        centerX,
+                        centerY,
+                        currentTime,
+                        this.canvas.width,
+                        this.canvas.height
+                    );
+                    break;
             }
 
             // Apply attractor forces
