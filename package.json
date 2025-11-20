@@ -12,6 +12,9 @@
     "test:coverage": "vitest --coverage",
     "test:perf": "vitest run tests/performance.test.js",
     "test:a11y": "vitest run tests/accessibility.test.js",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
     "lint": "eslint js/**/*.js tests/**/*.js",
     "lint:fix": "eslint js/**/*.js tests/**/*.js --fix",
     "format": "prettier --write \"**/*.{js,css,html,md}\"",
@@ -54,14 +57,17 @@
     "node": ">=12.0.0"
   },
   "devDependencies": {
-    "vitest": "^1.6.0",
-    "@vitest/ui": "^1.6.0",
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "^1.56.1",
     "@vitest/coverage-v8": "^1.6.0",
-    "jsdom": "^24.0.0",
+    "@vitest/ui": "^1.6.0",
     "eslint": "^8.57.0",
     "eslint-plugin-jsdoc": "^48.0.0",
+    "http-server": "^14.1.1",
+    "jsdoc": "^4.0.2",
+    "jsdom": "^24.0.0",
+    "playwright": "^1.56.1",
     "prettier": "^3.2.5",
-    "jsdoc": "^4.0.2"
-  },
-  "dependencies": {}
+    "vitest": "^1.6.0"
+  }
 }

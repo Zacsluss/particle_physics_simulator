@@ -48,8 +48,6 @@ import {
     PINCH_IN_THRESHOLD,
     PINCH_OUT_THRESHOLD,
     PINCH_EXPLOSION_COUNT,
-    PINCH_EXPLOSION_MIN_SPEED,
-    PINCH_EXPLOSION_MAX_SPEED,
     PINCH_ATTRACTOR_STRENGTH,
     FORCE_NORMALIZATION
 } from './constants.js';
@@ -244,7 +242,7 @@ class ParticleSimulator {
 
     /**
      * Handle keyboard input for accessibility
-     * @param e
+     * @param {KeyboardEvent} e - Keyboard event object
      */
     handleKeyDown(e) {
         switch (e.key) {
@@ -284,7 +282,7 @@ class ParticleSimulator {
 
     /**
      * Handle mouse down event
-     * @param e
+     * @param {MouseEvent} e - Mouse event object
      */
     handleMouseDown(e) {
         this.mouseDown = true;
@@ -305,7 +303,7 @@ class ParticleSimulator {
 
     /**
      * Handle mouse move event
-     * @param e
+     * @param {MouseEvent} e - Mouse event object
      */
     handleMouseMove(e) {
         this.mouseX = e.clientX;
@@ -318,7 +316,7 @@ class ParticleSimulator {
 
     /**
      * Handle mouse click event
-     * @param e
+     * @param {MouseEvent} e - Mouse event object
      */
     handleClick(e) {
         if (e.button === 0) {
@@ -340,7 +338,7 @@ class ParticleSimulator {
 
     /**
      * Handle touch start event
-     * @param e
+     * @param {TouchEvent} e - Touch event object
      */
     handleTouchStart(e) {
         e.preventDefault();
@@ -371,7 +369,7 @@ class ParticleSimulator {
 
     /**
      * Handle touch move event
-     * @param e
+     * @param {TouchEvent} e - Touch event object
      */
     handleTouchMove(e) {
         e.preventDefault();
@@ -407,7 +405,7 @@ class ParticleSimulator {
 
     /**
      * Handle touch end event
-     * @param e
+     * @param {TouchEvent} e - Touch event object
      */
     handleTouchEnd(e) {
         e.preventDefault();
@@ -420,7 +418,7 @@ class ParticleSimulator {
 
     /**
      * Set the physics mode
-     * @param mode
+     * @param {string} mode - Physics mode identifier (e.g., MODES.GRAVITY)
      */
     setMode(mode) {
         this.mode = mode;
@@ -481,6 +479,7 @@ class ParticleSimulator {
 
     /**
      * Get current force strength from slider
+     * @returns {number} Normalized force strength value
      */
     getForceStrength() {
         const slider = document.getElementById('forceStrength');
@@ -502,6 +501,7 @@ class ParticleSimulator {
 
     /**
      * Get current particle size from slider
+     * @returns {number} Particle size in pixels
      */
     getParticleSize() {
         const slider = document.getElementById('particleSize');
@@ -523,8 +523,8 @@ class ParticleSimulator {
 
     /**
      * Spawn a single particle at a position
-     * @param x
-     * @param y
+     * @param {number} x - X coordinate for particle spawn
+     * @param {number} y - Y coordinate for particle spawn
      */
     spawnParticle(x, y) {
         if (this.particles.length >= MAX_PARTICLES) {
@@ -542,9 +542,9 @@ class ParticleSimulator {
 
     /**
      * Spawn an explosion at the center (or specified position)
-     * @param x
-     * @param y
-     * @param count
+     * @param {number} x - X coordinate for explosion center
+     * @param {number} y - Y coordinate for explosion center
+     * @param {number} count - Number of particles to spawn in explosion
      */
     spawnExplosionAt(x, y, count = EXPLOSION_COUNT) {
         const spawnCount = Math.min(count, MAX_PARTICLES - this.particles.length);
@@ -628,9 +628,9 @@ class ParticleSimulator {
 
     /**
      * Add an attractor at a position
-     * @param x
-     * @param y
-     * @param strength
+     * @param {number} x - X coordinate for attractor
+     * @param {number} y - Y coordinate for attractor
+     * @param {number|null} strength - Optional force strength for attractor
      */
     addAttractor(x, y, strength = null) {
         // Limit number of attractors to prevent memory leak
@@ -686,7 +686,7 @@ class ParticleSimulator {
 
     /**
      * Update all particles
-     * @param deltaTime
+     * @param {number} deltaTime - Time elapsed since last frame (normalized)
      */
     updateParticles(deltaTime) {
         const forceStrength = this.getForceStrength();
