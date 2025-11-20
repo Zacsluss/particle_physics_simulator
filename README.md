@@ -24,7 +24,7 @@
 <p align="center">
   <img src="https://github.com/Zacsluss/particle_physics_simulator/workflows/CI/badge.svg" alt="CI Status"/>
   <img src="https://img.shields.io/badge/Tests-154_Passing-2e8b57?style=flat-square&logo=vitest&logoColor=white" alt="Tests"/>
-  <img src="https://codecov.io/gh/Zacsluss/particle_physics_simulator/branch/main/graph/badge.svg" alt="Coverage"/>
+  <img src="https://img.shields.io/badge/Coverage-92%25-brightgreen?style=flat-square&logo=vitest&logoColor=white" alt="Coverage"/>
   <img src="https://img.shields.io/github/license/Zacsluss/particle_physics_simulator?style=flat-square&color=555555" alt="License"/>
   <img src="https://img.shields.io/github/last-commit/Zacsluss/particle_physics_simulator?style=flat-square&color=666666" alt="Last Commit"/>
 </p>
