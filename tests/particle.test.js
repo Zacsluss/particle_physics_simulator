@@ -1,4 +1,3 @@
-import { describe, it, expect, beforeEach } from 'vitest';
 import { Particle } from '../js/particle.js';
 
 describe('Particle', () => {

@@ -1,4 +1,3 @@
-import { describe, it, expect, beforeEach } from 'vitest';
 import { SpatialGrid } from '../js/spatial-grid.js';
 import { Particle } from '../js/particle.js';
 

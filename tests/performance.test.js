@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { Particle } from '../js/particle.js';
 import { SpatialGrid } from '../js/spatial-grid.js';
 import { applyElectricForces } from '../js/physics.js';

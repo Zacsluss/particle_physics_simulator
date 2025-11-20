@@ -1,5 +1,3 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-
 // Mock DOM and globals for testing
 const setupMocks = () => {
     global.performance = { now: () => Date.now() };
