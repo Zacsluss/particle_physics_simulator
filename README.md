@@ -627,6 +627,9 @@ MIT License — free to fork and customize
   <a href="mailto:zacharyjsluss@gmail.com">
     <img src="https://img.shields.io/badge/Email-zacharyjsluss@gmail.com-b91c1c?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
   </a>
+  <a href="Zachary%20Sluss%20Resume.pdf">
+    <img src="https://img.shields.io/badge/Resume-Download_PDF-7c3aed?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Resume"/>
+  </a>
 </p>
 
 **Enterprise systems analyst | Problem solver | Builder of unusual projects**
