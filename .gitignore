@@ -18,9 +18,6 @@ desktop.ini
 .settings/
 .classpath
 
-# Development Tools
-.claude/
-
 # Node.js & Package Management
 node_modules/
 npm-debug.log*
