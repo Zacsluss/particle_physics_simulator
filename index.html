@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none';"
+        />
+        <meta
+            name="description"
+            content="Interactive particle physics simulator with gravity, electric fields, magnetic forces, and more"
+        />
+        <meta
+            name="keywords"
+            content="physics, simulation, particles, interactive, canvas, javascript"
+        />
+        <meta name="author" content="Zachary Sluss" />
+        <title>Particle Physics Simulator</title>
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <!-- Main Canvas -->
+        <canvas
+            id="canvas"
+            role="img"
+            aria-label="Interactive particle physics simulation"
+        ></canvas>
+
+        <!-- Control Panel -->
+        <aside id="controls" role="region" aria-label="Simulation controls">
+            <div id="glassism-title">Particle Physics Simulator</div>
+            <div id="glassism-subtitle">By Zac Sluss</div>
+
+            <div class="stat">
+                Particles:
+                <span id="particleCount" aria-live="polite">0</span>
+            </div>
+            <div class="stat">
+                FPS:
+                <span id="fps" aria-live="polite">60</span>
+            </div>
+            <div class="stat">
+                Mode:
+                <span id="mode" aria-live="polite">Gravity</span>
+            </div>
+
+            <h4>Particle Controls</h4>
+
+            <!-- Mode Selection -->
+            <section aria-label="Physics modes">
+                <button id="gravityBtn" aria-label="Switch to gravity mode">🌍 Gravity Mode</button>
+                <button id="electricBtn" aria-label="Switch to electric field mode">
+                    ⚡ Electric Field
+                </button>
+                <button id="magneticBtn" aria-label="Switch to magnetic field mode">
+                    🧲 Magnetic Field
+                </button>
+                <button id="blackholeBtn" aria-label="Switch to black hole mode">
+                    🌌 Black Hole
+                </button>
+                <button id="repelBtn" aria-label="Switch to repulsion mode">💫 Repulsion</button>
+                <button id="dnaBtn" aria-label="Switch to DNA helix mode">🧬 DNA Helix</button>
+            </section>
+
+            <!-- Physics Controls -->
+            <section aria-label="Physics parameters">
+                <div class="slider-container">
+                    <label for="forceStrength">
+                        Force Strength:
+                        <span id="forceValue" aria-live="polite">5</span>
+                    </label>
+                    <input
+                        type="range"
+                        id="forceStrength"
+                        min="0"
+                        max="20"
+                        value="5"
+                        aria-label="Adjust force strength from 0 to 20"
+                    />
+                </div>
+
+                <div class="slider-container">
+                    <label for="particleSize">
+                        Particle Size:
+                        <span id="sizeValue" aria-live="polite">3</span>
+                    </label>
+                    <input
+                        type="range"
+                        id="particleSize"
+                        min="1"
+                        max="10"
+                        value="3"
+                        aria-label="Adjust particle size from 1 to 10"
+                    />
+                </div>
+            </section>
+
+            <!-- Particle Spawn Effects -->
+            <section aria-label="Particle spawn effects">
+                <h4>Particle Spawn Effects</h4>
+                <button id="explosionBtn" aria-label="Create explosion effect">💥 Explosion</button>
+                <button id="galaxyBtn" aria-label="Create galaxy formation">🌌 Galaxy</button>
+                <button id="rainBtn" aria-label="Start particle rain effect">
+                    🌧️ Particle Rain
+                </button>
+                <button id="clearBtn" aria-label="Clear all particles">🗑️ Clear All</button>
+            </section>
+
+            <div id="controls-info">
+                <strong>Controls:</strong><br />
+                • Click/Drag: Spawn particles<br />
+                • Right-Click: Add attractor<br />
+                <strong>Keys:</strong> Space (pause) • C (clear) • E (explosion) • G (galaxy) • 1-6
+                (modes)
+            </div>
+        </aside>
+
+        <!-- Screen reader announcements -->
+        <div role="status" aria-live="polite" class="sr-only" id="announcements"></div>
+
+        <!-- Load JavaScript modules -->
+        <script type="module" src="js/app.js"></script>
+
+        <!-- Fallback for browsers without module support -->
+        <noscript>
+            <div class="noscript-message">
+                <h1>JavaScript Required</h1>
+                <p>
+                    This particle physics simulator requires JavaScript to run.<br />
+                    Please enable JavaScript in your browser settings.
+                </p>
+            </div>
+        </noscript>
+    </body>
+</html>

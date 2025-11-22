@@ -1,0 +1,73 @@
+{
+  "name": "particle-physics-simulator",
+  "version": "2.1.0",
+  "description": "Interactive particle physics simulator with gravity, electric fields, magnetic forces, black holes, and DNA helix simulations. Features real-time 60 FPS rendering with 1000+ particles.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "test:perf": "vitest run tests/performance.test.js",
+    "test:a11y": "vitest run tests/accessibility.test.js",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "lint": "eslint js/**/*.js tests/**/*.js",
+    "lint:fix": "eslint js/**/*.js tests/**/*.js --fix",
+    "format": "prettier --write \"**/*.{js,css,html,md}\"",
+    "format:check": "prettier --check \"**/*.{js,css,html,md}\"",
+    "docs": "jsdoc -c jsdoc.json -r js/ -d docs/api"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zacsluss/particle_physics_simulator.git"
+  },
+  "keywords": [
+    "physics",
+    "simulation",
+    "particles",
+    "canvas",
+    "javascript",
+    "interactive",
+    "educational",
+    "visualization",
+    "gravity",
+    "electromagnetism",
+    "black-hole",
+    "dna-helix",
+    "real-time",
+    "60fps",
+    "performance-optimization",
+    "spatial-grid",
+    "es6-modules"
+  ],
+  "author": {
+    "name": "Zachary Sluss",
+    "url": "https://zacsluss.github.io/portfolio/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zacsluss/particle_physics_simulator/issues"
+  },
+  "homepage": "https://zacsluss.github.io/particle_physics_simulator/",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "^1.56.1",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jsdoc": "^48.0.0",
+    "http-server": "^14.1.1",
+    "jsdoc": "^4.0.2",
+    "jsdom": "^24.0.0",
+    "playwright": "^1.56.1",
+    "prettier": "^3.2.5",
+    "vitest": "^1.6.0"
+  }
+}

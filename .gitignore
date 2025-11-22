@@ -1,0 +1,82 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor & IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+.claude/
+
+# Node.js & Package Management
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Keep package.json and package-lock.json for CI/CD and dependency management
+# package.json
+# package-lock.json
+yarn.lock
+
+# Development Tool Configuration - Now included for CI/CD and team consistency
+# These files define code quality standards and should be shared
+# .eslintrc.json
+# .prettierrc.json
+# .prettierignore
+# vitest.config.js
+# jsdoc.json
+
+# Testing Files - Tests are now included for CI/CD
+# tests/ - Keep tests in repo for automated testing
+coverage/
+.nyc_output/
+
+# Developer Documentation - Now visible on GitHub to show collaboration standards
+# CONTRIBUTING.md
+# CHANGELOG.md
+
+# Generated Documentation
+docs/api/
+docs/
+
+# Build & Distribution
+dist/
+build/
+*.min.js
+*.min.css
+
+# Logs
+logs/
+*.log
+
+# Temporary Files
+*.tmp
+*.temp
+.cache/
+
+# Environment Variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Personal Files
+*.pdf
+*.docx
