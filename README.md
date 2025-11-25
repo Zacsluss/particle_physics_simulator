@@ -35,6 +35,7 @@
 An interactive physics playground where you can spawn, manipulate, and watch **1,000 particles** interact in real-time at **60 FPS**. This simulator features six distinct physics modes — from Newtonian gravity to DNA helix formations — all running with **zero runtime dependencies**.
 
 **What makes it interesting:**
+
 - Spatial grid optimization achieving **100x performance improvement** (O(n²) → O(n))
 - Real physics formulas: Newton's F=G·m₁·m₂/r², Coulomb's F=k·q₁·q₂/r², Lorentz force
 - 154 comprehensive tests with 92% coverage and CI/CD pipeline
@@ -46,7 +47,7 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little math.
 
 <img src="particlesim.gif" alt="Physics Simulator Demo" width="800"/>
 
-*Real-time particle physics — click anywhere to spawn particles in 6 different modes*
+_Real-time particle physics — click anywhere to spawn particles in 6 different modes_
 
 </div>
 
@@ -62,11 +63,11 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little math.
 - [🏗️ How It Works - Architecture](#️-how-it-works---architecture)
 - [🚀 Quick Start](#-quick-start)
 - [📊 Technical Deep Dive](#-technical-deep-dive)
-  - [Physics Modes & Formulas](#physics-modes--formulas)
-  - [Performance Optimizations](#performance-optimizations)
-  - [Testing & Code Quality](#testing--code-quality)
-  - [Advanced Configuration](#advanced-configuration)
-  - [Troubleshooting](#troubleshooting)
+    - [Physics Modes & Formulas](#physics-modes--formulas)
+    - [Performance Optimizations](#performance-optimizations)
+    - [Testing & Code Quality](#testing--code-quality)
+    - [Advanced Configuration](#advanced-configuration)
+    - [Troubleshooting](#troubleshooting)
 - [📄 License & Contributing](#-license--contributing)
 - [📬 About & Connect](#-about--connect)
 
@@ -149,21 +150,21 @@ Built with vanilla JavaScript, HTML5 Canvas, and a little math.
 
 ```json
 {
-  "dependencies": {},
-  "devDependencies": {
-    "@axe-core/playwright": "^4.11.0",
-    "@playwright/test": "^1.56.1",
-    "@vitest/coverage-v8": "^1.6.0",
-    "@vitest/ui": "^1.6.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-jsdoc": "^48.0.0",
-    "http-server": "^14.1.1",
-    "jsdoc": "^4.0.2",
-    "jsdom": "^24.0.0",
-    "playwright": "^1.56.1",
-    "prettier": "^3.2.5",
-    "vitest": "^1.6.0"
-  }
+    "dependencies": {},
+    "devDependencies": {
+        "@axe-core/playwright": "^4.11.0",
+        "@playwright/test": "^1.56.1",
+        "@vitest/coverage-v8": "^1.6.0",
+        "@vitest/ui": "^1.6.0",
+        "eslint": "^8.57.0",
+        "eslint-plugin-jsdoc": "^48.0.0",
+        "http-server": "^14.1.1",
+        "jsdoc": "^4.0.2",
+        "jsdom": "^24.0.0",
+        "playwright": "^1.56.1",
+        "prettier": "^3.2.5",
+        "vitest": "^1.6.0"
+    }
 }
 ```
 
@@ -249,22 +250,26 @@ graph LR
 <br/>
 
 **1. User Input → Event Processing**
+
 ```
 User clicks → Mouse event → Particle spawn → State update → Animation loop
 User presses key → Keyboard event → Mode switch/clear/explosion → State update
 ```
 
 **2. Animation Loop → Physics Calculation**
+
 ```
 requestAnimationFrame → Update each particle → Apply physics forces → Spatial grid check → Update position/velocity → Render to canvas
 ```
 
 **3. Physics Engine → Force Application**
+
 ```
 Current mode → Apply mode-specific forces → Calculate particle interactions (spatial grid) → Apply damping → Update acceleration/velocity
 ```
 
 **4. Particle Update → Rendering**
+
 ```
 Verlet integration → Position update → Boundary collision check → Canvas context → Draw particle → FPS tracking
 ```
@@ -314,22 +319,24 @@ git clone https://github.com/Zacsluss/particle_physics_simulator.git && cd parti
 Before running this project locally, ensure you have:
 
 - **Modern Browser** - One of the following with Canvas 2D support:
-  - Chrome 90+ (recommended)
-  - Firefox 88+
-  - Safari 14+
-  - Edge 90+
+    - Chrome 90+ (recommended)
+    - Firefox 88+
+    - Safari 14+
+    - Edge 90+
 - **JavaScript Enabled** - Required for ES6 modules and interactive features
 - **Local HTTP Server** - ES6 modules require HTTP protocol (not `file://`) due to CORS
-  - Python 3 (comes with most systems)
-  - OR Node.js with http-server package
-  - OR any other local server
+    - Python 3 (comes with most systems)
+    - OR Node.js with http-server package
+    - OR any other local server
 
 **For Development:**
+
 - Node.js 12.0.0+ (for npm scripts, testing, linting)
 - npm or yarn package manager
 - Git for version control
 
 **Check your setup:**
+
 ```bash
 # Check Python version
 python --version  # Should be 3.x
@@ -366,6 +373,7 @@ open http://localhost:8000
 ES6 modules use `import/export` syntax which requires HTTP protocol. Opening `index.html` directly (`file://` protocol) will cause CORS errors and the simulator won't load.
 
 **Available npm scripts:**
+
 ```bash
 # Install development dependencies
 npm install
@@ -402,19 +410,22 @@ npm run docs            # Generate JSDoc API documentation
 Since it uses vanilla JavaScript with no transpilation, bundling, or compilation, the source files are production-ready as-is.
 
 **To deploy:**
+
 1. Copy all files to your web server
 2. Ensure server supports:
-   - Static file serving
-   - Correct MIME types for `.js` files (`application/javascript`)
-   - CORS headers if serving from different domain
+    - Static file serving
+    - Correct MIME types for `.js` files (`application/javascript`)
+    - CORS headers if serving from different domain
 
 **Bundle size:**
+
 - HTML: ~5KB
 - CSS: ~8KB
 - JavaScript: ~35KB
 - **Total:** ~50KB (uncompressed)
 
 **Production optimizations already included:**
+
 - Minified-style variable names in critical paths
 - Efficient algorithms (O(n) spatial grid)
 - Hardware-accelerated canvas rendering
@@ -433,6 +444,7 @@ Since it uses vanilla JavaScript with no transpilation, bundling, or compilation
 Already configured — just push to main branch and enable GitHub Pages in repository settings.
 
 **GitHub Pages Settings:**
+
 1. Go to repository **Settings** → **Pages**
 2. **Source:** Deploy from branch
 3. **Branch:** `main`
@@ -442,6 +454,7 @@ Already configured — just push to main branch and enable GitHub Pages in repos
 Your site will be live at: `https://<username>.github.io/particle_physics_simulator/`
 
 **Custom Domain (Optional):**
+
 ```bash
 # Add CNAME file to repository root
 echo "yourdomain.com" > CNAME
@@ -455,6 +468,7 @@ git push
 ```
 
 **Deployment checklist:**
+
 - ✅ Repository is public (or GitHub Pages enabled for private repo)
 - ✅ No build step required (vanilla JS)
 - ✅ All paths are relative (works in subdirectory)
@@ -472,36 +486,38 @@ git push
 ### 1. Adjust Physics Constants
 
 Edit `js/constants.js`:
+
 ```javascript
 // More/fewer particles
-export const MAX_PARTICLES = 1000  // Try: 500 (low-end), 2000 (high-end)
+export const MAX_PARTICLES = 1000; // Try: 500 (low-end), 2000 (high-end)
 
 // Stronger/weaker gravity
-export const GRAVITY_STRENGTH = 0.2  // Try: 0.5 (stronger), 0.1 (gentler)
+export const GRAVITY_STRENGTH = 0.2; // Try: 0.5 (stronger), 0.1 (gentler)
 
 // Energy loss per frame
-export const DAMPING_DEFAULT = 0.99   // Higher = less damping (0.999)
-export const DAMPING_ELECTRIC = 0.96  // Lower = more damping (0.90)
+export const DAMPING_DEFAULT = 0.99; // Higher = less damping (0.999)
+export const DAMPING_ELECTRIC = 0.96; // Lower = more damping (0.90)
 
 // Performance tuning
-export const GRID_SIZE = 50                      // Cell size in pixels
-export const SPATIAL_GRID_REBUILD_INTERVAL = 3   // Frames between rebuilds
+export const GRID_SIZE = 50; // Cell size in pixels
+export const SPATIAL_GRID_REBUILD_INTERVAL = 3; // Frames between rebuilds
 ```
 
 ### 2. Change Visual Style
 
 Edit `css/styles.css`:
+
 ```css
 /* Canvas background */
 canvas {
-    background: #000000;  /* Try: #0a0a1a for dark blue */
+    background: #000000; /* Try: #0a0a1a for dark blue */
 }
 
 /* UI theme colors */
 :root {
-    --primary-color: #00ff88;   /* Try: #ff6b6b for red */
-    --bg-color: #1a1a1a;        /* Dark background */
-    --text-color: #ffffff;      /* Light text */
+    --primary-color: #00ff88; /* Try: #ff6b6b for red */
+    --bg-color: #1a1a1a; /* Dark background */
+    --text-color: #ffffff; /* Light text */
 }
 
 /* Button hover effects */
@@ -514,16 +530,18 @@ button:hover {
 ### 3. Modify Particle Colors
 
 Edit `js/particle.js` (around line 80):
+
 ```javascript
 // Electric mode colors
 if (this.mode === 'electric') {
-    ctx.fillStyle = this.charge > 0
-        ? '#ff6b6b'  // Red for positive (try: #ff1744)
-        : '#4ecdc4'  // Cyan for negative (try: #00e5ff)
+    ctx.fillStyle =
+        this.charge > 0
+            ? '#ff6b6b' // Red for positive (try: #ff1744)
+            : '#4ecdc4'; // Cyan for negative (try: #00e5ff)
 }
 
 // Default particle color
-ctx.fillStyle = '#ffffff'  // White (try: #00ff88 for green)
+ctx.fillStyle = '#ffffff'; // White (try: #00ff88 for green)
 ```
 
 ### 4. Add New Physics Mode
@@ -557,18 +575,20 @@ See [Advanced Configuration](#advanced-configuration) section for step-by-step g
 **Formula:** F = G·m₁·m₂/r²
 
 Dual force system:
+
 - Constant downward: F = ma (a = 0.2)
 - Mouse attraction: Inverse square law
 
 ```javascript
 // Constant gravity
-particle.applyForce(0, GRAVITY_STRENGTH)
+particle.applyForce(0, GRAVITY_STRENGTH);
 
 // Mouse attraction
-const force = (100 * strength) / (dist * dist)
+const force = (100 * strength) / (dist * dist);
 ```
 
 **Physics:**
+
 - Damping: 0.99 (1% energy loss/frame)
 - Singularity protection (dist > 1)
 - Wall bounce coefficient: 0.8
@@ -581,19 +601,21 @@ const force = (100 * strength) / (dist * dist)
 **Formula:** F = k·q₁·q₂/r²
 
 Coulomb's law with binary charges:
+
 - 50% positive (+1), 50% negative (-1)
 - Like charges repel, unlike attract
 - Uses spatial grid for O(n) performance
 
 ```javascript
 // Charge assignment
-this.charge = Math.random() > 0.5 ? 1 : -1
+this.charge = Math.random() > 0.5 ? 1 : -1;
 
 // Force calculation
-const force = (charge1 * charge2 * -2) / distSq
+const force = (charge1 * charge2 * -2) / distSq;
 ```
 
 **Physics:**
+
 - Red particles = positive charge
 - Cyan particles = negative charge
 - Interaction radius: 50 pixels
@@ -607,18 +629,20 @@ const force = (charge1 * charge2 * -2) / distSq
 **Formula:** F = q(v × B) (simplified)
 
 Lorentz force creating spirals:
+
 - Force perpendicular to velocity
 - 2D simplification of 3D cross product
 - Creates beautiful swirling patterns
 
 ```javascript
 // Perpendicular force
-const perpX = -particle.vy
-const perpY = particle.vx
-particle.applyForce(perpX * strength, perpY * strength)
+const perpX = -particle.vy;
+const perpY = particle.vx;
+particle.applyForce(perpX * strength, perpY * strength);
 ```
 
 **Physics:**
+
 - Qualitative, not quantitative
 - Demonstrates charged particle spiraling
 - Damping: 0.97
@@ -633,15 +657,17 @@ particle.applyForce(perpX * strength, perpY * strength)
 **Formula:** F = G·M/r² (r → 0)
 
 Extreme gravitational singularity:
+
 - Event horizon radius: 50px
 - Particles disappear at center
 - Singularity protection
 
 ```javascript
-const force = (1000 * strength) / (dist * dist + 1)
+const force = (1000 * strength) / (dist * dist + 1);
 ```
 
 **Physics:**
+
 - Extreme acceleration toward center
 - Stable at very close distances
 - No escape velocity (simplified)
@@ -654,15 +680,17 @@ const force = (1000 * strength) / (dist * dist + 1)
 **Formula:** F = -G·m₁·m₂/r²
 
 Inverse gravity (all particles repel):
+
 - Useful for testing collision detection
 - Creates expansion effects
 - Anti-gravity demonstrations
 
 ```javascript
-const force = -(100 * strength) / (distSq + 1)
+const force = -(100 * strength) / (distSq + 1);
 ```
 
 **Use Cases:**
+
 - Testing spatial grid optimization
 - Dispersal simulations
 - Boundary stress testing
@@ -675,17 +703,19 @@ const force = -(100 * strength) / (distSq + 1)
 **Formula:** Cylindrical force field
 
 Time-dependent double helix:
+
 - Two intertwining helices
 - Combines radial + tangential forces
 - Emergent behavior
 
 ```javascript
-const angle = frameCounter * DNA_SPEED
-const targetX = centerX + Math.cos(angle) * radius
+const angle = frameCounter * DNA_SPEED;
+const targetX = centerX + Math.cos(angle) * radius;
 // Attract to helix path
 ```
 
 **Physics:**
+
 - Demonstrates emergent patterns
 - Time-dependent force field
 - Multiple stable orbits
@@ -710,6 +740,7 @@ const targetX = centerX + Math.cos(angle) * radius
 **The Problem:**
 
 Naive collision detection is O(n²):
+
 ```
 For 1,000 particles:
   Each particle checks 999 others
@@ -721,6 +752,7 @@ For 1,000 particles:
 **The Solution:**
 
 Spatial grid partitioning reduces to O(n):
+
 ```
 Divide canvas into 50×50 pixel cells
 Each particle checks only 9 cells (self + 8 neighbors)
@@ -748,42 +780,43 @@ For 1,000 particles:
 
 ```javascript
 class SpatialGrid {
-  constructor(width, height, cellSize = 50) {
-    this.cellSize = cellSize
-    this.cols = Math.ceil(width / cellSize)
-    this.rows = Math.ceil(height / cellSize)
-    this.cells = new Map() // Hash map for O(1) lookups
-  }
-
-  add(particle) {
-    const cellX = Math.floor(particle.x / this.cellSize)
-    const cellY = Math.floor(particle.y / this.cellSize)
-    const key = `${cellX},${cellY}`
-
-    if (!this.cells.has(key)) this.cells.set(key, [])
-    this.cells.get(key).push(particle)
-  }
-
-  getNearby(particle, radius) {
-    const nearby = []
-    const cellX = Math.floor(particle.x / this.cellSize)
-    const cellY = Math.floor(particle.y / this.cellSize)
-
-    // Check 9 cells (3×3 grid centered on particle)
-    for (let dx = -1; dx <= 1; dx++) {
-      for (let dy = -1; dy <= 1; dy++) {
-        const key = `${cellX + dx},${cellY + dy}`
-        if (this.cells.has(key)) {
-          nearby.push(...this.cells.get(key))
-        }
-      }
+    constructor(width, height, cellSize = 50) {
+        this.cellSize = cellSize;
+        this.cols = Math.ceil(width / cellSize);
+        this.rows = Math.ceil(height / cellSize);
+        this.cells = new Map(); // Hash map for O(1) lookups
     }
-    return nearby
-  }
+
+    add(particle) {
+        const cellX = Math.floor(particle.x / this.cellSize);
+        const cellY = Math.floor(particle.y / this.cellSize);
+        const key = `${cellX},${cellY}`;
+
+        if (!this.cells.has(key)) this.cells.set(key, []);
+        this.cells.get(key).push(particle);
+    }
+
+    getNearby(particle, radius) {
+        const nearby = [];
+        const cellX = Math.floor(particle.x / this.cellSize);
+        const cellY = Math.floor(particle.y / this.cellSize);
+
+        // Check 9 cells (3×3 grid centered on particle)
+        for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = -1; dy <= 1; dy++) {
+                const key = `${cellX + dx},${cellY + dy}`;
+                if (this.cells.has(key)) {
+                    nearby.push(...this.cells.get(key));
+                }
+            }
+        }
+        return nearby;
+    }
 }
 ```
 
 **Why it works:**
+
 - Particles only interact within limited radius (50 pixels)
 - Grid cell size matches interaction radius
 - Hash map provides O(1) cell lookups
@@ -799,22 +832,25 @@ class SpatialGrid {
 **Why Verlet over Euler?**
 
 **Euler Integration (Naive):**
+
 ```javascript
 // Unstable, poor energy conservation, can "explode"
-v = v + a * dt
-x = x + v * dt
+v = v + a * dt;
+x = x + v * dt;
 ```
 
 **Verlet Integration (Semi-Implicit Euler):**
+
 ```javascript
 // Stable, good energy conservation, time-reversible
-v = v + a * dt          // Update velocity from acceleration
-v = v * damping         // Apply damping
-v = clamp(v, -maxSpeed, maxSpeed)  // Speed limiting
-x = x + v * dt          // Update position from velocity
+v = v + a * dt; // Update velocity from acceleration
+v = v * damping; // Apply damping
+v = clamp(v, -maxSpeed, maxSpeed); // Speed limiting
+x = x + v * dt; // Update position from velocity
 ```
 
 **Benefits:**
+
 - **Better energy conservation** - Particles don't gain infinite speed
 - **More stable** - Handles stiff systems (strong forces) without exploding
 - **Prevents artifacts** - No numerical instability at high forces
@@ -822,6 +858,7 @@ x = x + v * dt          // Update position from velocity
 - **Minimal cost** - Only slightly more expensive than Euler
 
 **Implementation in `particle.js`:**
+
 ```javascript
 update(dt = 1) {
   // Apply Verlet integration
@@ -857,6 +894,7 @@ update(dt = 1) {
 <br/>
 
 **Batched Rendering:**
+
 - Single `fillStyle` per particle type (minimized state changes)
 - Path batching for fills (one `beginPath` for multiple particles)
 - No overdraw (each pixel drawn once)
@@ -865,52 +903,57 @@ update(dt = 1) {
 **Performance Tricks:**
 
 **1. Stats Update Throttling**
+
 ```javascript
 // Update FPS/particle count every 10 frames, not every frame
 if (frameCounter % 10 === 0) {
-  updateFPS()
-  updateParticleCount()
+    updateFPS();
+    updateParticleCount();
 }
 ```
 
 **2. Dynamic Quality Adjustment**
+
 ```javascript
 // Skip frames under heavy load (500+ particles, FPS < 35)
 if (particles.length > 500 && fps < 35) {
-  skipFrame = !skipFrame
-  if (skipFrame) return  // Skip this frame
+    skipFrame = !skipFrame;
+    if (skipFrame) return; // Skip this frame
 }
 ```
 
 **3. Speed Limiting**
+
 ```javascript
 // Prevent tunneling through boundaries
-const maxSpeed = 15  // Particles can't move > 15 pixels/frame
-this.vx = Math.min(Math.max(this.vx, -maxSpeed), maxSpeed)
-this.vy = Math.min(Math.max(this.vy, -maxSpeed), maxSpeed)
+const maxSpeed = 15; // Particles can't move > 15 pixels/frame
+this.vx = Math.min(Math.max(this.vx, -maxSpeed), maxSpeed);
+this.vy = Math.min(Math.max(this.vy, -maxSpeed), maxSpeed);
 ```
 
 **4. Efficient DOM Updates**
+
 ```javascript
 // Cache element references (done once at init)
-this.fpsDisplay = document.getElementById('fps')
-this.particleCountDisplay = document.getElementById('particle-count')
+this.fpsDisplay = document.getElementById('fps');
+this.particleCountDisplay = document.getElementById('particle-count');
 
 // Use textContent, not innerHTML
-this.fpsDisplay.textContent = `${fps} FPS`
+this.fpsDisplay.textContent = `${fps} FPS`;
 ```
 
 **5. Canvas Context Optimization**
+
 ```javascript
 // Reuse context without getting it every frame
-this.ctx = canvas.getContext('2d')
+this.ctx = canvas.getContext('2d');
 
 // Set state once per render pass
-ctx.globalAlpha = 0.8
-ctx.fillStyle = particleColor
+ctx.globalAlpha = 0.8;
+ctx.fillStyle = particleColor;
 
 // Draw all particles in one pass
-particles.forEach(p => p.draw(ctx))
+particles.forEach((p) => p.draw(ctx));
 ```
 
 </details>
@@ -923,32 +966,35 @@ particles.forEach(p => p.draw(ctx))
 **The Problem with Array.splice():**
 
 Traditional particle removal is O(n):
+
 ```javascript
 // BAD: O(n) deletion - shifts all elements after index
 for (let i = 0; i < particles.length; i++) {
-  if (particles[i].isDead()) {
-    particles.splice(i, 1)  // Expensive! Shifts remaining elements
-    i--  // Adjust index after deletion
-  }
+    if (particles[i].isDead()) {
+        particles.splice(i, 1); // Expensive! Shifts remaining elements
+        i--; // Adjust index after deletion
+    }
 }
 ```
 
 **Swap-and-Pop Solution:**
 
 O(1) deletion by swapping with last element:
+
 ```javascript
 // GOOD: O(1) deletion - no array shifting
 for (let i = particles.length - 1; i >= 0; i--) {
-  if (particles[i].isDead()) {
-    // Swap dead particle with last particle
-    particles[i] = particles[particles.length - 1]
-    // Remove last particle (O(1) operation)
-    particles.pop()
-  }
+    if (particles[i].isDead()) {
+        // Swap dead particle with last particle
+        particles[i] = particles[particles.length - 1];
+        // Remove last particle (O(1) operation)
+        particles.pop();
+    }
 }
 ```
 
 **Benefits:**
+
 - **No array shifting** - Avoids copying elements
 - **No garbage collection spikes** - Predictable memory usage
 - **Maintains performance** - Consistent frame times at high particle counts
@@ -985,88 +1031,88 @@ for (let i = particles.length - 1; i >= 0; i--) {
 **Unit Tests (154 tests)**
 
 - **`particle.test.js`** (25 tests) - Particle physics and motion
-  - Position/velocity/acceleration updates
-  - Force application and summation
-  - Verlet integration accuracy
-  - Boundary collision detection and damping
-  - Speed limiting and edge cases
+    - Position/velocity/acceleration updates
+    - Force application and summation
+    - Verlet integration accuracy
+    - Boundary collision detection and damping
+    - Speed limiting and edge cases
 
 - **`physics.test.js`** (32 tests) - All 6 physics modes
-  - Gravity mode: Constant + inverse square law
-  - Electric mode: Coulomb's law with spatial grid
-  - Magnetic mode: Lorentz force (perpendicular to velocity)
-  - Black Hole mode: Singularity with protection
-  - Repulsion mode: Inverse gravity expansion
-  - DNA Helix mode: Cylindrical force field
+    - Gravity mode: Constant + inverse square law
+    - Electric mode: Coulomb's law with spatial grid
+    - Magnetic mode: Lorentz force (perpendicular to velocity)
+    - Black Hole mode: Singularity with protection
+    - Repulsion mode: Inverse gravity expansion
+    - DNA Helix mode: Cylindrical force field
 
 - **`spatial-grid.test.js`** (18 tests) - Grid optimization
-  - Grid construction and cell sizing
-  - Particle insertion and retrieval
-  - Neighbor finding algorithm (9-cell check)
-  - Edge case handling (boundaries, empty cells)
-  - Performance benchmarks (O(n²) vs O(n))
+    - Grid construction and cell sizing
+    - Particle insertion and retrieval
+    - Neighbor finding algorithm (9-cell check)
+    - Edge case handling (boundaries, empty cells)
+    - Performance benchmarks (O(n²) vs O(n))
 
 - **`integration.test.js`** (24 tests) - Component integration
-  - Particle + Physics engine interaction
-  - Physics + Spatial grid optimization
-  - Event handling flow (mouse, keyboard, touch)
-  - State management and mode switching
+    - Particle + Physics engine interaction
+    - Physics + Spatial grid optimization
+    - Event handling flow (mouse, keyboard, touch)
+    - State management and mode switching
 
 - **`performance.test.js`** (15 tests) - Performance regression
-  - FPS benchmarks at various particle counts (100, 250, 500, 1000)
-  - Memory usage tracking (heap size)
-  - Spatial grid speedup verification (7.5x at 1000 particles)
-  - Frame time measurements (target: <16.67ms)
+    - FPS benchmarks at various particle counts (100, 250, 500, 1000)
+    - Memory usage tracking (heap size)
+    - Spatial grid speedup verification (7.5x at 1000 particles)
+    - Frame time measurements (target: <16.67ms)
 
 - **`accessibility.test.js`** (12 tests) - WCAG 2.1 AA compliance
-  - Keyboard navigation (Space, C, E, G, R, 1-6)
-  - ARIA labels on all interactive elements
-  - Screen reader support (role attributes)
-  - Color contrast ratios (4.5:1 minimum)
-  - Focus indicators visible
+    - Keyboard navigation (Space, C, E, G, R, 1-6)
+    - ARIA labels on all interactive elements
+    - Screen reader support (role attributes)
+    - Color contrast ratios (4.5:1 minimum)
+    - Focus indicators visible
 
 - **`app.test.js`** (28 tests) - Application logic
-  - Event listener setup (mouse, touch, keyboard)
-  - UI control functionality
-  - Mode switching and state updates
-  - Animation loop lifecycle
-  - Canvas resizing responsiveness
+    - Event listener setup (mouse, touch, keyboard)
+    - UI control functionality
+    - Mode switching and state updates
+    - Animation loop lifecycle
+    - Canvas resizing responsiveness
 
 **E2E Tests (25+ tests)**
 
 - **`basic-functionality.spec.js`** (6 tests)
-  - Page loads without errors
-  - Canvas renders and is visible
-  - Controls are interactive
-  - Particles spawn on click
-  - FPS counter updates
-  - Mode buttons switch correctly
+    - Page loads without errors
+    - Canvas renders and is visible
+    - Controls are interactive
+    - Particles spawn on click
+    - FPS counter updates
+    - Mode buttons switch correctly
 
 - **`physics-modes.spec.js`** (7 tests)
-  - All 6 physics modes switch correctly
-  - Particles behave according to mode
-  - Forces apply correctly
-  - Visual verification of mode effects
+    - All 6 physics modes switch correctly
+    - Particles behave according to mode
+    - Forces apply correctly
+    - Visual verification of mode effects
 
 - **`particle-spawning.spec.js`** (5 tests)
-  - Explosion pattern (E key)
-  - Galaxy spiral formation (G key)
-  - Rain effect (R key)
-  - Mouse click spawning
-  - Mouse drag stream spawning
+    - Explosion pattern (E key)
+    - Galaxy spiral formation (G key)
+    - Rain effect (R key)
+    - Mouse click spawning
+    - Mouse drag stream spawning
 
 - **`keyboard-shortcuts.spec.js`** (4 tests)
-  - Space (pause/resume)
-  - C (clear all particles)
-  - 1-6 (mode switching)
-  - Multiple key combinations
+    - Space (pause/resume)
+    - C (clear all particles)
+    - 1-6 (mode switching)
+    - Multiple key combinations
 
 - **`accessibility.spec.js`** (5 tests)
-  - Axe accessibility scan (0 violations)
-  - Keyboard-only navigation
-  - Screen reader announcements
-  - Focus management
-  - ARIA live regions
+    - Axe accessibility scan (0 violations)
+    - Keyboard-only navigation
+    - Screen reader announcements
+    - Focus management
+    - ARIA live regions
 
 ### CI/CD Pipeline
 
@@ -1076,27 +1122,27 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  lint-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - Checkout code
-      - Setup Node.js 20
-      - Install dependencies
-      - Run ESLint (0 errors, 0 warnings)
-      - Run Prettier format check
-      - Run Vitest unit tests (154 tests)
-      - Generate coverage report (92%)
-      - Upload coverage to Codecov
-      - Run Playwright E2E tests (3 browsers: Chromium, Firefox, WebKit)
-      - Upload test results
+    lint-and-test:
+        runs-on: ubuntu-latest
+        steps:
+            - Checkout code
+            - Setup Node.js 20
+            - Install dependencies
+            - Run ESLint (0 errors, 0 warnings)
+            - Run Prettier format check
+            - Run Vitest unit tests (154 tests)
+            - Generate coverage report (92%)
+            - Upload coverage to Codecov
+            - Run Playwright E2E tests (3 browsers: Chromium, Firefox, WebKit)
+            - Upload test results
 
-  accessibility-check:
-    runs-on: ubuntu-latest
-    steps:
-      - Axe accessibility scan
-      - WCAG 2.1 AA compliance verification
-      - Color contrast checks
-      - Keyboard navigation tests
+    accessibility-check:
+        runs-on: ubuntu-latest
+        steps:
+            - Axe accessibility scan
+            - WCAG 2.1 AA compliance verification
+            - Color contrast checks
+            - Keyboard navigation tests
 ```
 
 ### Code Quality Metrics
@@ -1149,40 +1195,40 @@ Edit `js/constants.js`:
 
 ```javascript
 // Particle System
-export const MAX_PARTICLES = 1000           // Default: 1000
+export const MAX_PARTICLES = 1000; // Default: 1000
 // Lower (500) for low-end devices, Higher (2000) for high-end GPUs
 
-export const PARTICLE_RADIUS = 3            // Default: 3 pixels
+export const PARTICLE_RADIUS = 3; // Default: 3 pixels
 // Smaller (2) for dense clouds, Larger (5) for visible individual particles
 
 // Physics Constants
-export const GRAVITY_STRENGTH = 0.2         // Default: 0.2
+export const GRAVITY_STRENGTH = 0.2; // Default: 0.2
 // Higher (0.5) for stronger pull, Lower (0.1) for gentler fall
 
-export const DAMPING_DEFAULT = 0.99         // Default: 0.99 (1% loss)
-export const DAMPING_MAGNETIC = 0.97        // Magnetic mode
-export const DAMPING_ELECTRIC = 0.96        // Electric mode
+export const DAMPING_DEFAULT = 0.99; // Default: 0.99 (1% loss)
+export const DAMPING_MAGNETIC = 0.97; // Magnetic mode
+export const DAMPING_ELECTRIC = 0.96; // Electric mode
 // Higher (0.999) = more bouncy, Lower (0.90) = more sluggish
 
-export const SPEED_LIMIT = 15               // Default: 15 pixels/frame
+export const SPEED_LIMIT = 15; // Default: 15 pixels/frame
 // Prevents tunneling through boundaries
 // Lower (10) for gentler motion, Higher (20) for faster particles
 
-export const WALL_BOUNCE_DAMPING = 0.8      // Default: 0.8
+export const WALL_BOUNCE_DAMPING = 0.8; // Default: 0.8
 // Coefficient of restitution: 1.0 = perfectly elastic, 0.0 = no bounce
 
 // Spatial Grid Optimization
-export const GRID_SIZE = 50                 // Default: 50 pixels
+export const GRID_SIZE = 50; // Default: 50 pixels
 // Should match typical interaction radius
 // Smaller (25) for dense interactions, Larger (100) for sparse
 
-export const SPATIAL_GRID_REBUILD_INTERVAL = 3  // Default: 3 frames
+export const SPATIAL_GRID_REBUILD_INTERVAL = 3; // Default: 3 frames
 // How often to rebuild grid
 // Higher (5) = faster but less accurate, Lower (1) = slower but more accurate
 
 // Auto Quality Adjustment
-export const AUTO_QUALITY_MIN_PARTICLES = 400   // Default: 400
-export const LOW_FPS_THRESHOLD = 35             // Default: 35 FPS
+export const AUTO_QUALITY_MIN_PARTICLES = 400; // Default: 400
+export const LOW_FPS_THRESHOLD = 35; // Default: 35 FPS
 // Triggers dynamic quality reduction when FPS drops
 ```
 
@@ -1195,18 +1241,18 @@ Edit `css/styles.css`:
 ```css
 /* Canvas Background */
 canvas {
-    background: #000000;  /* Black */
+    background: #000000; /* Black */
     /* Try: radial-gradient(circle at center, #1a1a2e, #000000) for vignette */
     /* Try: #0a0a1a for dark blue */
 }
 
 /* UI Theme Colors */
 :root {
-    --primary-color: #00ff88;      /* Accent color (green) */
-    --secondary-color: #4ecdc4;    /* Secondary accent */
-    --bg-color: #1a1a1a;           /* Dark background */
-    --text-color: #ffffff;         /* Light text */
-    --button-hover: #00cc6a;       /* Button hover state */
+    --primary-color: #00ff88; /* Accent color (green) */
+    --secondary-color: #4ecdc4; /* Secondary accent */
+    --bg-color: #1a1a1a; /* Dark background */
+    --text-color: #ffffff; /* Light text */
+    --button-hover: #00cc6a; /* Button hover state */
 }
 
 /* Button Styles */
@@ -1283,37 +1329,37 @@ draw(ctx) {
  * @param {boolean} mouseDown - Is mouse button pressed
  */
 export function applyVortexForces(particle, forceStrength, mouseX, mouseY, mouseDown) {
-    const centerX = window.innerWidth / 2
-    const centerY = window.innerHeight / 2
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
 
     // Calculate vector from center to particle
-    const dx = particle.x - centerX
-    const dy = particle.y - centerY
-    const dist = Math.sqrt(dx * dx + dy * dy)
+    const dx = particle.x - centerX;
+    const dy = particle.y - centerY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
 
-    if (dist < 1) return  // Avoid division by zero
+    if (dist < 1) return; // Avoid division by zero
 
     // Radial force (toward center)
-    const radialForce = forceStrength * 2 / dist
-    const radialX = -(dx / dist) * radialForce
-    const radialY = -(dy / dist) * radialForce
+    const radialForce = (forceStrength * 2) / dist;
+    const radialX = -(dx / dist) * radialForce;
+    const radialY = -(dy / dist) * radialForce;
 
     // Tangential force (perpendicular to radius)
-    const tangentialForce = forceStrength * 5
-    const tangentialX = -(dy / dist) * tangentialForce
-    const tangentialY = (dx / dist) * tangentialForce
+    const tangentialForce = forceStrength * 5;
+    const tangentialX = -(dy / dist) * tangentialForce;
+    const tangentialY = (dx / dist) * tangentialForce;
 
     // Apply combined forces
-    particle.applyForce(radialX + tangentialX, radialY + tangentialY)
+    particle.applyForce(radialX + tangentialX, radialY + tangentialY);
 
     // Optional: Mouse interaction (pull particles toward mouse)
     if (mouseDown) {
-        const mdx = mouseX - particle.x
-        const mdy = mouseY - particle.y
-        const mdist = Math.sqrt(mdx * mdx + mdy * mdy)
+        const mdx = mouseX - particle.x;
+        const mdy = mouseY - particle.y;
+        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
         if (mdist > 1) {
-            const mforce = (50 * forceStrength) / (mdist * mdist)
-            particle.applyForce((mdx / mdist) * mforce, (mdy / mdist) * mforce)
+            const mforce = (50 * forceStrength) / (mdist * mdist);
+            particle.applyForce((mdx / mdist) * mforce, (mdy / mdist) * mforce);
         }
     }
 }
@@ -1329,20 +1375,18 @@ export const MODES = {
     BLACK_HOLE: 'blackhole',
     REPEL: 'repel',
     DNA: 'dna',
-    VORTEX: 'vortex'  // Your new mode
-}
+    VORTEX: 'vortex' // Your new mode
+};
 
 // Add mode-specific damping (optional)
-export const DAMPING_VORTEX = 0.98
+export const DAMPING_VORTEX = 0.98;
 ```
 
 **Step 3:** Add UI button in `index.html`
 
 ```html
 <!-- Add after existing mode buttons -->
-<button id="vortexBtn" class="mode-btn" aria-label="Vortex mode">
-    🌀 Vortex
-</button>
+<button id="vortexBtn" class="mode-btn" aria-label="Vortex mode">🌀 Vortex</button>
 ```
 
 **Step 4:** Wire up in `js/app.js`
@@ -1380,25 +1424,26 @@ case MODES.VORTEX:
 ```javascript
 describe('Vortex Mode', () => {
     it('should apply tangential force perpendicular to radius', () => {
-        const particle = new Particle(100, 100)
-        const centerX = 0, centerY = 0
+        const particle = new Particle(100, 100);
+        const centerX = 0,
+            centerY = 0;
 
-        applyVortexForces(particle, 1.0, centerX, centerY, false)
+        applyVortexForces(particle, 1.0, centerX, centerY, false);
 
         // Verify force is perpendicular to position vector
-        const dx = particle.x - centerX
-        const dy = particle.y - centerY
-        const dotProduct = particle.ax * dx + particle.ay * dy
+        const dx = particle.x - centerX;
+        const dy = particle.y - centerY;
+        const dotProduct = particle.ax * dx + particle.ay * dy;
 
         // Perpendicular forces have dot product near zero
-        expect(Math.abs(dotProduct)).toBeLessThan(0.1)
-    })
+        expect(Math.abs(dotProduct)).toBeLessThan(0.1);
+    });
 
     it('should create orbital motion', () => {
         // Test that particles gain tangential velocity
         // Add more specific tests for your physics
-    })
-})
+    });
+});
 ```
 
 **Done!** Your custom physics mode is now integrated with full UI, testing, and proper code organization.
@@ -1422,6 +1467,7 @@ describe('Vortex Mode', () => {
 <br/>
 
 **Symptoms:**
+
 - Blank canvas
 - Console error: `Access to script at 'file://...' from origin 'null' has been blocked by CORS policy`
 - Console error: `Failed to load module script: Expected a JavaScript module script but the server responded with a MIME type of "text/plain"`
@@ -1432,6 +1478,7 @@ ES6 modules require HTTP protocol. Opening `index.html` directly uses `file://` 
 **Solutions:**
 
 **1. Use local HTTP server (recommended):**
+
 ```bash
 # Python 3 (most common)
 python -m http.server 8000
@@ -1447,6 +1494,7 @@ php -S localhost:8000
 ```
 
 **2. Disable browser security (NOT RECOMMENDED for development):**
+
 ```bash
 # Chrome (macOS)
 open -na "Google Chrome" --args --disable-web-security --user-data-dir="/tmp/chrome_dev"
@@ -1456,10 +1504,12 @@ chrome.exe --disable-web-security --user-data-dir="C:\tmp\chrome_dev"
 ```
 
 **3. Use browser extension:**
+
 - Install "Web Server for Chrome" extension
 - Point it to your project directory
 
 **Verification:**
+
 - URL should start with `http://localhost` NOT `file://`
 - Console should show no CORS errors
 - Particles should spawn on click
@@ -1476,6 +1526,7 @@ chrome.exe --disable-web-security --user-data-dir="C:\tmp\chrome_dev"
 <br/>
 
 **Symptoms:**
+
 - FPS counter shows < 30
 - Particles stutter or skip frames
 - Mouse drag feels unresponsive
@@ -1484,12 +1535,14 @@ chrome.exe --disable-web-security --user-data-dir="C:\tmp\chrome_dev"
 **Quick Fixes:**
 
 **1. Close other browser tabs** (especially video/social media)
+
 ```bash
 # Check Chrome task manager to see memory usage
 Chrome Menu → More Tools → Task Manager
 ```
 
 **2. Disable browser extensions temporarily**
+
 ```bash
 # Chrome Incognito mode (disables most extensions)
 Ctrl+Shift+N (Windows) or Cmd+Shift+N (Mac)
@@ -1506,29 +1559,29 @@ Edit `js/constants.js` to reduce computational load:
 
 ```javascript
 // Reduce particle count
-export const MAX_PARTICLES = 500  // Down from 1000
+export const MAX_PARTICLES = 500; // Down from 1000
 
 // Increase grid rebuild interval (less accurate but faster)
-export const SPATIAL_GRID_REBUILD_INTERVAL = 5  // Up from 3
+export const SPATIAL_GRID_REBUILD_INTERVAL = 5; // Up from 3
 
 // Lower quality threshold
-export const AUTO_QUALITY_MIN_PARTICLES = 300  // Down from 400
+export const AUTO_QUALITY_MIN_PARTICLES = 300; // Down from 400
 
 // Increase grid cell size (fewer neighbor checks)
-export const GRID_SIZE = 75  // Up from 50
+export const GRID_SIZE = 75; // Up from 50
 ```
 
 ---
 
 **Hardware Limitations:**
 
-| Hardware              | Expected FPS | Max Particles | Notes                          |
-| --------------------- | ------------ | ------------- | ------------------------------ |
-| Integrated GPU (Intel)| 30-45        | 500           | Reduce particle count          |
-| Mid-range GPU (GTX 1060) | 60       | 1000          | Default settings work well     |
-| High-end GPU (RTX 3070+) | 60       | 2000+         | Can increase particle count    |
-| Low-end mobile        | 15-30        | 250           | Use mobile-optimized settings  |
-| High-end mobile (iPhone 13+) | 30-60 | 500      | Good performance               |
+| Hardware                     | Expected FPS | Max Particles | Notes                         |
+| ---------------------------- | ------------ | ------------- | ----------------------------- |
+| Integrated GPU (Intel)       | 30-45        | 500           | Reduce particle count         |
+| Mid-range GPU (GTX 1060)     | 60           | 1000          | Default settings work well    |
+| High-end GPU (RTX 3070+)     | 60           | 2000+         | Can increase particle count   |
+| Low-end mobile               | 15-30        | 250           | Use mobile-optimized settings |
+| High-end mobile (iPhone 13+) | 30-60        | 500           | Good performance              |
 
 ---
 
@@ -1536,11 +1589,11 @@ export const GRID_SIZE = 75  // Up from 50
 
 ```javascript
 // Add to js/app.js to log performance metrics
-console.log('Particles:', particles.length)
-console.log('FPS:', fps)
-console.log('Frame time:', frameTime, 'ms')
-console.log('Grid cells:', grid.cells.size)
-console.log('Comparisons/frame:', particles.length * 20)  // Approximate
+console.log('Particles:', particles.length);
+console.log('FPS:', fps);
+console.log('Frame time:', frameTime, 'ms');
+console.log('Grid cells:', grid.cells.size);
+console.log('Comparisons/frame:', particles.length * 20); // Approximate
 ```
 
 </details>
@@ -1555,6 +1608,7 @@ console.log('Comparisons/frame:', particles.length * 20)  // Approximate
 <br/>
 
 **Symptoms:**
+
 - Canvas renders (black box visible) but no particles
 - Clicking doesn't spawn particles
 - FPS counter works but no visual feedback
@@ -1562,49 +1616,56 @@ console.log('Comparisons/frame:', particles.length * 20)  // Approximate
 **Possible Causes & Solutions:**
 
 **1. Canvas size is 0 or very small**
+
 ```javascript
 // Open browser console and check:
-console.log(canvas.width, canvas.height)
+console.log(canvas.width, canvas.height);
 // Should show numbers like: 1920 1080
 
 // If shows 0 or very small numbers, check CSS:
 ```
+
 ```css
 /* In css/styles.css, ensure canvas has size: */
 canvas {
     width: 100%;
-    height: 100vh;  /* or specific pixel value */
+    height: 100vh; /* or specific pixel value */
 }
 ```
 
 **2. Particles spawning outside visible area**
+
 ```javascript
 // Check particle positions in console:
-console.log(particles.map(p => ({ x: p.x, y: p.y })))
+console.log(particles.map((p) => ({ x: p.x, y: p.y })));
 // All particles should have x: 0-canvas.width, y: 0-canvas.height
 ```
 
 **3. Particle color matches background**
+
 ```javascript
 // Change particle color in js/particle.js (line ~80):
-ctx.fillStyle = '#ff0000'  // Bright red for testing
+ctx.fillStyle = '#ff0000'; // Bright red for testing
 ```
 
 **4. Canvas rendering context lost**
+
 ```javascript
 // Check if context exists:
-console.log(canvas.getContext('2d'))
+console.log(canvas.getContext('2d'));
 // Should show CanvasRenderingContext2D object, not null
 ```
 
 **5. Particles have zero radius**
+
 ```javascript
 // Check particle radius:
-console.log(particles[0].radius)
+console.log(particles[0].radius);
 // Should be 3 (default), if 0 then check constants.js
 ```
 
 **Verification Steps:**
+
 1. Open browser DevTools console (F12)
 2. Click canvas 10 times
 3. Run: `console.log(particles.length)` → Should show 10
@@ -1625,6 +1686,7 @@ console.log(particles[0].radius)
 **Common Causes:**
 
 **1. Node modules not installed**
+
 ```bash
 # Install all dependencies
 npm install
@@ -1635,6 +1697,7 @@ npm list @playwright/test
 ```
 
 **2. Wrong Node.js version**
+
 ```bash
 # Check version
 node --version
@@ -1646,6 +1709,7 @@ node --version
 ```
 
 **3. Stale test cache**
+
 ```bash
 # Clear Vitest cache
 npm run test -- --no-cache
@@ -1655,6 +1719,7 @@ rm -rf node_modules/.vitest
 ```
 
 **4. Playwright browsers not installed**
+
 ```bash
 # Install Playwright browsers
 npx playwright install
@@ -1664,6 +1729,7 @@ npx playwright install chromium
 ```
 
 **5. Port already in use (E2E tests)**
+
 ```bash
 # Check if port 8000 is in use:
 lsof -i :8000  # macOS/Linux
@@ -1716,6 +1782,7 @@ npm run test:e2e       # Should show 25+ passing
 <br/>
 
 **Symptoms:**
+
 - `https://username.github.io/particle_physics_simulator/` returns 404
 - Site loads but shows blank page
 - Assets (JS/CSS) don't load
@@ -1723,6 +1790,7 @@ npm run test:e2e       # Should show 25+ passing
 **Solutions:**
 
 **1. Enable GitHub Pages**
+
 ```
 1. Go to repository Settings → Pages
 2. Source: Deploy from branch
@@ -1733,6 +1801,7 @@ npm run test:e2e       # Should show 25+ passing
 ```
 
 **2. Check branch exists**
+
 ```bash
 # Verify main branch has latest code
 git branch -a
@@ -1744,16 +1813,22 @@ git push origin main
 ```
 
 **3. Verify file paths are correct**
+
 ```html
 <!-- In index.html, paths should be relative: -->
-<link rel="stylesheet" href="css/styles.css">  <!-- Good -->
-<link rel="stylesheet" href="/css/styles.css"> <!-- Bad (breaks in subdirectory) -->
+<link rel="stylesheet" href="css/styles.css" />
+<!-- Good -->
+<link rel="stylesheet" href="/css/styles.css" />
+<!-- Bad (breaks in subdirectory) -->
 
-<script type="module" src="js/app.js"></script>  <!-- Good -->
-<script type="module" src="/js/app.js"></script> <!-- Bad -->
+<script type="module" src="js/app.js"></script>
+<!-- Good -->
+<script type="module" src="/js/app.js"></script>
+<!-- Bad -->
 ```
 
 **4. Check GitHub Pages URL**
+
 ```
 Correct: https://username.github.io/particle_physics_simulator/
 Wrong: https://username.github.io/Particle_Physics_Simulator/
@@ -1761,6 +1836,7 @@ Wrong: https://username.github.io/Particle_Physics_Simulator/
 ```
 
 **5. Clear browser cache**
+
 ```bash
 # Hard refresh (clear cache and reload)
 Ctrl+Shift+R (Windows/Linux)
@@ -1768,11 +1844,13 @@ Cmd+Shift+R (Mac)
 ```
 
 **6. Check HTTPS enforcement**
+
 ```
 Repository Settings → Pages → Enforce HTTPS (should be checked)
 ```
 
 **Verification:**
+
 - Visit your GitHub Pages URL
 - Open DevTools Network tab (F12)
 - Reload page
@@ -1815,60 +1893,65 @@ Contributions are welcome! Whether it's bug fixes, new physics modes, performanc
 **How to contribute:**
 
 1. **Fork the repository**
-   ```bash
-   # Fork via GitHub UI (top-right corner)
-   # Then clone your fork:
-   git clone https://github.com/YOUR_USERNAME/particle_physics_simulator.git
-   cd particle_physics_simulator
-   ```
+
+    ```bash
+    # Fork via GitHub UI (top-right corner)
+    # Then clone your fork:
+    git clone https://github.com/YOUR_USERNAME/particle_physics_simulator.git
+    cd particle_physics_simulator
+    ```
 
 2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/awesome-physics-mode
-   # Or: fix/bugfix-name, docs/documentation-update, perf/optimization
-   ```
+
+    ```bash
+    git checkout -b feature/awesome-physics-mode
+    # Or: fix/bugfix-name, docs/documentation-update, perf/optimization
+    ```
 
 3. **Make your changes**
-   - Write clean, well-commented code
-   - Follow existing code style (run `npm run lint`)
-   - Add tests for new features
-   - Update documentation (README, JSDoc comments)
-   - Test thoroughly in multiple browsers
+    - Write clean, well-commented code
+    - Follow existing code style (run `npm run lint`)
+    - Add tests for new features
+    - Update documentation (README, JSDoc comments)
+    - Test thoroughly in multiple browsers
 
 4. **Test your changes**
-   ```bash
-   npm test              # Unit tests (should pass all 154)
-   npm run test:e2e     # E2E tests (should pass all 25+)
-   npm run lint         # Code quality (should have 0 errors)
-   npm run format       # Auto-format code
-   ```
+
+    ```bash
+    npm test              # Unit tests (should pass all 154)
+    npm run test:e2e     # E2E tests (should pass all 25+)
+    npm run lint         # Code quality (should have 0 errors)
+    npm run format       # Auto-format code
+    ```
 
 5. **Commit your changes**
-   ```bash
-   git add .
-   git commit -m "feat: Add awesome vortex physics mode
 
-   - Implements tangential + radial forces
-   - Creates orbital motion around center
-   - Adds UI button and keyboard shortcut (7)
-   - Includes 15 unit tests with 100% coverage
-   - Updates README with new mode documentation"
-   ```
+    ```bash
+    git add .
+    git commit -m "feat: Add awesome vortex physics mode
+
+    - Implements tangential + radial forces
+    - Creates orbital motion around center
+    - Adds UI button and keyboard shortcut (7)
+    - Includes 15 unit tests with 100% coverage
+    - Updates README with new mode documentation"
+    ```
 
 6. **Push to your fork**
-   ```bash
-   git push origin feature/awesome-physics-mode
-   ```
+
+    ```bash
+    git push origin feature/awesome-physics-mode
+    ```
 
 7. **Create a Pull Request**
-   - Go to your fork on GitHub
-   - Click "Pull Request" button
-   - Select: `base: main` ← `compare: feature/awesome-physics-mode`
-   - Write clear PR description:
-     - What changed and why
-     - How to test it
-     - Screenshots/GIFs for visual changes
-     - Link related issues: `Fixes #123`
+    - Go to your fork on GitHub
+    - Click "Pull Request" button
+    - Select: `base: main` ← `compare: feature/awesome-physics-mode`
+    - Write clear PR description:
+        - What changed and why
+        - How to test it
+        - Screenshots/GIFs for visual changes
+        - Link related issues: `Fixes #123`
 
 ---
 
@@ -1882,6 +1965,7 @@ Contributions are welcome! Whether it's bug fixes, new physics modes, performanc
 - **Comments:** Explain "why" not "what" (code should be self-documenting)
 
 **Commit Message Format:**
+
 ```
 type: Short description (50 chars max)
 
@@ -1900,12 +1984,14 @@ Fixes #123
 **Good First Issues:**
 
 Looking for something to work on? Check issues labeled:
+
 - `good first issue` - Easy tasks for newcomers
 - `help wanted` - We'd love your contribution
 - `enhancement` - New features to add
 - `performance` - Optimization opportunities
 
 **Ideas for contributions:**
+
 - 🎨 New physics modes (vortex, spring forces, fluid dynamics)
 - ⚡ Performance optimizations (WebWorkers, OffscreenCanvas, WebGL)
 - 🎮 Mobile touch gesture improvements
@@ -1916,6 +2002,7 @@ Looking for something to work on? Check issues labeled:
 - 📊 Data visualization (force vectors, velocity trails)
 
 **Found a bug?** [Open an issue](https://github.com/Zacsluss/particle_physics_simulator/issues) with:
+
 - Browser and version
 - Steps to reproduce
 - Expected vs actual behavior
@@ -1980,6 +2067,7 @@ Computational physics • Algorithm optimization • Vanilla JavaScript • Canv
 <td width="50%">
 
 **🎨 3D Portfolio**
+
 - React 19 + Three.js
 - 30,000 GPU particles
 - Custom GLSL shaders
@@ -1989,6 +2077,7 @@ Computational physics • Algorithm optimization • Vanilla JavaScript • Canv
 <td width="50%">
 
 **⚛️ Physics Simulator**
+
 - Vanilla JavaScript
 - 6 physics modes
 - 100x optimization
