@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Hero Header -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,12,20&height=200&section=header&text=Particle%20Physics%20Simulator&fontSize=70&fontColor=FFFFFF&animation=twinkling&fontAlignY=25&desc=1,000%20Particles%20at%2060%20FPS%20%7C%20100x%20Performance%20Boost&descSize=20&descAlignY=50&descAlign=50" alt="Header"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,12,20&height=200&section=header&text=Particle%20Physics%20Simulator&fontSize=70&fontColor=FFFFFF&animation=twinkling&fontAlignY=25&desc=1,000%20Particles%20at%2060%20FPS%20%7C%20100x%20Performance%20Boost&descSize=20&descAlignY=50&descAlign=50"/>
 
 <br/>
 
@@ -10,16 +10,12 @@
 
 <br/>
 
-<!-- Action Buttons -->
+<!-- Main Action Buttons -->
 <p align="center">
-  <a href="https://zacsluss.github.io/particle_physics_simulator/">
-    <img src="https://img.shields.io/badge/🚀_LAUNCH-SIMULATOR-2e8b57?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white" alt="Launch Simulator"/>
-  </a><a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip">
-    <img src="https://img.shields.io/badge/⬇️_DOWNLOAD-SOURCE-d97706?style=for-the-badge&labelColor=000000&logo=github&logoColor=white" alt="Download Source"/>
-  </a>
+<a href="https://zacsluss.github.io/particle_physics_simulator/"><img src="https://img.shields.io/badge/🚀%20LAUNCH%20SIMULATOR-2e8b57?style=for-the-badge&logo=" alt="Launch Simulator"/></a> <a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/⬇️%20DOWNLOAD%20SOURCE-d97706?style=for-the-badge&logo=" alt="Download Source"/></a>
 </p>
 
-<!-- Repository Stats Badges -->
+<!-- GitHub Stats Badges -->
 <p align="center">
   <img src="https://img.shields.io/github/stars/Zacsluss/particle_physics_simulator?style=social" alt="Stars"/>
   <img src="https://img.shields.io/github/forks/Zacsluss/particle_physics_simulator?style=social" alt="Forks"/>
@@ -36,19 +32,23 @@
 
 ## 👋 Introduction
 
-Real-time **interactive particle physics simulator** featuring 1,000 particles at 60 FPS with six distinct physics modes. Built to explore computational physics and algorithm optimization, achieving a **100x performance improvement** through spatial partitioning.
+An interactive physics playground where you can spawn, manipulate, and watch **1,000 particles** interact in real-time at **60 FPS**. This simulator features six distinct physics modes — from Newtonian gravity to DNA helix formations — all built with **vanilla JavaScript** and zero runtime dependencies.
+
+**What makes it interesting:**
+- Spatial grid optimization achieving **100x performance improvement** (O(n²) → O(n))
+- Real physics formulas: Newton's gravity, Coulomb's law, Lorentz force, Verlet integration
+- 154 comprehensive tests with 92% coverage
+- Fully interactive — click to spawn, drag for streams, right-click for attractors
+
+Built with pure JavaScript, HTML5 Canvas, and a little math.
 
 <div align="center">
-<img src="particlesim.gif" alt="Demo" width="800"/>
-</div>
 
-**Key Highlights:**
-- 🚀 **100x Performance Boost** - Spatial grid optimization reduced O(n²) to O(n) complexity
-- 🧪 **Six Physics Modes** - Gravity, Electric, Magnetic, Black Hole, Repulsion, DNA Helix
-- ⚛️ **Real Physics** - Newton's gravity, Coulomb's law, Lorentz force, Verlet integration
-- ✅ **154 Tests** - Unit, integration, performance, and E2E testing with 92% coverage
-- 🎯 **Zero Dependencies** - Pure vanilla JavaScript with HTML5 Canvas
-- 🏗️ **Production Ready** - CI/CD pipeline, TypeScript definitions, comprehensive documentation
+<img src="particlesim.gif" alt="Demo" width="800"/>
+
+*Real-time particle physics — click anywhere to spawn particles*
+
+</div>
 
 ---
 
@@ -57,18 +57,18 @@ Real-time **interactive particle physics simulator** featuring 1,000 particles a
 
 <br/>
 
-- [What This Does](#-what-this-does)
-- [Tech Stack](#-tech-stack)
-- [How It Works](#-how-it-works)
-- [Quick Start](#-quick-start)
-- [Technical Deep Dive](#-technical-deep-dive)
+- [⚡ What This Does](#-what-this-does)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🏗️ How It Works - Architecture](#️-how-it-works---architecture)
+- [🚀 Quick Start](#-quick-start)
+- [📊 Technical Deep Dive](#-technical-deep-dive)
   - [Physics Modes & Formulas](#physics-modes--formulas)
   - [Performance Optimizations](#performance-optimizations)
   - [Testing & Code Quality](#testing--code-quality)
   - [Troubleshooting](#troubleshooting)
   - [Advanced Configuration](#advanced-configuration)
-- [License & Contributing](#-license--contributing)
-- [About & Connect](#-about--connect)
+- [📄 License & Contributing](#-license--contributing)
+- [📬 About & Connect](#-about--connect)
 
 </details>
 
@@ -79,29 +79,23 @@ Real-time **interactive particle physics simulator** featuring 1,000 particles a
 
 <br/>
 
-### Core Features
+<div align="center">
 
-**Physics Simulations**
-- 🌍 **Gravity Mode** - Particles fall with Newtonian attraction
-- ⚡ **Electric Mode** - Coulomb's law with +/- charges
-- 🧲 **Magnetic Mode** - Lorentz force creating spirals
-- 🌑 **Black Hole Mode** - Gravitational singularity
-- 💥 **Repulsion Mode** - Inverse gravity expansion
-- 🧬 **DNA Helix Mode** - Double helix formation
+**Real-time particle physics engine** • **1,000 particles at 60 FPS** • **50KB bundle** • **Zero dependencies**
 
-**Interaction Methods**
-- 🖱️ **Mouse** - Click to spawn, drag for streams, right-click for attractors
-- ⌨️ **Keyboard** - Space (pause), C (clear), E (explosion), G (galaxy), 1-6 (modes)
-- 📱 **Touch** - Tap to spawn, swipe for streams, two-finger tap for attractors
+</div>
 
-**Performance & Quality**
-- ⚡ 60 FPS with 1,000 particles
-- 📊 Real-time FPS and particle count display
-- 🎛️ Adjustable force strength and particle size
-- 📐 Responsive canvas (adapts to window resize)
-- ♿ WCAG accessibility compliance
+### Key Features
 
-**Controls**
+- 🌍 **Six Physics Modes** - Gravity, Electric, Magnetic, Black Hole, Repulsion, DNA Helix
+- 🖱️ **Interactive Controls** - Click to spawn, drag for streams, right-click for attractors
+- ⚡ **100x Performance Boost** - Spatial grid optimization (499,500 → 20,000 comparisons/frame)
+- 🧪 **Real Physics** - Newton's F=G·m₁·m₂/r², Coulomb's F=k·q₁·q₂/r², Lorentz force
+- ⌨️ **Keyboard Shortcuts** - Space (pause), C (clear), E (explosion), G (galaxy), R (rain)
+- 📱 **Touch Support** - Tap to spawn, swipe for streams, two-finger for attractors
+- ✅ **Production Ready** - 154 tests, 92% coverage, CI/CD pipeline, TypeScript definitions
+
+### Controls Quick Reference
 
 | Input | Action | Details |
 |-------|--------|---------|
@@ -126,60 +120,61 @@ Real-time **interactive particle physics simulator** featuring 1,000 particles a
 
 <div align="center">
 
+### What Powers This Simulator
+
 <img src="https://skillicons.dev/icons?i=js,html,css,git,github,vscode" alt="Tech Stack" />
+
+### Core Technologies
+
+<table>
+<tr>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/JavaScript-ES6+-f7df1e?style=flat-square&logo=javascript&logoColor=black"/><br/>
+<sub><b>Pure Vanilla JS</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/HTML5-Canvas-e34f26?style=flat-square&logo=html5&logoColor=white"/><br/>
+<sub><b>2D Rendering</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/Vitest-1.6.0-729b1b?style=flat-square&logo=vitest&logoColor=white"/><br/>
+<sub><b>Unit Testing</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/Playwright-1.56.1-2ead33?style=flat-square&logo=playwright&logoColor=white"/><br/>
+<sub><b>E2E Testing</b></sub>
+</td>
+</tr>
+</table>
 
 </div>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/JavaScript-ES6+-f7df1e?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript"/>
-  <img src="https://img.shields.io/badge/HTML5-Canvas-e34f26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"/>
-  <img src="https://img.shields.io/badge/CSS3-Modern-1572b6?style=flat-square&logo=css3&logoColor=white" alt="CSS3"/>
-  <img src="https://img.shields.io/badge/Vitest-1.6.0-729b1b?style=flat-square&logo=vitest&logoColor=white" alt="Vitest"/>
-  <img src="https://img.shields.io/badge/Playwright-1.56.1-2ead33?style=flat-square&logo=playwright&logoColor=white" alt="Playwright"/>
-  <img src="https://img.shields.io/badge/ESLint-8.57.0-4b32c3?style=flat-square&logo=eslint&logoColor=white" alt="ESLint"/>
-</p>
-
-**Core Technologies**
-- **Vanilla JavaScript (ES6+)** - No framework overhead
-- **HTML5 Canvas API** - Hardware-accelerated 2D rendering
-- **CSS3 with Custom Properties** - Modern styling
-- **ES6 Modules** - Clean code organization
-
-**Development Tools**
-- **Vitest** - Lightning-fast unit testing (154 tests)
-- **Playwright** - Multi-browser E2E testing (25+ tests)
-- **ESLint** - Code quality enforcement
-- **Prettier** - Consistent code formatting
-- **JSDoc** - Comprehensive inline documentation
-- **GitHub Actions** - Automated CI/CD pipeline
-
-**Zero Runtime Dependencies** - Uses only native Web APIs
-
 <details>
-<summary><b>📦 See full dependency list</b></summary>
+<summary>📦 <b>Full dependency list</b></summary>
 
 <br/>
 
-### Development Dependencies
+```json
+{
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "^1.56.1",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jsdoc": "^48.0.0",
+    "http-server": "^14.1.1",
+    "jsdoc": "^4.0.2",
+    "jsdom": "^24.0.0",
+    "playwright": "^1.56.1",
+    "prettier": "^3.2.5",
+    "vitest": "^1.6.0"
+  }
+}
+```
 
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `@axe-core/playwright` | ^4.11.0 | Accessibility testing |
-| `@playwright/test` | ^1.56.1 | E2E testing framework |
-| `@vitest/coverage-v8` | ^1.6.0 | Test coverage reporting |
-| `@vitest/ui` | ^1.6.0 | Interactive test UI |
-| `eslint` | ^8.57.0 | Code linting |
-| `eslint-plugin-jsdoc` | ^48.0.0 | JSDoc validation |
-| `http-server` | ^14.1.1 | Local development server |
-| `jsdoc` | ^4.0.2 | API documentation generator |
-| `jsdom` | ^24.0.0 | DOM environment for tests |
-| `playwright` | ^1.56.1 | Browser automation |
-| `prettier` | ^3.2.5 | Code formatting |
-| `vitest` | ^1.6.0 | Unit testing framework |
-
-**Total Dev Dependencies:** 12 packages (~45MB)
-**Runtime Dependencies:** 0 packages
-**Bundle Size:** ~50KB (HTML + CSS + JS)
+**Why zero runtime dependencies?**
+All physics, rendering, and interactions use native Web APIs. No frameworks, no libraries — just pure JavaScript performance.
 
 </details>
 
@@ -188,7 +183,7 @@ Real-time **interactive particle physics simulator** featuring 1,000 particles a
 ---
 
 <details open>
-<summary><b>🏗️ How It Works</b></summary>
+<summary><b>🏗️ How It Works - Architecture</b></summary>
 
 <br/>
 
@@ -255,7 +250,7 @@ graph LR
 ```
 
 <details>
-<summary><b>📁 File Structure & Module Details</b></summary>
+<summary>📁 <b>File structure & module details</b></summary>
 
 <br/>
 
@@ -271,127 +266,30 @@ particle_physics_simulator/
 │   ├── spatial-grid.js   # O(n) optimization (95 lines)
 │   └── constants.js      # Config & tuning (120 lines)
 ├── tests/                 # 154 comprehensive unit tests
-│   ├── particle.test.js
-│   ├── physics.test.js
-│   ├── spatial-grid.test.js
-│   ├── integration.test.js
-│   ├── performance.test.js
-│   ├── accessibility.test.js
-│   └── app*.test.js
-├── e2e/                   # 25+ E2E tests
-│   ├── basic-functionality.spec.js
-│   ├── physics-modes.spec.js
-│   ├── particle-spawning.spec.js
-│   ├── keyboard-shortcuts.spec.js
-│   └── accessibility.spec.js
-└── .github/workflows/
-    └── ci.yml            # Automated CI/CD pipeline
+└── e2e/                   # 25+ E2E tests
 ```
 
-**Core Modules**
+**Core Modules:**
 
-- **`app.js`** - Main simulator orchestration and event handling
-  - Event listener management (mouse, touch, keyboard)
-  - Animation loop coordination (requestAnimationFrame)
-  - State management and UI updates
-  - Responsive canvas resizing
-
-- **`particle.js`** - Particle class with state and motion logic
-  - Position, velocity, acceleration tracking
-  - Verlet integration for numerical stability
-  - Force application and summation
-  - Boundary collision with damping
-
-- **`physics.js`** - Six physics mode implementations
-  - Gravity mode (Newtonian + constant downward)
-  - Electric mode (Coulomb's law with spatial grid)
-  - Magnetic mode (Lorentz force simplified)
-  - Black Hole mode (r→0 singularity)
-  - Repulsion mode (inverse gravity)
-  - DNA Helix mode (cylindrical force field)
-
-- **`spatial-grid.js`** - O(n) collision detection optimization
-  - Canvas space partitioning into grid cells
-  - Efficient neighbor lookups (9 cells max)
-  - Dynamic grid rebuilding (every 3 frames)
-  - Reduces 1M comparisons to 20K at 1000 particles
-
-- **`constants.js`** - Configuration constants and tuning parameters
-  - Physics constants (gravity, damping, forces)
-  - Performance tuning (max particles, grid size)
-  - Mode-specific configurations
+- **`app.js`** - Event listeners, animation loop, state management, canvas resizing
+- **`particle.js`** - Position/velocity/acceleration, Verlet integration, force application
+- **`physics.js`** - Six physics mode implementations with real formulas
+- **`spatial-grid.js`** - O(n) collision detection via canvas space partitioning
+- **`constants.js`** - Physics constants, performance tuning, mode configurations
 
 </details>
 
 <details>
-<summary><b>🔬 Technical Design Decisions</b></summary>
+<summary>⚙️ <b>Key technical decisions</b></summary>
 
 <br/>
 
-### Why Vanilla JavaScript?
-
-**Performance Benefits**
-- Zero framework overhead = faster startup
-- Direct DOM manipulation = better control
-- No virtual DOM reconciliation
-- Smaller bundle size (~50KB vs 100KB+ with frameworks)
-
-**Learning Benefits**
-- Demonstrates core JavaScript proficiency
-- Shows understanding of fundamental Web APIs
-- No abstraction layers hiding complexity
-- Direct Canvas API usage
-
-### Spatial Grid Optimization
-
-**Problem:** Naive particle interaction is O(n²)
-- At 1000 particles: 1,000,000 comparisons per frame
-- At 60 FPS: 60 million comparisons per second
-- Result: 8 FPS (unusable)
-
-**Solution:** Spatial partitioning
-- Divide canvas into grid cells (50x50 pixels)
-- Each particle only checks 9 cells (self + 8 neighbors)
-- Reduces complexity to O(n)
-- At 1000 particles: ~20,000 comparisons per frame
-- Result: 60 FPS (smooth)
-
-**Implementation Details**
-- Grid rebuilt every 3 frames (cached for performance)
-- Cell size tuned to interaction radius
-- Hash map for O(1) cell lookups
-- Handles edge cases (particles at boundaries)
-
-### Verlet Integration
-
-**Why Verlet over Euler?**
-- Better energy conservation
-- More stable for stiff systems
-- Prevents "explosion" artifacts
-- Time-reversible
-
-**Implementation**
-```javascript
-// Semi-implicit Euler (Verlet variant)
-this.vx += this.ax * dt;           // Update velocity
-this.vx *= damping;                // Apply damping
-this.vx = Math.min(this.vx, maxSpeed); // Speed limit
-this.x += this.vx * dt;            // Update position
-```
-
-### Canvas Rendering Strategy
-
-**Batched Rendering**
-- Single pass for all particles
-- Minimized context state changes
-- Path batching for fills
-- No overdraw
-
-**Performance Tricks**
-- Stats update every 10 frames (not every frame)
-- Dynamic quality adjustment (500+ particles)
-- Frame skip under heavy load
-- Efficient DOM updates
+- **Vanilla JavaScript** - Zero framework overhead, direct DOM manipulation, smaller bundle (~50KB)
+- **Spatial Grid Partitioning** - Reduces O(n²) to O(n) by checking only 9 grid cells per particle
+- **Verlet Integration** - Better energy conservation and stability than Euler integration
+- **Canvas Batched Rendering** - Single pass for all particles, minimized context state changes
+- **requestAnimationFrame** - Hardware-accelerated 60 FPS rendering loop
+- **ES6 Modules** - Clean code organization with tree-shaking support
 
 </details>
 
@@ -404,113 +302,96 @@ this.x += this.vx * dt;            // Update position
 
 <br/>
 
-### Prerequisites
+<div align="center">
 
-**For Running:**
-- Modern web browser (Chrome 90+, Firefox 88+, Safari 14+)
-- JavaScript enabled
-- Canvas 2D Context support
+### Get It Running Locally in 30 Seconds
 
-**For Development:**
-- Node.js 12.0.0 or higher
-- npm or yarn
-- Git
+</div>
 
-### Option 1: Online Demo
-
-👉 **[Launch Live Demo](https://zacsluss.github.io/particle_physics_simulator/)**
-
-No installation required - runs directly in your browser!
+```bash
+git clone https://github.com/Zacsluss/particle_physics_simulator.git && cd particle_physics_simulator && python -m http.server 8000
+```
 
 <details>
-<summary><b>Option 2: Local Setup</b></summary>
+<summary>⚙️ <b>Prerequisites</b></summary>
 
 <br/>
 
+Before running this project locally, ensure you have:
+
+- **Modern Browser** - Chrome 90+, Firefox 88+, Safari 14+
+- **JavaScript Enabled** - Required for ES6 modules
+- **Canvas 2D Context** - Built into all modern browsers
+- **Local Server** - Python, Node.js, or any HTTP server (ES6 modules require HTTP protocol)
+
+**For Development:**
+- Node.js 12.0.0+ (for npm scripts and testing)
+- npm or yarn
+- Git
+
+</details>
+
+<details>
+<summary>💻 <b>Local Development</b></summary>
+
+<br/>
+
+**Step-by-step installation:**
+
 ```bash
-# Clone repository
+# 1️⃣ Clone this repository
 git clone https://github.com/Zacsluss/particle_physics_simulator.git
 cd particle_physics_simulator
 
-# Start local server (choose one)
+# 2️⃣ Start local server (choose one)
 python -m http.server 8000        # Python 3
 python -m SimpleHTTPServer 8000   # Python 2
 npx http-server -p 8000           # Node.js
 
-# Open browser
+# 3️⃣ Open browser
 open http://localhost:8000
 ```
 
 **Why a local server?**
-ES6 modules require HTTP protocol (not file://) due to CORS restrictions.
-
-</details>
-
-<details>
-<summary><b>Option 3: Development Setup</b></summary>
-
-<br/>
-
-```bash
-# Install dependencies
-npm install
-
-# Run tests
-npm test                    # Unit tests (154 tests)
-npm run test:e2e           # E2E tests (25+ tests)
-npm run test:coverage      # Coverage report (92%)
-
-# Code quality
-npm run lint               # Run ESLint
-npm run lint:fix           # Auto-fix linting issues
-npm run format             # Format code with Prettier
-npm run format:check       # Check formatting
-
-# Documentation
-npm run docs               # Generate JSDoc API docs
-```
+ES6 modules require HTTP protocol (not `file://`) due to CORS restrictions.
 
 **Available npm scripts:**
-- `npm start` / `npm run dev` - Start development server
-- `npm test` - Run all unit tests with Vitest
-- `npm run test:ui` - Interactive test UI
-- `npm run test:perf` - Performance benchmarks only
-- `npm run test:a11y` - Accessibility tests only
-- `npm run test:e2e` - E2E tests with Playwright
-- `npm run test:e2e:ui` - E2E tests with UI
-- `npm run test:e2e:headed` - E2E tests in visible browser
+```bash
+npm install               # Install dev dependencies
+
+npm test                 # Run unit tests (154 tests)
+npm run test:e2e        # Run E2E tests (25+ tests)
+npm run test:coverage   # Generate coverage report (92%)
+npm run test:ui         # Interactive test UI
+
+npm run lint            # Check code quality
+npm run lint:fix        # Auto-fix linting issues
+npm run format          # Format with Prettier
+npm run docs            # Generate JSDoc API docs
+```
 
 </details>
 
 <details>
-<summary><b>Deployment to GitHub Pages</b></summary>
+<summary>🚀 <b>Deploy to GitHub Pages</b></summary>
 
 <br/>
 
-**One-Command Deploy**
+**One-command deployment:**
 
-```bash
-# Already configured - just push to main branch
-git add .
-git commit -m "Update simulator"
-git push origin main
-
-# Enable GitHub Pages in repo settings (main branch)
-```
+Already configured — just push to main branch and enable GitHub Pages.
 
 **GitHub Pages Settings:**
-1. Go to repository Settings
-2. Navigate to Pages section
-3. Source: Deploy from branch
-4. Branch: main
-5. Folder: / (root)
-6. Save
+1. Go to repository Settings → Pages
+2. Source: Deploy from branch
+3. Branch: `main`
+4. Folder: `/ (root)`
+5. Save
 
 Your site will be live at: `https://<username>.github.io/particle_physics_simulator/`
 
-**Custom Domain (Optional)**
+**Custom Domain (Optional):**
 ```bash
-# Add CNAME file
 echo "yourdomain.com" > CNAME
 git add CNAME
 git commit -m "Add custom domain"
@@ -520,84 +401,34 @@ git push
 </details>
 
 <details>
-<summary><b>Customization Guide</b></summary>
+<summary>🔧 <b>Customize for yourself</b></summary>
 
 <br/>
 
-### 1. Modify Physics Constants
+**Make it yours in 5 minutes:**
 
-Edit `js/constants.js`:
+1. **Adjust physics constants** - Edit `js/constants.js`
+   ```javascript
+   export const GRAVITY_STRENGTH = 0.2  // Increase for stronger pull
+   export const MAX_PARTICLES = 1000     // Higher = more particles
+   export const DAMPING_DEFAULT = 0.99   // Higher = less energy loss
+   ```
 
-```javascript
-// Adjust gravity strength
-export const GRAVITY_STRENGTH = 0.2; // Default: 0.2
+2. **Change particle colors** - Edit `js/particle.js`
+   ```javascript
+   // Line ~80: Modify fillStyle colors
+   ctx.fillStyle = this.charge > 0 ? '#ff6b6b' : '#4ecdc4'
+   ```
 
-// Change max particles
-export const MAX_PARTICLES = 1000; // Default: 1000
+3. **Customize visual style** - Edit `css/styles.css`
+   ```css
+   :root {
+     --primary-color: #00ff88;  /* Change accent color */
+     --bg-color: #1a1a1a;       /* Background color */
+   }
+   ```
 
-// Tune damping (higher = more energy loss)
-export const DAMPING_DEFAULT = 0.99; // Default: 0.99
-
-// Adjust grid cell size
-export const GRID_SIZE = 50; // Default: 50 pixels
-```
-
-### 2. Add New Physics Mode
-
-Create new force function in `js/physics.js`:
-
-```javascript
-export function applyCustomForce(particle, forceStrength) {
-    // Your physics implementation
-    const fx = /* your calculation */;
-    const fy = /* your calculation */;
-    particle.applyForce(fx, fy);
-}
-```
-
-Add to modes in `js/constants.js`:
-
-```javascript
-export const MODES = {
-    GRAVITY: 'gravity',
-    ELECTRIC: 'electric',
-    // ... existing modes
-    CUSTOM: 'custom' // Your new mode
-};
-```
-
-Add UI button in `index.html` and wire up in `app.js`.
-
-### 3. Customize Visual Style
-
-Edit `css/styles.css`:
-
-```css
-/* Change particle colors */
-canvas {
-    background: #000000; /* Background color */
-}
-
-/* Modify UI theme */
-:root {
-    --primary-color: #00ff88; /* Accent color */
-    --bg-color: #1a1a1a;      /* Dark theme */
-    --text-color: #ffffff;     /* Text color */
-}
-```
-
-### 4. Adjust Performance
-
-Tune performance settings in `js/constants.js`:
-
-```javascript
-// Lower quality under load
-export const AUTO_QUALITY_MIN_PARTICLES = 400; // Threshold
-export const LOW_FPS_THRESHOLD = 35;           // FPS trigger
-
-// Spatial grid optimization
-export const SPATIAL_GRID_REBUILD_INTERVAL = 3; // Frames between rebuilds
-```
+4. **Add new physics mode** - See [Advanced Configuration](#advanced-configuration) section
 
 </details>
 
@@ -610,37 +441,31 @@ export const SPATIAL_GRID_REBUILD_INTERVAL = 3; // Frames between rebuilds
 
 <br/>
 
-### Physics Modes & Formulas
+## Physics Modes & Formulas
 
 <details>
-<summary><b>🌍 Gravity Mode</b></summary>
+<summary>🌍 <b>Gravity Mode — Newtonian gravity with constant downward acceleration</b></summary>
 
 <br/>
 
-**Implementation**
+**Implementation:**
 
-Dual force system:
-1. **Constant downward acceleration**: F = ma where a = 0.2
-2. **Mouse attraction**: F = G·m₁·m₂/r² (unit masses)
+Dual force system combining constant gravity and mouse attraction:
 
 ```javascript
-// Constant downward force
-particle.applyForce(0, GRAVITY_STRENGTH * forceStrength);
+// Constant downward force: F = ma
+particle.applyForce(0, GRAVITY_STRENGTH * forceStrength)
 
-// Mouse attraction when pressed
-if (mouseDown) {
-    const dx = mouseX - particle.x;
-    const dy = mouseY - particle.y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist > 1) {
-        const force = (100 * forceStrength) / (dist * dist);
-        particle.applyForce((dx / dist) * force, (dy / dist) * force);
-    }
-}
+// Mouse attraction: F = G·m₁·m₂/r²
+const dx = mouseX - particle.x
+const dy = mouseY - particle.y
+const dist = Math.sqrt(dx * dx + dy * dy)
+const force = (100 * forceStrength) / (dist * dist)
+particle.applyForce((dx / dist) * force, (dy / dist) * force)
 ```
 
-**Physics Details**
-- Implements Newton's law of gravitation: F = G·m₁·m₂/r²
+**Physics Details:**
+- Implements Newton's law of gravitation: **F = G·m₁·m₂/r²**
 - Constant gravity strength: 0.2 units
 - Damping coefficient: 0.99 (1% energy loss per frame)
 - Singularity protection (avoids division by zero when dist < 1)
@@ -648,173 +473,160 @@ if (mouseDown) {
 </details>
 
 <details>
-<summary><b>⚡ Electric Mode</b></summary>
+<summary>⚡ <b>Electric Mode — Coulomb's law with binary charges</b></summary>
 
 <br/>
 
-**Implementation**
+**Implementation:**
 
-Coulomb's Law: F = k·q₁·q₂/r²
+Coulomb's Law: **F = k·q₁·q₂/r²**
 
 ```javascript
 // Binary charge assignment
-this.charge = Math.random() > 0.5 ? 1 : -1;
+this.charge = Math.random() > 0.5 ? 1 : -1
 
-// Force calculation
-const force = (particle.charge * other.charge * -2 * forceStrength) / distSq;
-particle.applyForce(dx * force * invDist, dy * force * invDist);
+// Force calculation with spatial grid optimization
+const force = (particle.charge * other.charge * -2 * forceStrength) / distSq
+particle.applyForce(dx * force * invDist, dy * force * invDist)
 ```
 
-**Physics Details**
+**Physics Details:**
 - Charge distribution: 50% positive (+1), 50% negative (-1)
 - Like charges repel (force > 0)
 - Unlike charges attract (force < 0)
 - Uses spatial grid for O(n) performance
 - Only checks particles within 50-pixel radius
-- Damping coefficient: 0.96
 
-**Why It's Accurate**
-- Implements true Coulomb's law (inverse square)
-- Proper charge interaction (attractive/repulsive)
-- Quantitative force calculations
-
-**Limitations**
-- Binary charges only (no fractional)
-- Arbitrary units (not SI Coulombs)
-- 2D only (no z-component)
+**Color Coding:**
+- Red particles: Positive charge (+1)
+- Cyan particles: Negative charge (-1)
 
 </details>
 
 <details>
-<summary><b>🧲 Magnetic Mode</b></summary>
+<summary>🧲 <b>Magnetic Mode — Simplified Lorentz force</b></summary>
 
 <br/>
 
-**Implementation**
+**Implementation:**
 
-Simplified Lorentz Force: F ⊥ velocity
+Simplified perpendicular force to velocity:
 
 ```javascript
-// Perpendicular force to velocity
-const perpX = -particle.vy;
-const perpY = particle.vx;
-particle.applyForce(perpX * strength, perpY * strength);
+// Perpendicular force to velocity (simplified Lorentz)
+const perpX = -particle.vy
+const perpY = particle.vx
+particle.applyForce(perpX * strength, perpY * strength)
 ```
 
-**Physics Details**
+**Physics Details:**
 - Creates spiraling motion
 - Force always perpendicular to velocity
 - Damping coefficient: 0.97
-
-**Why It's Simplified**
-- True Lorentz force: F = q(v × B)
-- Requires 3D cross product
-- This implements perpendicular force only
-- Qualitative visualization, not quantitative
-
-**What It Demonstrates**
-- Charged particle spiraling
-- Perpendicular force effects
-- Beautiful swirling patterns
+- True Lorentz force: **F = q(v × B)** requires 3D cross product
+- This 2D simplification provides qualitative visualization
 
 </details>
 
 <details>
-<summary><b>🌑 Black Hole Mode</b></summary>
+<summary>🌑 <b>Black Hole Mode — Extreme gravitational singularity</b></summary>
 
 <br/>
 
-**Implementation**
+**Implementation:**
 
-Extreme gravitational attraction: F = G·M/r² (r → 0)
+Extreme gravitational attraction: **F = G·M/r²** (r → 0)
 
 ```javascript
-const dx = centerX - particle.x;
-const dy = centerY - particle.y;
-const dist = Math.sqrt(dx * dx + dy * dy);
+const dx = centerX - particle.x
+const dy = centerY - particle.y
+const dist = Math.sqrt(dx * dx + dy * dy)
 
 // Extreme force near center
-const force = (1000 * forceStrength) / (dist * dist + 1);
-particle.applyForce((dx / dist) * force, (dy / dist) * force);
+const force = (1000 * forceStrength) / (dist * dist + 1)
+particle.applyForce((dx / dist) * force, (dy / dist) * force)
 ```
 
-**Physics Details**
+**Physics Details:**
 - Event horizon radius: 50 pixels
 - Singularity protection (+ 1 in denominator)
 - Extreme acceleration toward center
-- No escape velocity implementation
+- Particles disappear when reaching center
 
 </details>
 
 <details>
-<summary><b>💥 Repulsion Mode</b></summary>
+<summary>💥 <b>Repulsion Mode — Inverse gravity expansion</b></summary>
 
 <br/>
 
-**Implementation**
+**Implementation:**
 
-Inverse gravity: All particles repel each other
+All particles repel each other:
 
 ```javascript
-const force = -(100 * forceStrength) / (distSq + 1);
-particle.applyForce(dx * force * invDist, dy * force * invDist);
+const force = -(100 * forceStrength) / (distSq + 1)
+particle.applyForce(dx * force * invDist, dy * force * invDist)
 ```
 
-**Use Cases**
+**Use Cases:**
 - Testing collision detection
 - Creating expansion effects
 - Dispersal simulations
+- Inverse gravity demonstrations
 
 </details>
 
 <details>
-<summary><b>🧬 DNA Helix Mode</b></summary>
+<summary>🧬 <b>DNA Helix Mode — Cylindrical force field</b></summary>
 
 <br/>
 
-**Implementation**
+**Implementation:**
 
-Cylindrical force field creating double helix
+Time-dependent cylindrical force creating double helix:
 
 ```javascript
-// Custom mathematical model
-const angle = frameCounter * DNA_HELIX_SPEED;
-const radius = DNA_HELIX_RADIUS;
-const targetX = centerX + Math.cos(angle) * radius;
-const targetY = centerY + Math.sin(angle) * radius;
+const angle = frameCounter * DNA_HELIX_SPEED
+const radius = DNA_HELIX_RADIUS
+const targetX = centerX + Math.cos(angle) * radius
+const targetY = centerY + Math.sin(angle) * radius
 
 // Attract to helix path
-const dx = targetX - particle.x;
-const dy = targetY - particle.y;
-particle.applyForce(dx * 0.1, dy * 0.1);
+const dx = targetX - particle.x
+const dy = targetY - particle.y
+particle.applyForce(dx * 0.1, dy * 0.1)
 ```
 
-**Physics Details**
+**Physics Details:**
 - Combines radial and tangential forces
 - Time-dependent force field
 - Demonstrates emergent behavior
+- Two separate helices intertwining
 
 </details>
 
-### Performance Optimizations
+---
+
+## Performance Optimizations
 
 <details>
-<summary><b>⚡ Spatial Grid Partitioning (Primary)</b></summary>
+<summary>⚡ <b>Spatial Grid Partitioning — 98% reduction in comparisons</b></summary>
 
 <br/>
 
-**The Problem**
+**The Problem:**
 
 Naive collision detection is O(n²):
 ```
-For 1000 particles:
+For 1,000 particles:
   Each particle checks 999 others
-  Total: 1000 × 999 / 2 = 499,500 comparisons per frame
+  Total: 1,000 × 999 / 2 = 499,500 comparisons per frame
   At 60 FPS: 29,970,000 comparisons per second
   Result: 8 FPS (unusable)
 ```
 
-**The Solution**
+**The Solution:**
 
 Spatial grid partitioning reduces to O(n):
 ```
@@ -822,14 +634,14 @@ Divide canvas into 50×50 pixel cells
 Each particle checks only 9 cells (self + 8 neighbors)
 Average particles per cell: ~20
 
-For 1000 particles:
+For 1,000 particles:
   Each particle checks ~20 neighbors
-  Total: 1000 × 20 = 20,000 comparisons per frame
+  Total: 1,000 × 20 = 20,000 comparisons per frame
   At 60 FPS: 1,200,000 comparisons per second
   Result: 60 FPS (smooth)
 ```
 
-**Performance Gains**
+**Performance Gains:**
 
 | Particle Count | FPS (No Grid) | FPS (With Grid) | Speedup |
 | -------------- | ------------- | --------------- | ------- |
@@ -840,79 +652,69 @@ For 1000 particles:
 
 **98% reduction in comparisons** at 1,000 particles!
 
-**Implementation Details**
+**Implementation:**
 
 ```javascript
 class SpatialGrid {
   constructor(width, height, cellSize = 50) {
-    this.cellSize = cellSize;
-    this.cols = Math.ceil(width / cellSize);
-    this.rows = Math.ceil(height / cellSize);
-    this.cells = new Map(); // Hash map for O(1) lookups
+    this.cellSize = cellSize
+    this.cols = Math.ceil(width / cellSize)
+    this.rows = Math.ceil(height / cellSize)
+    this.cells = new Map() // Hash map for O(1) lookups
   }
 
   add(particle) {
-    const cellX = Math.floor(particle.x / this.cellSize);
-    const cellY = Math.floor(particle.y / this.cellSize);
-    const key = `${cellX},${cellY}`;
+    const cellX = Math.floor(particle.x / this.cellSize)
+    const cellY = Math.floor(particle.y / this.cellSize)
+    const key = `${cellX},${cellY}`
 
-    if (!this.cells.has(key)) {
-      this.cells.set(key, []);
-    }
-    this.cells.get(key).push(particle);
+    if (!this.cells.has(key)) this.cells.set(key, [])
+    this.cells.get(key).push(particle)
   }
 
   getNearby(particle, radius) {
-    const nearby = [];
-    const cellX = Math.floor(particle.x / this.cellSize);
-    const cellY = Math.floor(particle.y / this.cellSize);
+    const nearby = []
+    const cellX = Math.floor(particle.x / this.cellSize)
+    const cellY = Math.floor(particle.y / this.cellSize)
 
     // Check 9 cells (3×3 grid centered on particle)
     for (let dx = -1; dx <= 1; dx++) {
       for (let dy = -1; dy <= 1; dy++) {
-        const key = `${cellX + dx},${cellY + dy}`;
-        if (this.cells.has(key)) {
-          nearby.push(...this.cells.get(key));
-        }
+        const key = `${cellX + dx},${cellY + dy}`
+        if (this.cells.has(key)) nearby.push(...this.cells.get(key))
       }
     }
-    return nearby;
+    return nearby
   }
 }
 ```
 
-**Why It Works**
-- Particles only interact within limited radius (50 pixels)
-- Grid cell size matches interaction radius
-- Hash map provides O(1) cell lookups
-- Rebuilt every 3 frames (cached for performance)
-
 </details>
 
 <details>
-<summary><b>🔄 Verlet Integration</b></summary>
+<summary>🔄 <b>Verlet Integration — Better stability than Euler</b></summary>
 
 <br/>
 
 **Why Verlet over Euler?**
 
-**Euler Integration (Naive)**
+**Euler Integration (Naive):**
 ```javascript
 // Unstable, poor energy conservation
-v = v + a * dt;
-x = x + v * dt;
+v = v + a * dt
+x = x + v * dt
 ```
 
-**Verlet Integration (Better)**
+**Verlet Integration (Better):**
 ```javascript
 // Stable, good energy conservation
-v = v + a * dt;
-v = v * damping;
-v = clamp(v, -maxSpeed, maxSpeed);
-x = x + v * dt;
+v = v + a * dt
+v = v * damping
+v = clamp(v, -maxSpeed, maxSpeed)
+x = x + v * dt
 ```
 
-**Benefits**
+**Benefits:**
 - Better energy conservation
 - More stable for stiff systems
 - Prevents "explosion" artifacts
@@ -922,76 +724,74 @@ x = x + v * dt;
 </details>
 
 <details>
-<summary><b>🎨 Canvas Rendering Optimizations</b></summary>
+<summary>🎨 <b>Canvas Rendering Optimizations</b></summary>
 
 <br/>
 
-**Batched Rendering**
+**Batched Rendering:**
 - Single `fillStyle` per particle type
 - Minimized context state changes
 - Path batching for fills
 - No overdraw
 
-**Performance Tricks**
+**Performance Tricks:**
+
 1. **Stats update every 10 frames** (not every frame)
    ```javascript
    if (frameCounter % 10 === 0) {
-     updateFPS();
-     updateParticleCount();
+     updateFPS()
+     updateParticleCount()
    }
    ```
 
 2. **Dynamic quality adjustment** (500+ particles)
    ```javascript
    if (particles.length > 500 && fps < 35) {
-     skipFrame = !skipFrame; // Skip every other frame
+     skipFrame = !skipFrame // Skip every other frame
    }
    ```
 
-3. **Efficient DOM updates**
-   - Cache element references
-   - Batch style changes
-   - Use textContent (not innerHTML)
-
-4. **Speed limiting**
+3. **Speed limiting** (prevents tunneling)
    ```javascript
-   const maxSpeed = 15; // Prevent tunneling through boundaries
-   this.vx = Math.min(Math.max(this.vx, -maxSpeed), maxSpeed);
-   this.vy = Math.min(Math.max(this.vy, -maxSpeed), maxSpeed);
+   const maxSpeed = 15
+   this.vx = Math.min(Math.max(this.vx, -maxSpeed), maxSpeed)
    ```
 
 </details>
 
 <details>
-<summary><b>🗑️ Object Pooling</b></summary>
+<summary>🗑️ <b>Object Pooling — Swap-and-pop deletion</b></summary>
 
 <br/>
 
-**Swap-and-Pop Particle Removal**
+**O(1) particle removal instead of O(n) splice:**
 
 ```javascript
-// O(1) deletion instead of O(n) splice
+// Traditional splice: O(n)
+particles.splice(i, 1) // Shifts all elements
+
+// Swap-and-pop: O(1)
 for (let i = particles.length - 1; i >= 0; i--) {
   if (particles[i].isDead()) {
-    particles[i] = particles[particles.length - 1];
-    particles.pop();
+    particles[i] = particles[particles.length - 1]
+    particles.pop()
   }
 }
 ```
 
-**Benefits**
+**Benefits:**
 - Avoids array splicing overhead
 - No garbage collection spikes
 - Maintains performance at high particle counts
 
 </details>
 
-</details>
+---
 
-### Testing & Code Quality
+## Testing & Code Quality
 
 <details>
-<summary><b>🧪 Test Coverage Breakdown</b></summary>
+<summary>🧪 <b>154 tests • 92% coverage • Vitest + Playwright</b></summary>
 
 <br/>
 
@@ -1001,168 +801,132 @@ for (let i = particles.length - 1; i >= 0; i--) {
   <img src="https://github.com/Zacsluss/particle_physics_simulator/workflows/CI/badge.svg" alt="CI Status"/>
 </p>
 
-**Unit Tests (154 tests)**
-- `particle.test.js` - Particle physics and motion (25 tests)
-  - Position/velocity/acceleration updates
-  - Force application and summation
-  - Verlet integration accuracy
-  - Boundary collision detection
-  - Damping and speed limiting
+**Unit Tests (154 tests):**
 
-- `physics.test.js` - All 6 physics modes (32 tests)
-  - Gravity mode (constant + inverse square)
-  - Electric mode (Coulomb's law)
-  - Magnetic mode (Lorentz force)
-  - Black Hole mode (singularity)
-  - Repulsion mode (inverse gravity)
-  - DNA Helix mode (cylindrical forces)
+- `particle.test.js` (25 tests) - Position/velocity/acceleration, force application, Verlet integration, boundary collision
+- `physics.test.js` (32 tests) - All 6 physics modes with formula verification
+- `spatial-grid.test.js` (18 tests) - Grid construction, particle insertion, neighbor finding, edge cases
+- `integration.test.js` (24 tests) - Particle + Physics + Grid integration
+- `performance.test.js` (15 tests) - FPS benchmarks, memory usage, spatial grid speedup
+- `accessibility.test.js` (12 tests) - Keyboard navigation, ARIA labels, screen reader support
+- `app.test.js` (28 tests) - Event listeners, UI controls, mode switching, animation loop
 
-- `spatial-grid.test.js` - Grid optimization (18 tests)
-  - Grid construction and sizing
-  - Particle insertion and retrieval
-  - Neighbor finding algorithm
-  - Edge case handling
-  - Performance benchmarks
+**E2E Tests (25+ tests):**
 
-- `integration.test.js` - Component integration (24 tests)
-  - Particle + Physics interactions
-  - Physics + Grid optimization
-  - Event handling flow
-  - State management
+- `basic-functionality.spec.js` (6 tests) - Page load, canvas rendering, controls
+- `physics-modes.spec.js` (7 tests) - Mode switching and behavior verification
+- `particle-spawning.spec.js` (5 tests) - Explosion, galaxy, rain patterns
+- `keyboard-shortcuts.spec.js` (4 tests) - All keyboard controls
+- `accessibility.spec.js` (5 tests) - Axe accessibility integration
 
-- `performance.test.js` - Performance regression (15 tests)
-  - FPS benchmarks at various particle counts
-  - Memory usage tracking
-  - Spatial grid speedup verification
-  - Frame time measurements
-
-- `accessibility.test.js` - WCAG compliance (12 tests)
-  - Keyboard navigation
-  - ARIA labels
-  - Screen reader support
-  - Color contrast ratios
-
-- `app.test.js` - Application logic (28 tests)
-  - Event listener setup
-  - UI controls
-  - Mode switching
-  - Animation loop
-
-**E2E Tests (25+ tests)**
-- `basic-functionality.spec.js` - Page load, canvas, controls (6 tests)
-- `physics-modes.spec.js` - All 6 mode switches (7 tests)
-- `particle-spawning.spec.js` - Explosion, galaxy, rain (5 tests)
-- `keyboard-shortcuts.spec.js` - Accessibility keys (4 tests)
-- `accessibility.spec.js` - Axe integration (5 tests)
-
-**CI/CD Pipeline**
+**CI/CD Pipeline:**
 
 ```yaml
 on: [push, pull_request]
 jobs:
   lint-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - Lint check (ESLint)
-      - Format check (Prettier)
-      - Unit tests (Vitest)
-      - Coverage report (92%)
-      - E2E tests (Playwright - 3 browsers)
-
-  build-check:
-    runs-on: ubuntu-latest
-    steps:
-      - Verify production files exist
-      - Check bundle sizes
-      - Verify no large files
-
-  accessibility-check:
-    runs-on: ubuntu-latest
-    steps:
-      - Check ARIA labels
-      - Verify semantic roles
+    - Lint check (ESLint)
+    - Format check (Prettier)
+    - Unit tests (Vitest)
+    - Coverage report (92%)
+    - E2E tests (Playwright - 3 browsers)
 ```
 
-**Code Quality Metrics**
+**Code Quality Metrics:**
 - ✅ 0 ESLint errors
 - ✅ 0 ESLint warnings
 - ✅ 100% Prettier formatted
 - ✅ 92% test coverage
-- ✅ All tests passing
 - ✅ Multi-browser E2E tests passing
 
 </details>
 
-### Troubleshooting
+---
+
+## Troubleshooting
 
 <details>
-<summary><b>⚠️ Common Issues & Solutions</b></summary>
+<summary>🐛 <b>Common issues and solutions</b></summary>
 
 <br/>
 
-#### Issue: Particles don't appear
+### Particles Don't Appear
 
-**Symptoms:** Canvas is blank, no particles visible
+<details>
+<summary>❌ <b>Canvas is blank, no particles visible</b></summary>
 
-**Possible Causes:**
-1. **JavaScript not loading**
-   - Check browser console for errors
-   - Verify ES6 modules are supported
-   - Ensure running from HTTP server (not file://)
+<br/>
 
-2. **Canvas size is 0**
-   - Check CSS for canvas element
-   - Verify window dimensions
+**Symptoms:** Page loads but canvas is black, no particles appear
+
+**Solutions:**
+
+1. **Check if using local server**
+   ```bash
+   # ES6 modules require HTTP protocol, not file://
+   python -m http.server 8000
+   # NOT: Double-clicking index.html
+   ```
+
+2. **Check browser console for errors**
+   - Press F12 → Console tab
+   - Look for module loading errors
+
+3. **Verify canvas size**
+   - Inspect element to check canvas width/height
    - Try resizing browser window
 
-**Solutions:**
-```bash
-# Start local server (required for ES6 modules)
-python -m http.server 8000
-
-# Check console
-# Press F12 → Console tab → Look for errors
-```
+</details>
 
 ---
 
-#### Issue: Low FPS / Laggy performance
+### Low FPS / Laggy Performance
 
-**Symptoms:** FPS counter shows < 30, particles stutter
+<details>
+<summary>⚠️ <b>FPS counter shows < 30, particles stutter</b></summary>
 
-**Possible Causes:**
-1. **Too many particles**
-   - Reduce max particles in constants.js
-   - Clear particles with 'C' key
+<br/>
 
-2. **Spatial grid disabled**
-   - Verify spatial-grid.js is loaded
-   - Check grid is being rebuilt
-
-3. **Browser issues**
-   - Try different browser
-   - Disable browser extensions
-   - Check hardware acceleration is enabled
+**Symptoms:** Low frame rate, stuttering, delayed mouse interactions
 
 **Solutions:**
+
+**Quick Fixes:**
+1. Close other browser tabs (free up GPU memory)
+2. Disable browser extensions
+3. Use Chrome (better performance than Firefox/Safari)
+
+**Configuration Fixes:**
+
+Edit `js/constants.js`:
 ```javascript
-// Reduce max particles (js/constants.js)
-export const MAX_PARTICLES = 500; // Instead of 1000
+// Reduce max particles
+export const MAX_PARTICLES = 500 // Down from 1000
 
 // Increase grid rebuild interval
-export const SPATIAL_GRID_REBUILD_INTERVAL = 5; // Instead of 3
+export const SPATIAL_GRID_REBUILD_INTERVAL = 5 // Up from 3
 
-// Enable auto quality adjustment
-export const AUTO_QUALITY_MIN_PARTICLES = 300; // Lower threshold
+// Lower quality threshold
+export const AUTO_QUALITY_MIN_PARTICLES = 300 // Down from 400
 ```
+
+**Hardware Limitations:**
+- Integrated GPUs: Expect 30-45 FPS with 1000 particles
+- Recommended: Discrete GPU for consistent 60 FPS
+
+</details>
 
 ---
 
-#### Issue: Tests failing
+### Tests Failing
 
-**Symptoms:** `npm test` shows failures
+<details>
+<summary>🚫 <b>`npm test` shows failures</b></summary>
+
+<br/>
 
 **Common Causes:**
+
 1. **Node modules not installed**
    ```bash
    npm install
@@ -1171,7 +935,6 @@ export const AUTO_QUALITY_MIN_PARTICLES = 300; // Lower threshold
 2. **Wrong Node version**
    ```bash
    node --version  # Should be >= 12.0.0
-   nvm use 12      # Switch to Node 12+
    ```
 
 3. **Stale cache**
@@ -1179,49 +942,24 @@ export const AUTO_QUALITY_MIN_PARTICLES = 300; // Lower threshold
    npm run test -- --no-cache
    ```
 
----
+4. **E2E tests failing - Playwright browsers not installed**
+   ```bash
+   npx playwright install
+   npm run test:e2e:ui  # Debug with UI
+   ```
 
-#### Issue: E2E tests failing
-
-**Symptoms:** `npm run test:e2e` fails
-
-**Solutions:**
-```bash
-# Install Playwright browsers
-npx playwright install
-
-# Run with UI to see what's happening
-npm run test:e2e:ui
-
-# Run in headed mode (visible browser)
-npm run test:e2e:headed
-```
+</details>
 
 ---
 
-#### Issue: Linter errors
+### Module Not Found Errors
 
-**Symptoms:** `npm run lint` shows errors
+<details>
+<summary>⚠️ <b>Console shows "Failed to load module" or CORS errors</b></summary>
 
-**Solutions:**
-```bash
-# Auto-fix most issues
-npm run lint:fix
+<br/>
 
-# Format code
-npm run format
-
-# Check what will be formatted
-npm run format:check
-```
-
----
-
-#### Issue: Module not found errors
-
-**Symptoms:** Console shows "Failed to load module" or CORS errors
-
-**Cause:** ES6 modules require HTTP protocol, not file://
+**Cause:** ES6 modules require HTTP protocol, not `file://`
 
 **Solution:**
 ```bash
@@ -1234,58 +972,44 @@ python -m http.server 8000
 
 </details>
 
-### Advanced Configuration
+</details>
+
+---
+
+## Advanced Configuration
 
 <details>
-<summary><b>⚙️ Performance Tuning</b></summary>
+<summary>⚙️ <b>Performance tuning, visual customization, custom physics modes</b></summary>
 
 <br/>
+
+### Adjust Particle Count & Physics
 
 Edit `js/constants.js`:
 
 ```javascript
 // Maximum particles (higher = more intensive)
-export const MAX_PARTICLES = 1000; // Default: 1000
-// Recommended: 500 (low-end), 1000 (mid), 2000 (high-end)
+export const MAX_PARTICLES = 1000 // Default: 1000
 
 // Gravity strength
-export const GRAVITY_STRENGTH = 0.2; // Default: 0.2
-// Higher = stronger pull, Lower = gentler fall
+export const GRAVITY_STRENGTH = 0.2 // Default: 0.2
 
 // Damping coefficients (energy loss per frame)
-export const DAMPING_DEFAULT = 0.99;   // Default: 0.99 (1% loss)
-export const DAMPING_MAGNETIC = 0.97;  // Magnetic mode
-export const DAMPING_ELECTRIC = 0.96;  // Electric mode
-// Higher = less damping (more bouncy)
-// Lower = more damping (more sluggish)
+export const DAMPING_DEFAULT = 0.99   // Default: 0.99
+export const DAMPING_MAGNETIC = 0.97
+export const DAMPING_ELECTRIC = 0.96
 
-// Speed limiting
-export const SPEED_LIMIT = 15; // Default: 15 pixels/frame
-// Prevents tunneling through boundaries
-
-// Wall collision damping
-export const WALL_BOUNCE_DAMPING = 0.8; // Default: 0.8
-// Coefficient of restitution (1.0 = perfectly elastic)
-
-// Auto quality adjustment
-export const AUTO_QUALITY_MIN_PARTICLES = 400; // Default: 400
-export const LOW_FPS_THRESHOLD = 35;           // Default: 35
-// Trigger quality reduction at these thresholds
+// Speed limiting (prevents tunneling)
+export const SPEED_LIMIT = 15 // Default: 15 pixels/frame
 
 // Spatial grid optimization
-export const GRID_SIZE = 50; // Default: 50 pixels
-// Cell size (should match interaction radius)
-
-export const SPATIAL_GRID_REBUILD_INTERVAL = 3; // Default: 3 frames
-// How often to rebuild grid (higher = faster but less accurate)
+export const GRID_SIZE = 50 // Default: 50 pixels
+export const SPATIAL_GRID_REBUILD_INTERVAL = 3 // Frames between rebuilds
 ```
 
-</details>
+---
 
-<details>
-<summary><b>🎨 Visual Customization</b></summary>
-
-<br/>
+### Customize Visual Style
 
 Edit `css/styles.css`:
 
@@ -1293,51 +1017,25 @@ Edit `css/styles.css`:
 /* Canvas background */
 canvas {
     background: #000000; /* Black */
-    /* Try: radial-gradient(circle, #1a1a1a, #000000) */
 }
-
-/* Particle colors (in particle.js) */
-ctx.fillStyle = this.charge > 0 ? '#ff6b6b' : '#4ecdc4'; // Electric mode
-ctx.fillStyle = '#ffffff'; // Default (white)
 
 /* UI theme colors */
 :root {
-    --primary-color: #00ff88;  /* Accent color (green) */
+    --primary-color: #00ff88;  /* Accent color */
     --bg-color: #1a1a1a;       /* Dark background */
     --text-color: #ffffff;     /* White text */
-    --button-hover: #00cc6a;   /* Button hover state */
-}
-
-/* Control panel styling */
-#controls {
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent */
-    backdrop-filter: blur(10px);     /* Blur effect */
-    border-radius: 12px;             /* Rounded corners */
 }
 
 /* Button styles */
-button {
-    background: var(--primary-color);
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
 button:hover {
-    background: var(--button-hover);
+    background: var(--primary-color);
     transform: translateY(-2px);
 }
 ```
 
-</details>
+---
 
-<details>
-<summary><b>🔧 Adding Custom Physics Modes</b></summary>
-
-<br/>
+### Add Custom Physics Mode
 
 **Step 1:** Create force function in `js/physics.js`
 
@@ -1348,25 +1046,24 @@ button:hover {
  * @param {number} forceStrength - User-controlled force multiplier
  */
 export function applyCustomForces(particle, forceStrength) {
-    // Your physics implementation here
     // Example: Orbiting motion
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    const centerX = window.innerWidth / 2
+    const centerY = window.innerHeight / 2
 
-    const dx = particle.x - centerX;
-    const dy = particle.y - centerY;
-    const dist = Math.sqrt(dx * dx + dy * dy);
+    const dx = particle.x - centerX
+    const dy = particle.y - centerY
+    const dist = Math.sqrt(dx * dx + dy * dy)
 
     // Tangential force (perpendicular to radius)
-    const tangentX = -dy / dist;
-    const tangentY = dx / dist;
+    const tangentX = -dy / dist
+    const tangentY = dx / dist
 
-    const force = forceStrength * 5;
-    particle.applyForce(tangentX * force, tangentY * force);
+    const force = forceStrength * 5
+    particle.applyForce(tangentX * force, tangentY * force)
 }
 ```
 
-**Step 2:** Add mode to constants (`js/constants.js`)
+**Step 2:** Add mode constant (`js/constants.js`)
 
 ```javascript
 export const MODES = {
@@ -1377,7 +1074,7 @@ export const MODES = {
     REPEL: 'repel',
     DNA: 'dna',
     CUSTOM: 'custom' // Your new mode
-};
+}
 ```
 
 **Step 3:** Add UI button (`index.html`)
@@ -1388,19 +1085,19 @@ export const MODES = {
 </button>
 ```
 
-**Step 4:** Wire up in app.js
+**Step 4:** Wire up in `app.js`
 
 ```javascript
-import { applyCustomForces } from './physics.js';
+import { applyCustomForces } from './physics.js'
 
 // In setMode method
 case MODES.CUSTOM:
-    this.currentPhysics = (particle) => applyCustomForces(particle, this.getForceStrength());
-    break;
+    this.currentPhysics = (particle) => applyCustomForces(particle, this.getForceStrength())
+    break
 
 // In setupControls method
-this.customBtn = document.getElementById('customBtn');
-this.customBtn.addEventListener('click', () => this.setMode(MODES.CUSTOM));
+this.customBtn = document.getElementById('customBtn')
+this.customBtn.addEventListener('click', () => this.setMode(MODES.CUSTOM))
 ```
 
 </details>
@@ -1414,125 +1111,63 @@ this.customBtn.addEventListener('click', () => this.setMode(MODES.CUSTOM));
 
 <br/>
 
-### License
+## License
+
+**MIT License** - Fork it, customize it, ship it. No attribution required (but a ⭐ is appreciated!).
+
+This simulator is 100% open source and free to use for personal or commercial projects.
 
 <div align="center">
 
-<img src="https://img.shields.io/badge/License-MIT-555555?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="MIT License"/>
+<img src="https://img.shields.io/badge/License-MIT-555555?style=for-the-badge&logo=opensourceinitiative&logoColor=white"/>
+
+Full license text in [LICENSE](LICENSE) file.
 
 </div>
 
-This project is licensed under the **MIT License** - free to fork and customize!
-
-**What you can do:**
-- ✅ Use commercially
-- ✅ Modify and distribute
-- ✅ Use privately
-- ✅ Use for educational purposes
-
-**What you must do:**
-- 📄 Include the license and copyright notice
-
-**What you cannot do:**
-- ❌ Hold me liable
-- ❌ Use my name for endorsement without permission
-
-See the [LICENSE](LICENSE) file for full details.
-
 ---
 
-### Contributing
+## Contributing
 
-Contributions are welcome! Here's how to get started:
+Contributions are welcome! Whether it's bug fixes, new physics modes, or documentation improvements.
 
-<details>
-<summary><b>Contribution Guidelines</b></summary>
-
-<br/>
-
-**Before You Start**
-1. Check [existing issues](https://github.com/Zacsluss/particle_physics_simulator/issues)
-2. Search [pull requests](https://github.com/Zacsluss/particle_physics_simulator/pulls)
-3. Open a discussion for major changes
-
-**Development Workflow**
+**How to contribute:**
 
 1. **Fork the repository**
    ```bash
-   # Click "Fork" on GitHub
+   # Fork via GitHub UI, then clone your fork
    git clone https://github.com/YOUR_USERNAME/particle_physics_simulator.git
-   cd particle_physics_simulator
    ```
 
 2. **Create a feature branch**
    ```bash
-   git checkout -b feature/your-feature-name
+   git checkout -b feature/new-physics-mode
    ```
 
 3. **Make your changes**
-   - Follow existing code style
-   - Write tests for new features
-   - Update documentation
-   - Add JSDoc comments
+   - Write clean, commented code
+   - Add tests for new features
+   - Update documentation as needed
 
 4. **Test your changes**
    ```bash
-   npm test              # Run unit tests
-   npm run test:e2e     # Run E2E tests
-   npm run lint         # Check code quality
-   npm run format       # Format code
+   npm test              # Run tests
+   npm run lint          # Check code quality
+   npm run format        # Format code
    ```
 
-5. **Commit your changes**
-   ```bash
-   git add .
-   git commit -m "feat: Add awesome feature
+5. **Submit a pull request**
+   - Describe your changes clearly
+   - Link any related issues
+   - Include screenshots for visual changes
 
-   - Detailed description of what changed
-   - Why it changed
-   - Any breaking changes"
-   ```
-
-6. **Push to your fork**
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-7. **Create a Pull Request**
-   - Go to your fork on GitHub
-   - Click "Pull Request"
-   - Describe your changes
-   - Link related issues
-
-**Code Style**
-- Follow ESLint rules (run `npm run lint`)
-- Use Prettier formatting (run `npm run format`)
+**Code Style:**
+- Use ESLint config (run `npm run lint`)
 - Write JSDoc comments for functions
-- Keep functions under 50 lines when possible
+- Keep functions small and focused
 - Use meaningful variable names
 
-**Commit Message Format**
-```
-type: Subject line (50 chars max)
-
-Body (wrap at 72 chars):
-- What changed
-- Why it changed
-- Any breaking changes
-
-Fixes #123
-```
-
-**Types:**
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation only
-- `style`: Code style changes
-- `refactor`: Code refactoring
-- `test`: Adding tests
-- `chore`: Build/config changes
-
-</details>
+**Found a bug?** [Open an issue](https://github.com/Zacsluss/particle_physics_simulator/issues) with reproduction steps.
 
 </details>
 
@@ -1543,40 +1178,42 @@ Fixes #123
 
 <br/>
 
+By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect** at Computershare, managing multi-million-dollar Salesforce ecosystems and enterprise integrations across 20+ countries. By night, I build projects like this.
+
+**What I'm into:**
+Computational physics • Algorithm optimization • Vanilla JavaScript • Canvas rendering • Performance engineering • Testing best practices
+
+**Always learning, always building.**
+
+---
+
+### Let's Connect
+
 <div align="center">
 
-### Zachary Sluss
+<a href="https://zacsluss.github.io/portfolio/">
+  <img src="https://img.shields.io/badge/Portfolio-zacsluss.github.io-2e7d5a?style=for-the-badge&logo=vercel&logoColor=white"/>
+</a>
+<a href="https://github.com/Zacsluss">
+  <img src="https://img.shields.io/badge/GitHub-@Zacsluss-181717?style=for-the-badge&logo=github&logoColor=white"/>
+</a>
+<a href="https://linkedin.com/in/zacsluss">
+  <img src="https://img.shields.io/badge/LinkedIn-Zachary_Sluss-064789?style=for-the-badge&logo=linkedin&logoColor=white"/>
+</a>
+<a href="mailto:zacharyjsluss@gmail.com">
+  <img src="https://img.shields.io/badge/Email-zacharyjsluss@gmail.com-b91c1c?style=for-the-badge&logo=gmail&logoColor=white"/>
+</a>
+<a href="Zachary%20Sluss%20Resume.pdf">
+  <img src="https://img.shields.io/badge/Resume-Download_PDF-7c3aed?style=for-the-badge&logo=adobeacrobatreader&logoColor=white"/>
+</a>
 
-**Enterprise systems analyst | Problem solver | Builder of unusual projects**
+<br/><br/>
 
-<p align="center">
-  <a href="https://zacsluss.github.io/portfolio/">
-    <img src="https://img.shields.io/badge/Portfolio-zacsluss.github.io-2e7d5a?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio"/>
-  </a>
-  <a href="https://github.com/Zacsluss">
-    <img src="https://img.shields.io/badge/GitHub-@Zacsluss-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
-  </a>
-  <a href="https://linkedin.com/in/zacsluss">
-    <img src="https://img.shields.io/badge/LinkedIn-Zachary_Sluss-064789?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-  </a>
-  <a href="mailto:zacharyjsluss@gmail.com">
-    <img src="https://img.shields.io/badge/Email-zacharyjsluss@gmail.com-b91c1c?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
-  </a>
-  <a href="Zachary%20Sluss%20Resume.pdf">
-    <img src="https://img.shields.io/badge/Resume-Download_PDF-7c3aed?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Resume"/>
-  </a>
-</p>
+**Found this helpful?** Give it a ⭐ to show support!
 
-### Why This Project?
+**Want to use this for learning?** Fork it, experiment with it, and build something cool!
 
-This simulator demonstrates:
-- **Deep JavaScript proficiency** - No frameworks, pure Web APIs
-- **Algorithm optimization** - O(n²) → O(n) spatial partitioning
-- **Physics implementation** - Real mathematical formulas
-- **Testing maturity** - Unit, E2E, accessibility, performance
-- **Code quality** - 0 lint errors, 92% coverage, TypeScript definitions
-
-**Perfect for portfolios** showcasing computational thinking, performance engineering, and testing practices.
+</div>
 
 ### More Projects
 
@@ -1602,8 +1239,6 @@ This simulator demonstrates:
 </td>
 </tr>
 </table>
-
-</div>
 
 </details>
 
