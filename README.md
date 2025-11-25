@@ -2053,7 +2053,9 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 
 **Found this helpful?** Give it a ⭐ to show support!
 
-**Want to use this for learning?** Fork it, experiment with it, and build something cool!
+**Want to contribute?** See [contributing guidelines](#-license--contributing) above.
+
+**Need help?** [Open an issue](https://github.com/Zacsluss/particle_physics_simulator/issues) or email me.
 
 </div>
 
