@@ -2057,33 +2057,6 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 
 </div>
 
-### More Projects
-
-<table>
-<tr>
-<td width="50%">
-
-**🎨 3D Portfolio**
-
-- React 19 + Three.js
-- 30,000 GPU particles
-- Custom GLSL shaders
-- [View Live](https://zacsluss.github.io/portfolio/)
-
-</td>
-<td width="50%">
-
-**⚛️ Physics Simulator**
-
-- Vanilla JavaScript
-- 6 physics modes
-- 100x optimization
-- [You're here!]
-
-</td>
-</tr>
-</table>
-
 </details>
 
 ---
