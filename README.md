@@ -1872,11 +1872,11 @@ Repository Settings → Pages → Enforce HTTPS (should be checked)
 
 ## License
 
+<div align="center">
+
 **MIT License** - Fork it, customize it, ship it. No attribution required (but a ⭐ is appreciated!).
 
 This simulator is 100% open source and free to use for personal or commercial projects.
-
-<div align="center">
 
 <img src="https://img.shields.io/badge/License-MIT-555555?style=for-the-badge&logo=opensourceinitiative&logoColor=white"/>
 
