@@ -2034,7 +2034,7 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 ### Let's Connect
 
 <a href="https://zacsluss.github.io/portfolio/">
-  <img src="https://img.shields.io/badge/Portfolio-zacsluss.github.io-2e7d5a?style=for-the-badge&logo=vercel&logoColor=white"/>
+  <img src="https://img.shields.io/badge/🌐%20Portfolio-zacsluss.github.io-2e7d5a?style=for-the-badge"/>
 </a>
 <a href="https://github.com/Zacsluss">
   <img src="https://img.shields.io/badge/GitHub-@Zacsluss-181717?style=for-the-badge&logo=github&logoColor=white"/>
@@ -2043,10 +2043,10 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
   <img src="https://img.shields.io/badge/LinkedIn-Zachary_Sluss-064789?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
 <a href="mailto:zacharyjsluss@gmail.com">
-  <img src="https://img.shields.io/badge/Email-zacharyjsluss@gmail.com-b91c1c?style=for-the-badge&logo=gmail&logoColor=white"/>
+  <img src="https://img.shields.io/badge/✉️%20Email-zacharyjsluss@gmail.com-b91c1c?style=for-the-badge"/>
 </a>
 <a href="Zachary%20Sluss%20Resume.pdf">
-  <img src="https://img.shields.io/badge/Resume-Download_PDF-7c3aed?style=for-the-badge&logo=adobeacrobatreader&logoColor=white"/>
+  <img src="https://img.shields.io/badge/📄%20Resume-Download_PDF-7c3aed?style=for-the-badge"/>
 </a>
 
 <br/><br/>
