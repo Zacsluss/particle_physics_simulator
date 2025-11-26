@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Hero Header -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,12,20&height=200&section=header&text=Particle%20Physics%20Simulator&fontSize=70&fontColor=FFFFFF&animation=twinkling&fontAlignY=25&desc=1,000%20Particles%20at%2060%20FPS%20%7C%20100x%20Performance%20Boost&descSize=20&descAlignY=50&descAlign=50"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,12,20&height=200&section=header&text=Particle%20Physics%20Simulator&fontSize=70&fontColor=FFFFFF&animation=twinkling&fontAlignY=25&desc=1,000%20Particles%20at%2060%20FPS%20%7C%207.5x%20Performance%20Boost&descSize=20&descAlignY=50&descAlign=50"/>
 
 <br/>
 
@@ -36,7 +36,7 @@ An interactive physics playground where you can spawn, manipulate, and watch **1
 
 **What makes it interesting:**
 
-- Spatial grid optimization achieving **100x performance improvement** (O(n²) → O(n))
+- Spatial grid optimization achieving **7.5x performance improvement** (O(n²) → O(n))
 - Real physics formulas: Newton's F=G·m₁·m₂/r², Coulomb's F=k·q₁·q₂/r², Lorentz force
 - 154 comprehensive tests with 92% coverage and CI/CD pipeline
 - Fully interactive — click to spawn, drag for streams, right-click for attractors
@@ -89,7 +89,7 @@ _Real-time particle physics — click anywhere to spawn particles in 6 different
 ### Key Features
 
 - 🌍 **Six Physics Modes** - Gravity, Electric, Magnetic, Black Hole, Repulsion, DNA Helix with real formulas
-- ⚡ **100x Performance Boost** - Spatial grid partitioning reduces 499,500 → 20,000 comparisons/frame
+- ⚡ **7.5x Performance Boost** - Spatial grid partitioning reduces 499,500 → 20,000 comparisons/frame
 - 🖱️ **Interactive Controls** - Click to spawn, drag for streams, right-click for attractors, keyboard shortcuts
 - 🧪 **Real Physics** - Newton's gravity (F=G·m₁·m₂/r²), Coulomb's law (F=k·q₁·q₂/r²), Lorentz force (F=q(v×B))
 - 📱 **Touch Support** - Tap to spawn, swipe for streams, two-finger tap for attractors
@@ -2007,12 +2007,6 @@ Looking for something to work on? Check issues labeled:
 - Steps to reproduce
 - Expected vs actual behavior
 - Screenshots or error messages
-
----
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for version history and release notes.
 
 </details>
 
