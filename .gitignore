@@ -17,6 +17,7 @@ desktop.ini
 .project
 .settings/
 .classpath
+.claude/
 
 # Node.js & Package Management
 node_modules/
