@@ -43,7 +43,7 @@ body::before {
     }
 }
 
-/* ===== CANVAS ===== */
+/* ===== MAIN CANVAS ===== */
 canvas {
     display: block;
     cursor: crosshair;

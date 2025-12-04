@@ -42,7 +42,8 @@
     "60fps",
     "performance-optimization",
     "spatial-grid",
-    "es6-modules"
+    "es6-modules",
+    "web-animation"
   ],
   "author": {
     "name": "Zachary Sluss",

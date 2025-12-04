@@ -1,3 +1,4 @@
+// Particle class unit tests
 import { Particle } from '../js/particle.js';
 
 describe('Particle', () => {

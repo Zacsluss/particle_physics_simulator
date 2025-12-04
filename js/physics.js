@@ -17,7 +17,7 @@ import {
  */
 
 /**
- * Physics engine for different simulation modes
+ * Physics engine module for different simulation modes
  * Each mode applies different forces to particles
  */
 

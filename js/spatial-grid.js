@@ -12,7 +12,7 @@ import { GRID_SIZE } from './constants.js';
  * Instead of checking every particle against every other particle (O(n²)),
  * we divide the canvas into a grid and only check particles in nearby cells.
  *
- * This dramatically improves performance for electric and repulsion modes
+ * This dramatically improves performance for electric and repulsion modes.
  * where particle-to-particle interactions are expensive.
  */
 export class SpatialGrid {

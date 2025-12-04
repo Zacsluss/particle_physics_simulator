@@ -958,7 +958,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
         new ParticleSimulator();
     } catch (error) {
-        console.error('Failed to initialize simulator:', error);
-        alert('Failed to start the simulator. Please check your browser compatibility.');
+        console.error('Failed to initialize particle simulator:', error);
+        alert('Failed to start the particle simulator. Please check your browser compatibility.');
     }
 });

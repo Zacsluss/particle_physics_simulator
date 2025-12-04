@@ -41,7 +41,7 @@ An interactive physics playground where you can spawn, manipulate, and watch **1
 - 154 comprehensive tests with 92% coverage and CI/CD pipeline
 - Fully interactive — click to spawn, drag for streams, right-click for attractors
 
-Built with vanilla JavaScript, HTML5 Canvas, and a little math.
+Built with vanilla JavaScript, HTML5 Canvas, and mathematical physics.
 
 <div align="center">
 
