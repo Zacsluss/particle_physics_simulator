@@ -1,7 +1,7 @@
 {
   "name": "particle-physics-simulator",
   "version": "2.1.0",
-  "description": "Interactive particle physics simulator with gravity, electric fields, magnetic forces, black holes, and DNA helix simulations. Features real-time 60 FPS rendering with 1000+ particles.",
+  "description": "Interactive particle physics simulator with gravity, electric fields, magnetic forces, black holes, and DNA helix simulations. Features real-time 60 FPS rendering with 1000+ particles using spatial optimization.",
   "main": "index.html",
   "scripts": {
     "start": "python -m http.server 8000",

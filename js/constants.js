@@ -6,7 +6,7 @@
  */
 
 // Performance Configuration
-export const MAX_PARTICLES = 1000; // Maximum number of particles for smooth 60 FPS
+export const MAX_PARTICLES = 1000; // Maximum particle count optimized for smooth 60 FPS rendering
 export const TARGET_FPS = 60;
 export const FPS_UPDATE_INTERVAL = 10; // Update FPS display every N frames
 export const LOW_FPS_THRESHOLD = 35; // Trigger particle cleanup if FPS drops below this

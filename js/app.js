@@ -79,12 +79,12 @@ class ParticleSimulator {
             throw new Error('Could not get 2D context from canvas');
         }
 
-        // Particle system state
+        // Particle system state management
         this.particles = [];
         this.attractors = [];
         this.spatialGrid = null;
 
-        // Simulation state
+        // Simulation state configuration
         this.mode = MODES.GRAVITY;
         this.isPaused = false;
 

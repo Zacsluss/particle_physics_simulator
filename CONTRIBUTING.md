@@ -1,6 +1,6 @@
 # Contributing to Particle Physics Simulator
 
-First off, thank you for considering contributing to Particle Physics Simulator! It's people like you that make this project such a great learning tool.
+Thank you for considering contributing to the Particle Physics Simulator! It's people like you that make this project such a great learning tool.
 
 ## 🌟 Ways to Contribute
 
