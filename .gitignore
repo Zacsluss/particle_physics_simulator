@@ -78,5 +78,5 @@ logs/
 *.rar
 
 # Personal Files
-*.pdf
+# *.pdf  # Commented out to allow resume PDF
 *.docx
