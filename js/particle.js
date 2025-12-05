@@ -15,8 +15,8 @@ import {
 } from './constants.js';
 
 /**
- * Particle class representing a single particle in the simulation
- * Each particle has position, velocity, acceleration, and visual properties
+ * Particle class representing a single particle in the simulation.
+ * Each particle has position, velocity, acceleration, and visual properties.
  */
 export class Particle {
     /**

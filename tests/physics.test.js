@@ -1,3 +1,4 @@
+// Physics module test suite
 import { Particle } from '../js/particle.js';
 import { SpatialGrid } from '../js/spatial-grid.js';
 import {

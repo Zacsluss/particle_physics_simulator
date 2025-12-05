@@ -47,7 +47,7 @@ Built with vanilla JavaScript, HTML5 Canvas, and mathematical physics.
 
 <img src="particlesim.gif" alt="Physics Simulator Demo" width="800"/>
 
-_Real-time particle physics — click anywhere to spawn particles in 6 different modes_
+_Real-time particle physics – click anywhere to spawn particles in 6 different modes_
 
 </div>
 

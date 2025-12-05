@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitest/config';
 
+// Vitest configuration for unit testing
 export default defineConfig({
     test: {
         environment: 'jsdom',
