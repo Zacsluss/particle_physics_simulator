@@ -22,8 +22,7 @@
     "docs": "jsdoc -c jsdoc.json -r js/ -d docs/api"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/Zacsluss/particle_physics_simulator.git"
+    "type": "git"
   },
   "keywords": [
     "physics",
@@ -46,14 +45,9 @@
     "web-animation"
   ],
   "author": {
-    "name": "Zachary Sluss",
-    "url": "https://zacsluss.github.io/portfolio/"
+    "name": "Zachary Sluss"
   },
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Zacsluss/particle_physics_simulator/issues"
-  },
-  "homepage": "https://zacsluss.github.io/particle_physics_simulator/",
   "engines": {
     "node": ">=12.0.0"
   },

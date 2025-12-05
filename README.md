@@ -12,7 +12,7 @@
 
 <!-- Main Action Buttons -->
 <p align="center">
-<a href="https://zacsluss.github.io/particle_physics_simulator/"><img src="https://img.shields.io/badge/🚀%20VIEW%20SIMULATOR-2e8b57?style=for-the-badge&logo=" alt="View Simulator"/></a> <a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/⬇️%20DOWNLOAD%20SOURCE-d97706?style=for-the-badge&logo=" alt="Download Source"/></a>
+<a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/⬇️%20DOWNLOAD%20SOURCE-d97706?style=for-the-badge&logo=" alt="Download Source"/></a>
 </p>
 
 <!-- GitHub Stats Badges -->
@@ -409,9 +409,9 @@ npm run docs            # Generate JSDoc API documentation
 
 Since it uses vanilla JavaScript with no transpilation, bundling, or compilation, the source files are production-ready as-is.
 
-**To deploy:**
+**To run:**
 
-1. Copy all files to your web server
+1. Serve files with any static web server
 2. Ensure server supports:
     - Static file serving
     - Correct MIME types for `.js` files (`application/javascript`)
@@ -431,48 +431,6 @@ Since it uses vanilla JavaScript with no transpilation, bundling, or compilation
 - Hardware-accelerated canvas rendering
 - No external dependencies to download
 - requestAnimationFrame for optimal FPS
-
-</details>
-
-<details>
-<summary>🚀 <b>Deploy to GitHub Pages</b></summary>
-
-<br/>
-
-**One-command deployment:**
-
-Already configured — just push to main branch and enable GitHub Pages in repository settings.
-
-**GitHub Pages Settings:**
-
-1. Go to repository **Settings** → **Pages**
-2. **Source:** Deploy from branch
-3. **Branch:** `main`
-4. **Folder:** `/ (root)`
-5. Click **Save**
-
-Your site will be live at: `https://<username>.github.io/particle_physics_simulator/`
-
-**Custom Domain (Optional):**
-
-```bash
-# Add CNAME file to repository root
-echo "yourdomain.com" > CNAME
-git add CNAME
-git commit -m "Add custom domain"
-git push
-
-# Then configure DNS:
-# Add CNAME record: www.yourdomain.com → <username>.github.io
-# Add A records for apex domain (see GitHub docs)
-```
-
-**Deployment checklist:**
-
-- ✅ Repository is public (or GitHub Pages enabled for private repo)
-- ✅ No build step required (vanilla JS)
-- ✅ All paths are relative (works in subdirectory)
-- ✅ CORS headers not needed (same-origin)
 
 </details>
 
@@ -1772,93 +1730,6 @@ npm run test:e2e       # Should show 25+ passing
 
 </details>
 
----
-
-### Deployment Issues
-
-<details>
-<summary>🚫 <b>GitHub Pages shows 404 or site doesn't load</b></summary>
-
-<br/>
-
-**Symptoms:**
-
-- `https://username.github.io/particle_physics_simulator/` returns 404
-- Site loads but shows blank page
-- Assets (JS/CSS) don't load
-
-**Solutions:**
-
-**1. Enable GitHub Pages**
-
-```
-1. Go to repository Settings → Pages
-2. Source: Deploy from branch
-3. Branch: main
-4. Folder: / (root)
-5. Click Save
-6. Wait 1-2 minutes for deployment
-```
-
-**2. Check branch exists**
-
-```bash
-# Verify main branch has latest code
-git branch -a
-# Should show: * main
-
-# If not on main:
-git checkout main
-git push origin main
-```
-
-**3. Verify file paths are correct**
-
-```html
-<!-- In index.html, paths should be relative: -->
-<link rel="stylesheet" href="css/styles.css" />
-<!-- Good -->
-<link rel="stylesheet" href="/css/styles.css" />
-<!-- Bad (breaks in subdirectory) -->
-
-<script type="module" src="js/app.js"></script>
-<!-- Good -->
-<script type="module" src="/js/app.js"></script>
-<!-- Bad -->
-```
-
-**4. Check GitHub Pages URL**
-
-```
-Correct: https://username.github.io/particle_physics_simulator/
-Wrong: https://username.github.io/Particle_Physics_Simulator/
-       (case-sensitive!)
-```
-
-**5. Clear browser cache**
-
-```bash
-# Hard refresh (clear cache and reload)
-Ctrl+Shift+R (Windows/Linux)
-Cmd+Shift+R (Mac)
-```
-
-**6. Check HTTPS enforcement**
-
-```
-Repository Settings → Pages → Enforce HTTPS (should be checked)
-```
-
-**Verification:**
-
-- Visit your GitHub Pages URL
-- Open DevTools Network tab (F12)
-- Reload page
-- All files should show 200 status (not 404)
-- Console should show no errors
-
-</details>
-
 </details>
 
 </details>
@@ -2027,8 +1898,8 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 
 ### Let's Connect
 
-<a href="https://zacsluss.github.io/portfolio/">
-  <img src="https://img.shields.io/badge/🌐%20Portfolio-zacsluss.github.io-2e7d5a?style=for-the-badge"/>
+<a href="https://github.com/Zacsluss">
+  <img src="https://img.shields.io/badge/🌐%20Portfolio-GitHub-2e7d5a?style=for-the-badge"/>
 </a>
 <a href="https://github.com/Zacsluss">
   <img src="https://img.shields.io/badge/GitHub-@Zacsluss-181717?style=for-the-badge&logo=github&logoColor=white"/>
