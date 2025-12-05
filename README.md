@@ -69,23 +69,26 @@ _Real-time particle physics – click anywhere to spawn particles in 6 different
 
 <br/>
 
-- [⚡ What This Does](#-what-this-does)
-- [🛠️ Tech Stack](#️-tech-stack)
-- [🏗️ How It Works - Architecture](#️-how-it-works---architecture)
+- [👋 Introduction](#-introduction)
+- [⚡ What This Does](#what-this-does)
+- [🛠️ Tech Stack](#tech-stack)
+- [🏗️ How It Works - Architecture](#how-it-works)
 - [🚀 Quick Start](#quick-start)
-- [📊 Technical Deep Dive](#-technical-deep-dive)
+- [📊 Technical Deep Dive](#technical-deep-dive)
     - [Physics Modes & Formulas](#physics-modes--formulas)
     - [Performance Optimizations](#performance-optimizations)
     - [Testing & Code Quality](#testing--code-quality)
     - [Advanced Configuration](#advanced-configuration)
     - [Troubleshooting](#troubleshooting)
-- [📄 License & Contributing](#-license--contributing)
-- [📬 About & Connect](#-about--connect)
+- [📄 License](#license)
+- [📄 Contributing](#contributing)
+- [📬 About & Connect](#about--connect)
 
 </details>
 
 ---
 
+<a name="what-this-does"></a>
 <details>
 <summary><b>⚡ What This Does</b></summary>
 
@@ -118,6 +121,7 @@ _Real-time particle physics – click anywhere to spawn particles in 6 different
 
 ---
 
+<a name="tech-stack"></a>
 <details open>
 <summary><b>🛠️ Tech Stack</b></summary>
 
@@ -188,6 +192,7 @@ All physics calculations, rendering, and user interactions are implemented using
 
 ---
 
+<a name="how-it-works"></a>
 <details open>
 <summary><b>🏗️ How It Works - Architecture</b></summary>
 
@@ -524,6 +529,7 @@ See [Advanced Configuration](#advanced-configuration) section for step-by-step g
 
 ---
 
+<a name="technical-deep-dive"></a>
 <details>
 <summary><b>📊 Technical Deep Dive</b></summary>
 
@@ -992,7 +998,6 @@ for (let i = particles.length - 1; i >= 0; i--) {
 <p align="center">
   <img src="https://img.shields.io/badge/Tests-154_Passing-2e8b57?style=flat-square&logo=vitest&logoColor=white" alt="Tests"/>
   <img src="https://img.shields.io/badge/Coverage-92%25-brightgreen?style=flat-square&logo=vitest&logoColor=white" alt="Coverage"/>
-  <img src="https://github.com/Zacsluss/particle_physics_simulator/workflows/CI/badge.svg" alt="CI Status"/>
   <img src="https://img.shields.io/badge/Accessibility-WCAG_2.1_AA-blue?style=flat-square&logo=accessibility&logoColor=white" alt="Accessibility"/>
 </p>
 
@@ -1895,6 +1900,7 @@ Looking for something to work on? Check issues labeled:
 
 ---
 
+<a name="about--connect"></a>
 <details open>
 <summary><b>📬 About & Connect</b></summary>
 
@@ -1921,9 +1927,6 @@ I'm a **Principal CRM & Enterprise Platforms Solutions Architect** with expertis
 </a>
 <a href="mailto:zacharyjsluss@gmail.com">
   <img src="https://img.shields.io/badge/✉️%20Email-zacharyjsluss@gmail.com-b91c1c?style=for-the-badge"/>
-</a>
-<a href="Zachary%20Sluss%20Resume.pdf">
-  <img src="https://img.shields.io/badge/📄%20Resume-Download_PDF-7c3aed?style=for-the-badge"/>
 </a>
 
 <br/><br/>
