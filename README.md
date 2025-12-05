@@ -12,7 +12,7 @@
 
 <!-- Main Action Buttons -->
 <p align="center">
-<a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/⬇️%20DOWNLOAD%20SOURCE-d97706?style=for-the-badge&logo=" alt="Download Source"/></a>
+<a href="index.html"><img src="https://img.shields.io/badge/🔬%20LAUNCH%20SIMULATOR-ff1744?style=for-the-badge&logo=" alt="Launch Simulator"/></a> <a href="https://github.com/Zacsluss/particle_physics_simulator"><img src="https://img.shields.io/badge/📂%20VIEW%20CODE-2e8b57?style=for-the-badge&logo=" alt="View Code"/></a> <a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/⬇️%20DOWNLOAD%20ZIP-d97706?style=for-the-badge&logo=" alt="Download ZIP"/></a> <a href="#-quick-start"><img src="https://img.shields.io/badge/🚀%20QUICK%20START-4b0082?style=for-the-badge&logo=" alt="Quick Start"/></a>
 </p>
 
 <!-- GitHub Stats Badges -->
