@@ -12,10 +12,10 @@
 
 <!-- Main Action Buttons -->
 <p align="center">
-  <a href="index.html">
+  <a href="https://zacsluss.github.io/particle_physics_simulator/">
     <img src="https://img.shields.io/badge/🔬%20LAUNCH%20SIMULATOR-ff1744?style=for-the-badge&logo=" alt="Launch Simulator"/>
   </a>
-  <a href="https://zacsluss.github.io/particle_physics_simulator/">
+  <a href="https://github.com/Zacsluss/particle_physics_simulator">
     <img src="https://img.shields.io/badge/📂%20VIEW%20CODE-2e8b57?style=for-the-badge&logo=" alt="View Code"/>
   </a>
   <a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip">
