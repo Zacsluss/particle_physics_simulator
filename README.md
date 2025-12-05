@@ -21,7 +21,7 @@
   <a href="https://github.com/Zacsluss/particle_physics_simulator/archive/refs/heads/main.zip">
     <img src="https://img.shields.io/badge/⬇️%20DOWNLOAD%20ZIP-d97706?style=for-the-badge&logo=" alt="Download ZIP"/>
   </a>
-  <a href="#-quick-start">
+  <a href="#quick-start">
     <img src="https://img.shields.io/badge/🚀%20QUICK%20START-4b0082?style=for-the-badge&logo=" alt="Quick Start"/>
   </a>
 </p>
@@ -72,7 +72,7 @@ _Real-time particle physics – click anywhere to spawn particles in 6 different
 - [⚡ What This Does](#-what-this-does)
 - [🛠️ Tech Stack](#️-tech-stack)
 - [🏗️ How It Works - Architecture](#️-how-it-works---architecture)
-- [🚀 Quick Start](#-quick-start)
+- [🚀 Quick Start](#quick-start)
 - [📊 Technical Deep Dive](#-technical-deep-dive)
     - [Physics Modes & Formulas](#physics-modes--formulas)
     - [Performance Optimizations](#performance-optimizations)
@@ -307,6 +307,7 @@ Verlet integration → Position update → Boundary collision check → Canvas c
 
 ---
 
+<a name="quick-start"></a>
 <details>
 <summary><b>🚀 Quick Start</b></summary>
 
