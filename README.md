@@ -41,6 +41,7 @@
 
 ---
 
+<a name="introduction"></a>
 ## 👋 Introduction
 
 An interactive physics playground where you can spawn, manipulate, and watch **1,000 particles** interact in real-time at **60 FPS**. This simulator features six distinct physics modes — from Newtonian gravity to DNA helix formations — all running with **zero runtime dependencies**.
@@ -69,7 +70,7 @@ _Real-time particle physics – click anywhere to spawn particles in 6 different
 
 <br/>
 
-- [👋 Introduction](#-introduction)
+- [👋 Introduction](#introduction)
 - [⚡ What This Does](#what-this-does)
 - [🛠️ Tech Stack](#tech-stack)
 - [🏗️ How It Works - Architecture](#how-it-works)
@@ -535,6 +536,7 @@ See [Advanced Configuration](#advanced-configuration) section for step-by-step g
 
 <br/>
 
+<a name="physics-modes--formulas"></a>
 ## Physics Modes & Formulas
 
 <details>
@@ -706,6 +708,7 @@ const targetX = centerX + Math.cos(angle) * radius;
 
 ---
 
+<a name="performance-optimizations"></a>
 ## Performance Optimizations
 
 <details>
@@ -988,6 +991,7 @@ for (let i = particles.length - 1; i >= 0; i--) {
 
 ---
 
+<a name="testing--code-quality"></a>
 ## Testing & Code Quality
 
 <details>
@@ -1157,6 +1161,7 @@ npm run format             # Auto-format all files
 
 ---
 
+<a name="advanced-configuration"></a>
 ## Advanced Configuration
 
 <details>
@@ -1427,6 +1432,7 @@ describe('Vortex Mode', () => {
 
 ---
 
+<a name="troubleshooting"></a>
 ## Troubleshooting
 
 <details>
@@ -1758,6 +1764,7 @@ npm run test:e2e       # Should show 25+ passing
 
 <br/>
 
+<a name="license"></a>
 ## License
 
 <div align="center">
@@ -1774,6 +1781,7 @@ Full license text in [LICENSE](LICENSE) file.
 
 ---
 
+<a name="contributing"></a>
 ## Contributing
 
 Contributions are welcome! Whether it's bug fixes, new physics modes, performance improvements, or documentation enhancements.
