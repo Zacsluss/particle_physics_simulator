@@ -42,9 +42,9 @@
 ---
 
 <a name="introduction"></a>
-## 👋 Introduction
+## 👋 Hey, I'm Zac
 
-An interactive physics playground where you can spawn, manipulate, and watch **1,000 particles** interact in real-time at **60 FPS**. This simulator features six distinct physics modes — from Newtonian gravity to DNA helix formations — all running with **zero runtime dependencies**.
+I work on enterprise platforms by day and build performance-focused projects by night. This interactive physics playground is a fun place where you can spawn, manipulate, and watch **1,000 particles** interact in real-time at **60 FPS**. This simulator features six distinct physics modes — from Newtonian gravity to DNA helix formations — all running with **zero runtime dependencies**.
 
 **What makes it interesting:**
 
