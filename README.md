@@ -82,7 +82,7 @@ _Real-time particle physics – click anywhere to spawn particles in 6 different
     - [Advanced Configuration](#advanced-configuration)
     - [Troubleshooting](#troubleshooting)
 - [📄 License](#license)
-- [📄 Contributing](#contributing)
+- [🤝 Contributing](#contributing)
 - [📬 About & Connect](#about--connect)
 
 </details>
